@@ -1,9 +1,9 @@
 #requires -Version 3.0
 
 <#
-To use this within a Datto RMM COM 
-1. Add this script to the COM as a file
-2. Add the following line to the COM script:
+To use this within a Datto RMM component 
+1. Add this script to the component as a file
+2. Add the following line to the component script:
     . Get-HubFunctions.ps1
 #>
 

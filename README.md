@@ -18,7 +18,7 @@ This is the file you attach to your components. It contains the code necessary t
 2. The encryption key used to encrypt sensitive information in files stored on a web server
 - There are security concerns. `hubFunctionsConfig.ps1.AES` is encrypted, but where do you store the key so that your component can use it? We have anticipated three options (detailed later under Deployment>Environment Configuration>Encryption key value (3 options)).
 - The project is structured fairly simply at this point. There are three folders:
-1. **functions** These are the functions that drive the COMs. They are divided into subfolders for better organization, and one functions is defined per file with the file name repeating the function name.
+1. **functions** These are the functions that drive the components. They are divided into subfolders for better organization, and one functions is defined per file with the file name repeating the function name.
 2. **control** These are the files and scripts that control deployment.
 ## Deployment
 In order to get a copy of the project running on your own machine for development, you simply have to clone this repo. It consists almost exclusively of powershell files, and the individual functions can be read, modified, and tested as is. See deployment for notes on how to deploy the project in your Datto environment for live use.
@@ -39,7 +39,7 @@ When your environment is first set up and whenever updates are made within the /
 ```
 This will create two files - `.\control\protected\hubFunctions.psm1` and `.\control\protected\hubFunctions.psm1.zip`
 ### Environment configurations
-You need to establish a few fixed facts about your live environment. These settings are hard to change later, because that will require changing all COMs that use this system. When first deploying the system, define the following variables in `.\control\protected\Get-HubFunctions.ps1`. Put serious thought into this - making changes down the road may be difficult, as you will have to change the Get-HubFunctions.ps1 file attached to every component that uses it.
+You need to establish a few fixed facts about your live environment. These settings are hard to change later, because that will require changing all components that use this system. When first deploying the system, define the following variables in `.\control\protected\Get-HubFunctions.ps1`. Put serious thought into this - making changes down the road may be difficult, as you will have to change the Get-HubFunctions.ps1 file attached to every component that uses it.
 #### Location of function definitions
 ```
 $hubFunctionsSource = "https://example.com/hubFunctions.psm1.zip"
@@ -58,7 +58,7 @@ This is simple, but storing the encryption key in plaintext in Get-HubFunctions.
 ```
 $hubFunctionsConfigSourceKey = $env:encryptionKey
 ```
-With this method, when creating a com, you can add a component variable with the value of the encryption key. This prevents the value from ever being written on a client device, temporarily or otherwise. *However*, if this method is used on a component monitor, all defined variable values will be included in alert descriptions.
+With this method, when creating a component, you can add a component variable with the value of the encryption key. This prevents the value from ever being written on a client device, temporarily or otherwise. *However*, if this method is used on a component monitor, all defined variable values will be included in alert descriptions.
 ```
 $hubFunctionsConfigSourceKey = $env:udf_30
 ```
@@ -73,10 +73,10 @@ With this method, the encryption key is stored in udf30 for every device in the 
 ```
 ### Uploading files to a web server
 New versions of `.\control\protected\hubFunctionsConfig.ps1.AES` and `.\control\protected\hubFunctions.psm1.zip` should be copied to your web server at locations and with names that match your settings in `.\control\protected\Get-HubFunctions.ps1`
-## Using the system within a COM
-Using the system within a COM is a two-step process. After this is done, all functions defined in /functions will be available for use, as will all variables defined in your config file :
-1. Attach `Get-HubFunctions.ps1` to any PowerShell COM
-2. Add the following line to the COM script, ideally at the beginning
+## Using the system within a component
+Using the system within a component is a two-step process. After this is done, all functions defined in /functions will be available for use, as will all variables defined in your config file :
+1. Attach `Get-HubFunctions.ps1` to any PowerShell component
+2. Add the following line to the component script, ideally at the beginning
 ```
 .\Get-HubFunctions.ps1
 ```

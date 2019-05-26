@@ -19,27 +19,27 @@ This is the file you attach to your components. It contains the code necessary t
 - There are security concerns. `hubFunctionsConfig.ps1.AES` is encrypted, but where do you store the key so that your component can use it? We have anticipated three options (detailed later under Deployment>Environment Configuration>Encryption key value (3 options)).
 - The project is structured fairly simply at this point. There are three folders:
 1. **functions** These are the functions that drive the components. They are divided into subfolders for better organization, and one functions is defined per file with the file name repeating the function name.
-2. **control** These are the files and scripts that control deployment.
+2. **dattoRmm** These are the files and scripts that control deployment in Datto RMM.
 ## Deployment
 In order to get a copy of the project running on your own machine for development, you simply have to clone this repo. It consists almost exclusively of powershell files, and the individual functions can be read, modified, and tested as is. See deployment for notes on how to deploy the project in your Datto environment for live use.
 
 In order to deploy this in your Datto environment, follow these steps. All PS commands as written should be run from the top of the repo
 ### Starting Out
-The first time you use this system you need to create some files excluded from the repo for security reasons. This only has to be repeated if your encryption key is comprimised or if there is a change to the ".\control\protected\Get-HubFunctions.ps1" file, which will always be avoided when possible.
+The first time you use this system you need to create some files excluded from the repo for security reasons. This only has to be repeated if your encryption key is comprimised or if there is a change to the ".\dattoRmm\protected\Get-HubFunctions.ps1" file, which will always be avoided when possible.
 ```
 . ".\functions\cryptography\New-CryptographyKey.ps1"
-New-CryptographyKey -AsPlainText | Set-Content ".\control\protected\encryptionKey.AES"
-Copy-Item ".\control\templates\hubFunctionsConfig.ps1" ".\control\protected\hubFunctionsConfig.ps1"
-Copy-Item ".\control\templates\Get-HubFunctions.ps1" ".\control\protected\Get-HubFunctions.ps1"
+New-CryptographyKey -AsPlainText | Set-Content ".\dattoRmm\protected\encryptionKey.AES"
+Copy-Item ".\dattoRmm\templates\hubFunctionsConfig.ps1" ".\dattoRmm\protected\hubFunctionsConfig.ps1"
+Copy-Item ".\dattoRmm\templates\Get-HubFunctions.ps1" ".\dattoRmm\protected\Get-HubFunctions.ps1"
 ```
 ### Building the functions module
 When your environment is first set up and whenever updates are made within the /functions folder, the functions module will need to be rebuilt.
 ```
-.\control\Build-HubFunctions.ps1
+.\dattoRmm\Build-HubFunctions.ps1
 ```
-This will create two files - `.\control\protected\hubFunctions.psm1` and `.\control\protected\hubFunctions.psm1.zip`
+This will create two files - `.\dattoRmm\protected\hubFunctions.psm1` and `.\dattoRmm\protected\hubFunctions.psm1.zip`
 ### Environment configurations
-You need to establish a few fixed facts about your live environment. These settings are hard to change later, because that will require changing all components that use this system. When first deploying the system, define the following variables in `.\control\protected\Get-HubFunctions.ps1`. Put serious thought into this - making changes down the road may be difficult, as you will have to change the Get-HubFunctions.ps1 file attached to every component that uses it.
+You need to establish a few fixed facts about your live environment. These settings are hard to change later, because that will require changing all components that use this system. When first deploying the system, define the following variables in `.\dattoRmm\protected\Get-HubFunctions.ps1`. Put serious thought into this - making changes down the road may be difficult, as you will have to change the Get-HubFunctions.ps1 file attached to every component that uses it.
 #### Location of function definitions
 ```
 $hubFunctionsSource = "https://example.com/hubFunctions.psm1.zip"
@@ -64,15 +64,15 @@ $hubFunctionsConfigSourceKey = $env:udf_30
 ```
 With this method, the encryption key is stored in udf30 for every device in the account. This value will never be written anywhere, but will be visible to anyone who can view udf values. If using this mehod, you can update all udfs at any time with the command
 ```
-.\control\Set-EncryptionKeyUdf.ps1
+.\dattoRmm\Set-EncryptionKeyUdf.ps1
 ```
 ### Encrypting the config file
 `hubFunctionsConfig.ps1` stores all configuration settings by simply defining a set of variables. When your environment is first set up and whenever updates are made to `hubFunctionsConfig.ps1`, it needs to be encrypted. This config file is expected to contain API keys, passwords, and any manner of private data.
 ```
-.\control\Build-ProtectedhubFunctionsConfig.ps1 
+.\dattoRmm\Build-ProtectedhubFunctionsConfig.ps1 
 ```
 ### Uploading files to a web server
-New versions of `.\control\protected\hubFunctionsConfig.ps1.AES` and `.\control\protected\hubFunctions.psm1.zip` should be copied to your web server at locations and with names that match your settings in `.\control\protected\Get-HubFunctions.ps1`
+New versions of `.\dattoRmm\protected\hubFunctionsConfig.ps1.AES` and `.\dattoRmm\protected\hubFunctions.psm1.zip` should be copied to your web server at locations and with names that match your settings in `.\dattoRmm\protected\Get-HubFunctions.ps1`
 ## Using the system within a component
 Using the system within a component is a two-step process. After this is done, all functions defined in /functions will be available for use, as will all variables defined in your config file :
 1. Attach `Get-HubFunctions.ps1` to any PowerShell component

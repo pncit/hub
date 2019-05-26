@@ -6,7 +6,7 @@ function Set-DeviceUdf {
     .DESCRIPTION
     If provided with valid access parameters this will set UDF values via the API. This will impact devices whether or not they are online.
 
-    .PARAMETER dattoApiAccessParams
+    .PARAMETER dattoRmmApiAccessParams
     Hashtable with API url and either API access key and secret key or an API access token. Examples:
 
     .PARAMETER deviceId
@@ -26,21 +26,21 @@ function Set-DeviceUdf {
     none
 
     .EXAMPLE
-    $dattoApiAccessParams = @{
+    $dattoRmmApiAccessParams = @{
         apiUrl = https://zinfandel-api.centrastage.net
         accessKey = "ewfoijdfsoji"
         secretKey = "fdlkjfdjklsd"
     }
     $deviceId = (Get-ItemProperty -Path 'HKLM:\SOFTWARE\CentraStage' -Name deviceId).deviceId
-    Set-DeviceUdf -dattoApiAccessParams $dattoApiAccessParams -deviceId $deviceId -udf 25 -value "hello world"
+    Set-DeviceUdf -dattoRmmApiAccessParams $dattoRmmApiAccessParams -deviceId $deviceId -udf 25 -value "hello world"
 
     .EXAMPLE
-    $dattoApiAccessParams = @{
+    $dattoRmmApiAccessParams = @{
         apiUrl = https://zinfandel-api.centrastage.net
         apiAccessToken = "dfjkfdkjlsdjklfdjlkdsfjkldfsklj"
     }
     $deviceId = (Get-ItemProperty -Path 'HKLM:\SOFTWARE\CentraStage' -Name deviceId).deviceId
-    Set-DeviceUdf -dattoApiAccessParams $dattoApiAccessParams -deviceId $deviceId -udf 30 -value "hello world"
+    Set-DeviceUdf -dattoRmmApiAccessParams $dattoRmmApiAccessParams -deviceId $deviceId -udf 30 -value "hello world"
 
     .NOTES
     #>
@@ -50,7 +50,7 @@ function Set-DeviceUdf {
         [parameter(Mandatory=$true,ParameterSetName = "Site")]
         [parameter(Mandatory=$true,ParameterSetName = "Account")]
         [validateNotNullOrEmpty()]
-        [hashtable]$dattoApiAccessParams,
+        [hashtable]$dattoRmmApiAccessParams,
 
         [parameter(Mandatory=$true,ParameterSetName = "Device")]
         [validateNotNullorEmpty()]
@@ -86,9 +86,9 @@ function Set-DeviceUdf {
         $apiRequest = "account/devices"
     }
 
-    $devices = New-DattoRmmApiRequest @dattoApiAccessParams -apiMethod "get" -apiRequest $apiRequest
+    $devices = New-DattoRmmApiRequest @dattoRmmApiAccessParams -apiMethod "get" -apiRequest $apiRequest
     foreach ( $device in $devices ) {
         $deviceId = $device.uid
-        New-DattoRmmApiRequest @dattoApiAccessParams -apiMethod "post" -apiRequest "device/$deviceId/udf" -apiRequestBody $requestBody
+        New-DattoRmmApiRequest @dattoRmmApiAccessParams -apiMethod "post" -apiRequest "device/$deviceId/udf" -apiRequestBody $requestBody
     }
 }

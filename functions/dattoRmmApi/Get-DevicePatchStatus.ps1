@@ -6,7 +6,7 @@ function Get-DevicePatchStatus {
     .DESCRIPTION
     If provided with valid access parameters and a valid device uid, this will return the patch status from the Datto RMM API
 
-    .PARAMETER dattoApiAccessParams
+    .PARAMETER dattoRmmApiAccessParams
     Hashtable with API url and either API access key and secret key or an API access token. Examples:
 
     .PARAMETER deviceId
@@ -17,21 +17,21 @@ function Get-DevicePatchStatus {
     Request response
 
     .EXAMPLE
-    $dattoApiAccessParams = @{
+    $dattoRmmApiAccessParams = @{
         apiUrl = https://zinfandel-api.centrastage.net
         accessKey = "ewfoijdfsoji"
         secretKey = "fdlkjfdjklsd"
     }
     $deviceId = (Get-ItemProperty -Path 'HKLM:\SOFTWARE\CentraStage' -Name deviceId).deviceId
-    $devicePatchStatus = Get-DevicePatchStatus -dattoApiAccessParams $dattoApiAccessParams -deviceId $deviceId
+    $devicePatchStatus = Get-DevicePatchStatus -dattoRmmApiAccessParams $dattoRmmApiAccessParams -deviceId $deviceId
 
     .EXAMPLE
-    $dattoApiAccessParams = @{
+    $dattoRmmApiAccessParams = @{
         apiUrl = https://zinfandel-api.centrastage.net
         apiAccessToken = "dfjkfdkjlsdjklfdjlkdsfjkldfsklj"
     }
     $deviceId = (Get-ItemProperty -Path 'HKLM:\SOFTWARE\CentraStage' -Name deviceId).deviceId
-    $devicePatchStatus = Get-DevicePatchStatus -dattoApiAccessParams $dattoApiAccessParams -deviceId $deviceId
+    $devicePatchStatus = Get-DevicePatchStatus -dattoRmmApiAccessParams $dattoRmmApiAccessParams -deviceId $deviceId
 
     .NOTES
     #>
@@ -39,12 +39,12 @@ function Get-DevicePatchStatus {
 	(
         [parameter(Mandatory=$true)]
         [validateNotNullOrEmpty()]
-        [hashtable]$dattoApiAccessParams,
+        [hashtable]$dattoRmmApiAccessParams,
 
         [parameter(mandatory=$true)]
         [validateNotNullorEmpty()]
         [string]$deviceId
     )   
-    $deviceData = Get-DeviceData -dattoApiAccessParams $dattoApiAccessParams -deviceId $deviceId
+    $deviceData = Get-DeviceData -dattoRmmApiAccessParams $dattoRmmApiAccessParams -deviceId $deviceId
     return $deviceData.patchManagement.patchStatus
 }

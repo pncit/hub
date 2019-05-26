@@ -69,7 +69,7 @@ With this method, the encryption key is stored in udf30 for every device in the 
 ### Encrypting the config file
 `hubFunctionsConfig.ps1` stores all configuration settings by simply defining a set of variables. When your environment is first set up and whenever updates are made to `hubFunctionsConfig.ps1`, it needs to be encrypted. This config file is expected to contain API keys, passwords, and any manner of private data.
 ```
-.\dattoRmm\Build-ProtectedhubFunctionsConfig.ps1 
+.\dattoRmm\Build-ProtectedHubFunctionsConfig.ps1 
 ```
 ### Uploading files to a web server
 New versions of `.\dattoRmm\protected\hubFunctionsConfig.ps1.AES` and `.\dattoRmm\protected\hubFunctions.psm1.zip` should be copied to your web server at locations and with names that match your settings in `.\dattoRmm\protected\Get-HubFunctions.ps1`

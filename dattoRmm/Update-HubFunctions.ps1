@@ -14,7 +14,7 @@ function Update-Functions {
         Remove-Module hubFunctions
     }
     . "./dattoRmm/Build-HubFunctions.ps1"
-    Import-Module "$env:temp\hubFunctions.psm1" -Global
+    Import-Module ".\dattoRmm\protected\hubFunctions.psm1" -Global
 
     $module = Get-Module | Where-Object { $_.name -eq "hubFunctions" }
     $module.ExportedCommands.Values

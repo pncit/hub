@@ -17,5 +17,6 @@ function Update-Functions {
     Import-Module ".\dattoRmm\protected\hubFunctions.psm1" -Global
 
     $module = Get-Module | Where-Object { $_.name -eq "hubFunctions" }
+    Write-Host "Successfully imported $($module.ExportedCommands.Values.Count) functions:"
     $module.ExportedCommands.Values
 }

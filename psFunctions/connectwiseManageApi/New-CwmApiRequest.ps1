@@ -144,7 +144,7 @@ function New-CwmApiRequest {
     #make api request
     try { $response = ( Invoke-WebRequest @params -UseBasicParsing ) | Select-Object StatusCode,Content }
     catch { 
-        Write-Log -message "API Request failed`n$PSItem" -type "Error"
+        Write-Log -message "API Request failed`n$PSItem" -entryType "Error"
         throw
     }
 

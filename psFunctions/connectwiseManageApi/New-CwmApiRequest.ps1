@@ -123,7 +123,7 @@ function New-CwmApiRequest {
 
     #generate auth string if not specified
     if ( ( $PSBoundParameters.ContainsKey( 'authString')  ) -eq $false ) {
-        $authString = New-CwmApiAuthString -company $company - publicKey $publicKey -privateKey $privateKey
+        $authString = New-CwmApiAuthString -company $company -publicKey $publicKey -privateKey $privateKey
     }
 
     #set the parameters for the request

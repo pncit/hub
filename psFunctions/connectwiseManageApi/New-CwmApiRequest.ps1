@@ -54,60 +54,65 @@ function New-CwmApiRequest {
     #>
 	param
 	(
-        [parameter(Mandatory=$true,ParameterSetName = "specified url + generate auth")]
-        [parameter(Mandatory=$true,ParameterSetName = "generate url + specified auth")]
-        [parameter(Mandatory=$true,ParameterSetName = "generate url + generate auth")]
+        [parameter(Mandatory=$true,ParameterSetName = "-apiurl, -authstring")]
+        [parameter(Mandatory=$true,ParameterSetName = "+apiurl, -authstring")]
+        [parameter(Mandatory=$true,ParameterSetName = "-apiurl, +authstring, -codebase")]
         [validateNotNullorEmpty()]
         [string]$company,
         
-        [parameter(Mandatory=$true,ParameterSetName = "specified url + specified auth")]
-        [parameter(Mandatory=$true,ParameterSetName = "specified url + generate auth")]
-        [parameter(Mandatory=$true,ParameterSetName = "generate url + specified auth")]
-        [parameter(Mandatory=$true,ParameterSetName = "generate url + generate auth")]
+        [parameter(Mandatory=$true,ParameterSetName = "-apiurl, -authstring")]
+        [parameter(Mandatory=$false,ParameterSetName = "+apiurl, -authstring")]
+        [parameter(Mandatory=$true,ParameterSetName = "-apiurl, +authstring, -codebase")]
+        [parameter(Mandatory=$false,ParameterSetName = "+apiurl, +authstring")]
+        [parameter(Mandatory=$true,ParameterSetName = "-apiurl, +authstring, +codebase")]
         [validateNotNullorEmpty()]
         [string]$endpoint,
 
-        [parameter(Mandatory=$true,ParameterSetName = "specified url + specified auth")]
-        [parameter(Mandatory=$true,ParameterSetName = "specified url + generate auth")]
-        [parameter(Mandatory=$true,ParameterSetName = "generate url + specified auth")]
-        [parameter(Mandatory=$true,ParameterSetName = "generate url + generate auth")]
+        [parameter(Mandatory=$true,ParameterSetName = "-apiurl, -authstring")]
+        [parameter(Mandatory=$true,ParameterSetName = "+apiurl, -authstring")]
+        [parameter(Mandatory=$true,ParameterSetName = "-apiurl, +authstring, -codebase")]
+        [parameter(Mandatory=$true,ParameterSetName = "+apiurl, +authstring")]
+        [parameter(Mandatory=$true,ParameterSetName = "-apiurl, +authstring, +codebase")]
         [validateNotNullorEmpty()]
         [string]$apiMethod,
 
-        [parameter(Mandatory=$false,ParameterSetName = "specified url + specified auth")]
-        [parameter(Mandatory=$false,ParameterSetName = "specified url + generate auth")]
-        [parameter(Mandatory=$false,ParameterSetName = "generate url + specified auth")]
-        [parameter(Mandatory=$false,ParameterSetName = "generate url + generate auth")]
+        [parameter(Mandatory=$false,ParameterSetName = "-apiurl, -authstring")]
+        [parameter(Mandatory=$false,ParameterSetName = "+apiurl, -authstring")]
+        [parameter(Mandatory=$false,ParameterSetName = "-apiurl, +authstring, -codebase")]
+        [parameter(Mandatory=$false,ParameterSetName = "+apiurl, +authstring")]
+        [parameter(Mandatory=$false,ParameterSetName = "-apiurl, +authstring, +codebase")]
         [validateNotNullorEmpty()]
         [string]$apiRequestBody,
 
-        [parameter(Mandatory=$true,ParameterSetName = "specified url + specified auth")]
-        [parameter(Mandatory=$true,ParameterSetName = "specified url + generate auth")]
+        [parameter(Mandatory=$true,ParameterSetName = "+apiurl, -authstring")]
+        [parameter(Mandatory=$true,ParameterSetName = "+apiurl, +authstring")]
         [validateNotNullorEmpty()]
         [string]$apiUrl,
 
-        [parameter(Mandatory=$true,ParameterSetName = "generate url + specified auth")]
-        [parameter(Mandatory=$true,ParameterSetName = "generate url + generate auth")]
+        [parameter(Mandatory=$true,ParameterSetName = "-apiurl, -authstring")]
+        [parameter(Mandatory=$true,ParameterSetName = "-apiurl, +authstring, -codebase")]
+        [parameter(Mandatory=$true,ParameterSetName = "-apiurl, +authstring, +codebase")]
         [ValidateSet("au","eu","na")]
         [string]$apiRegion,
 
-        [parameter(Mandatory=$false,ParameterSetName = "generate url + specified auth")]
-        [parameter(Mandatory=$false,ParameterSetName = "generate url + generate auth")]
+        [parameter(Mandatory=$false,ParameterSetName = "-apiurl, -authstring")]
+        [parameter(Mandatory=$true,ParameterSetName = "-apiurl, +authstring, +codebase")]
         [validateNotNullorEmpty()]
         [string]$codebase,
 
-        [parameter(Mandatory=$true,ParameterSetName = "generate url + specified auth")]
-        [parameter(Mandatory=$true,ParameterSetName = "specified url + specified auth")]
+        [parameter(Mandatory=$true,ParameterSetName = "-apiurl, +authstring, -codebase")]
+        [parameter(Mandatory=$true,ParameterSetName = "+apiurl, +authstring")]
+        [parameter(Mandatory=$true,ParameterSetName = "-apiurl, +authstring, +codebase")]
         [validateNotNullorEmpty()]
         [string]$authString,
 
-        [parameter(Mandatory=$true,ParameterSetName = "generate url + generate auth")]
-        [parameter(Mandatory=$true,ParameterSetName = "specified url + generate auth")]
+        [parameter(Mandatory=$true,ParameterSetName = "-apiurl, -authstring")]
+        [parameter(Mandatory=$true,ParameterSetName = "+apiurl, -authstring")]
         [validateNotNullorEmpty()]
         [string]$publicKey,
 
-        [parameter(Mandatory=$true,ParameterSetName = "generate url + generate auth")]
-        [parameter(Mandatory=$true,ParameterSetName = "specified url + generate auth")]
+        [parameter(Mandatory=$true,ParameterSetName = "-apiurl, -authstring")]
+        [parameter(Mandatory=$true,ParameterSetName = "+apiurl, -authstring")]
         [validateNotNullorEmpty()]
         [string]$privateKey
     )

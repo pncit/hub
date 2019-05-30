@@ -15,8 +15,8 @@ function Protect-ModuleData {
     $Key64 = 'HKLM:\SOFTWARE\Wow6432Node\Policies\Microsoft\Windows\PowerShell\ModuleLogging'
     $Value = 'EnableModuleLogging'
 
-    $loggingEnabled1 = ( Test-RegistryKeyValue -key $key32 -Value $Value -TestValue '1' ) -eq $true
-    $loggingEnabled2 = ( Test-RegistryKeyValue -key $key64 -Value $Value -TestValue '1' ) -eq $true
+    $loggingEnabled1 = ( Test-RegistryKeyValueData -key $key32 -Value $Value -TestValueData '1' ) -eq $true
+    $loggingEnabled2 = ( Test-RegistryKeyValueData -key $key64 -Value $Value -TestValueData '1' ) -eq $true
     
     if ( $loggingEnabled1 -or $loggingEnabled2 ) {
         Write-Log -Message "PowerShell Module Logging is enabled. This puts sensitive information at risk. This script will now exit." -entryType "Error"

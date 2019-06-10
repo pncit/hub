@@ -27,15 +27,16 @@ function Update-HubFunctions {
         [Switch]$prod
     )
 
+    $module = Get-Module | Where-Object { $_.name -eq "hubFunctions" }
+    if ( $null -ne $module ) {
+        Remove-Module hubFunctions
+    }
+
     if ( $prod -eq $true ) {
         $env:udf_30 = Get-Content -Path ".\dattoRmm\protected\encryptionKey.AES"
         . .\dattoRmm\protected\Get-HubFunctions.ps1
         Remove-Item Env:\udf_30
     } else {
-        $module = Get-Module | Where-Object { $_.name -eq "hubFunctions" }
-        if ( $null -ne $module ) {
-            Remove-Module hubFunctions
-        }
         . "./dattoRmm/Build-HubFunctions.ps1"
         Import-Module ".\dattoRmm\protected\hubFunctions.psm1" -Global
         . .\dattoRmm\protected\hubFunctionsConfig.ps1

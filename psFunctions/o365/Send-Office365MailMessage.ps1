@@ -1,40 +1,60 @@
-function Send-Office365Message {
+function Send-Office365MailMessage {
     <#
     .SYNOPSIS 
-    Posts a message via
+    Posts a message via o365 email
 
     .DESCRIPTION
     Uses a pre-created webhook to post a message to a Teams channel
 
-    .PARAMETER webhook
-    uri for webhook
+    .PARAMETER from
+    email address to send from
 
-    .PARAMETER summary
-    Message summary
+    .PARAMETER to
+    email address to send to
 
-    .PARAMETER title
-    Message title
+    .PARAMETER subject
+    email subject
 
-    .PARAMETER text
-    Message text
+    .PARAMETER bodyAsHtml
+    Message (as html)
+
+    .PARAMETER credential
+    Credential object for from account
+
+    .OUTPUTS
+    None
 
     .EXAMPLE
-    sendMsTeamsMessage -summary "Critical event" -title "Hard Drive Failure" -text "Hard drive has failed on server at hospital"
+    $o365PasswordSecure = ConvertTo-SecureString "mypassword" -AsPlainText -Force
+    $o365Credential = New-Object System.Management.Automation.PSCredential( "sender@conosto.com" , $o365PasswordSecure )
+    Send-Office365MailMessage -from "sender@conosto.com" -credential $o365Credential -to "recipient@conosto.com" -subject "message subject" -bodyAsHtml "<html><body>Hello</body></html>"
     #>
+    
     param(
         [parameter(Mandatory=$true)]
         [validateNotNullOrEmpty()]
-        [string]$webhook,
+        [string]$from,
+
+        [parameter(Mandatory=$true)]
+        [validateNotNullOrEmpty()]
+        [PSCredential]$Credential,
         
         [parameter(Mandatory=$true)]
         [validateNotNullOrEmpty()]
-        [string]$summary,
+        [string]$to,
 
         [parameter(Mandatory=$true)]
         [validateNotNullOrEmpty()]
-        [string]$title,
+        [string]$subject,
 
         [parameter(Mandatory=$true)]
         [validateNotNullOrEmpty()]
-        [string]$text
+        [string]$bodyAsHtml
     )
+
+    $o365SmtpServer = "smtp.office365.com"
+    $o365SmtpPort = "587"
+
+    Send-MailMessage -From $from -To $to -Subject $subject -bodyAsHtml $bodyAsHtml -SmtpServer $o365SmtpServer -Port $o365SmtpPort -UseSsl -Credential $credential
+
+}

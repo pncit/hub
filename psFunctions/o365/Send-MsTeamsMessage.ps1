@@ -1,4 +1,4 @@
-function sendMsTeamsMessage {
+function Send-MsTeamsMessage {
     <#
     .SYNOPSIS 
     Posts a message to Microsoft Teams

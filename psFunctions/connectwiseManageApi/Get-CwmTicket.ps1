@@ -25,21 +25,21 @@ function Get-CwmTicket {
 
         [parameter(Mandatory=$true)]
         [validateNotNullOrEmpty()]
-        [string]$cwmApiUrl,
+        [string]$apiUrl,
     
         [parameter(Mandatory=$true)]
         [validateNotNullOrEmpty()]
-        [string]$cwmApiAuthString
+        [string]$authString
     
 
     )
 
     try {
         $endpoint = "service/tickets/$ticketId"
-        $ticket = New-CwmApiRequest -endpoint $endpoint -apiMethod "get" -apiUrl $cwmApiUrl -authString $cwmApiAuthString -ErrorAction SilentlyContinue
+        $ticket = New-CwmApiRequest -endpoint $endpoint -apiMethod "get" -apiUrl $apiUrl -authString $authString -ErrorAction SilentlyContinue
     } catch {
         $endpoint = "project/tickets/$ticketId"
-        $ticket = New-CwmApiRequest -endpoint $endpoint -apiMethod "get" -apiUrl $cwmApiUrl -authString $cwmApiAuthString
+        $ticket = New-CwmApiRequest -endpoint $endpoint -apiMethod "get" -apiUrl $apiUrl -authString $authString
     }
     return $ticket
 }

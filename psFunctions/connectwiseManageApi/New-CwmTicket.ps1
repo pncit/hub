@@ -45,23 +45,23 @@ function New-CwmTicket {
         [parameter(Mandatory=$true,ParameterSetName = "service")]
         [parameter(Mandatory=$true,ParameterSetName = "project")]
         [validateNotNullOrEmpty()]
-        [string]$cwmApiUrl,
+        [string]$apiUrl,
 
         [parameter(Mandatory=$true,ParameterSetName = "service")]
         [parameter(Mandatory=$true,ParameterSetName = "project")]
         [validateNotNullOrEmpty()]
-        [string]$cwmApiAuthString
+        [string]$authString
     )
 
     if ( ( $PSBoundParameters.ContainsKey( 'projectId')  ) -eq $true ) {
         $endpoint = "project/projects/$projectId/phases?conditions=description=`"$phaseDescription`"&fields=id"
-        $phase = New-CwmApiRequest -endpoint $endpoint -apiMethod "get" -cwmApiUrl $cwmApiUrl -cwmApiAuthString $cwmApiAuthString
+        $phase = New-CwmApiRequest -endpoint $endpoint -apiMethod "get" -apiUrl $apiUrl -authString $authString
         $body = @{
             summary = $summary
             initialDescription = $initialDescription
             phase = @{ id = $phase.id }
         } | ConvertTo-Json
-        $ticket = New-CwmApiRequest -endpoint "project/tickets" -apiRequestBody $body -apiMethod "post" -cwmApiUrl $cwmApiUrl -cwmApiAuthString $cwmApiAuthString
+        $ticket = New-CwmApiRequest -endpoint "project/tickets" -apiRequestBody $body -apiMethod "post" -apiUrl $apiUrl -authString $authString
     } else {
         $body = @{
             summary = $summary
@@ -69,7 +69,7 @@ function New-CwmTicket {
             company = @{ id = Convert-CwmCompanyNameToId( $Env:CS_PROFILE_NAME ) }
             priority = @{ id = $priority }
         } | ConvertTo-Json
-        $ticket = New-CwmApiRequest -endpoint "service/tickets" -apiRequestBody $body -apiMethod "post" -cwmApiUrl $cwmApiUrl -cwmApiAuthString $cwmApiAuthString
+        $ticket = New-CwmApiRequest -endpoint "service/tickets" -apiRequestBody $body -apiMethod "post" -apiUrl $apiUrl -authString $authString
     }
 
     return $ticket.id

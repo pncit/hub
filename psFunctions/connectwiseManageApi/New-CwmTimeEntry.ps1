@@ -23,10 +23,6 @@ function New-CwmTimeEntry {
     [validateNotNullOrEmpty()]
     [int]$ticketId,
 
-    [Parameter(Mandatory=$false)]
-    [validateSet("service","project")]
-    [string]$ticketType = "service",
-
     [parameter(Mandatory=$true)]
     [validateNotNullOrEmpty()]
     [DateTime]$timeStart,
@@ -41,11 +37,11 @@ function New-CwmTimeEntry {
 
     [parameter(Mandatory=$true)]
     [validateNotNullOrEmpty()]
-    [string]$cwmApiUrl,
+    [string]$apiUrl,
 
     [parameter(Mandatory=$true)]
     [validateNotNullOrEmpty()]
-    [string]$cwmApiAuthString
+    [string]$authString
 
     )
 
@@ -55,7 +51,7 @@ function New-CwmTimeEntry {
         $timeEnd = $timeStart.AddMinutes(1)
     }
 
-    $ticket = Get-CwmTicket -ticketId $ticketId  -cwmApiUrl $cwmApiUrl -cwmApiAuthString $cwmApiAuthString
+    $ticket = Get-CwmTicket -ticketId $ticketId  -apiUrl $apiUrl -authString $authString -ErrorAction SilentlyContinue
     if ( $ticket.board.id -eq $cwmProjectBoardId ) {
         $endpoint = "project/tickets/$ticketId"
         $chargeToType = "ProjectTicket"
@@ -75,7 +71,7 @@ function New-CwmTimeEntry {
             value = @{ id = $openStatus }
         } | ConvertTo-Json
         $body = "[$body]"
-        New-CwmApiRequest -endpoint $endpoint -apiRequestBody $body -apiMethod "patch" -apiUrl $cwmApiUrl -authString $cwmApiAuthString
+        New-CwmApiRequest -endpoint $endpoint -apiRequestBody $body -apiMethod "patch" -apiUrl $apiUrl -authString $authString
     }
 
     $body = @{
@@ -88,5 +84,5 @@ function New-CwmTimeEntry {
         notes = $notes
     } | ConvertTo-Json
 
-    New-CwmApiRequest -endpoint "time/entries" -apiRequestBody $body -apiMethod "post" -apiUrl $cwmApiUrl -authString $cwmApiAuthString
+    New-CwmApiRequest -endpoint "time/entries" -apiRequestBody $body -apiMethod "post" -apiUrl $apiUrl -authString $authString
 }

@@ -53,7 +53,7 @@ function Get-CwmApiUrl {
 
     if ( ( $PSBoundParameters.ContainsKey( 'codebase')  ) -eq $false ) {
         $uri = "https://api-" + $apiRegion + ".myconnectwise.net/login/companyinfo/" + $company
-        $response = Invoke-WebRequest -uri $uri
+        $response = Invoke-WebRequest -uri $uri -UseBasicParsing
         $content = $response.content | ConvertFrom-Json
         $codebase = $content.codebase
     }

@@ -52,4 +52,5 @@ function Close-CwmTicket {
     $body = "[$body]"
 
     $ticket = New-CwmApiRequest -endpoint $endpoint -apiRequestBody $body -apiMethod "patch" -apiUrl $cwmApiUrl -authString $cwmApiAuthString
+    return $ticket
 }

@@ -139,7 +139,7 @@ function New-CwmApiRequest {
 
     #set the parameters for the request
     $params = @{
-        Uri         =	"$apiUrl$endpoint"
+        Uri         =	$apiUrl + [uri]::EscapeUriString($endpoint )
         Method      =	$apiMethod
         ContentType	= 	'application/json'
         Headers     =	@{

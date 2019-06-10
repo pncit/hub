@@ -52,6 +52,7 @@ function New-CwmApiRequest {
 
     .NOTES
     #>
+    [CmdletBinding()]
 	param
 	(
         [parameter(Mandatory=$true,ParameterSetName = "-apiurl, -authstring")]
@@ -117,6 +118,11 @@ function New-CwmApiRequest {
         [string]$privateKey
     )
 
+    $errorAction = $PSBoundParameters["ErrorAction"]
+    if(-not $errorAction){
+        $errorAction = $ErrorActionPreference
+    }
+
     #generate api url if not specified
     if ( ( $PSBoundParameters.ContainsKey( 'apiUrl')  ) -eq $false ) {
         if ( ( $PSBoundParameters.ContainsKey( 'codebase')  ) -eq $false ) {
@@ -148,8 +154,10 @@ function New-CwmApiRequest {
 
     #make api request
     try { $response = ( Invoke-WebRequest @params -UseBasicParsing ) | Select-Object StatusCode,Content }
-    catch { 
-        Write-Log -message "API Request failed`n$PSItem" -entryType "Error"
+    catch {
+        if ( $ErrorAction.ToString().ToLower() -ne "silentycontinue") {
+            Write-Log -message "API Request failed`n$PSItem" -entryType "Error"
+        }
         throw
     }
 

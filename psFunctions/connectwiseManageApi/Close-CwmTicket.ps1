@@ -25,11 +25,11 @@ function Close-CwmTicket {
 
         [parameter(Mandatory=$true)]
         [validateNotNullOrEmpty()]
-        [string]$cwmApiUrl,
+        [string]$apiUrl,
     
         [parameter(Mandatory=$true)]
         [validateNotNullOrEmpty()]
-        [string]$cwmApiAuthString
+        [string]$authString
     
 
     )

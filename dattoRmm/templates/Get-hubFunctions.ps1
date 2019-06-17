@@ -11,6 +11,11 @@ To use this within a Datto RMM component
 $hubFunctionsSource = "https://example.com/hubFunctions.psm1.zip"
 $hubFunctionsConfigSource = "https://example.com/hubFunctionsConfig.ps1.AES"
 $hubFunctionsConfigSourceKey = $env:udf_30
+if ( $null -eq $hubFunctionsConfigSourceKey ) {
+    write-error "Hub encryption key (udf 30) not available. Exiting..."
+    write-log "Hub encryption key (udf 30) not available. Exiting..."
+    exit 1
+}
 
 #default parameters
 $tempDir = $env:temp

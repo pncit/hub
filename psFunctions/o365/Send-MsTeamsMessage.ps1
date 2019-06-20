@@ -19,7 +19,7 @@ function Send-MsTeamsMessage {
     Message text
 
     .EXAMPLE
-    sendMsTeamsMessage -summary "Critical event" -title "Hard Drive Failure" -text "Hard drive has failed on server at hospital"
+    Send-MsTeamsMessage -summary "Critical event" -title "Hard Drive Failure" -text "Hard drive has failed on server at hospital"
     #>
     param(
         [parameter(Mandatory=$true)]

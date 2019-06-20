@@ -26,9 +26,9 @@ function Send-MsTeamsMessage {
     Send-MsTeamsMessage -summary "Critical event" -title "Hard Drive Failure" -text "Hard drive has failed on server at hospital"
     #>
     param(
-        [parameter(Mandatory=$true)]
+        [parameter(Mandatory=$false)]
         [validateNotNullOrEmpty()]
-        [string]$webhook,
+        [string]$webhook = $msTeamsWebhook,
         
         [parameter(Mandatory=$true)]
         [validateNotNullOrEmpty()]

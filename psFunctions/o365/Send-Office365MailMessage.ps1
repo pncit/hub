@@ -31,13 +31,13 @@ function Send-Office365MailMessage {
     #>
     
     param(
-        [parameter(Mandatory=$true)]
+        [parameter(Mandatory=$false)]
         [validateNotNullOrEmpty()]
-        [string]$from,
+        [string]$from = $o365Account,
 
-        [parameter(Mandatory=$true)]
+        [parameter(Mandatory=$false)]
         [validateNotNullOrEmpty()]
-        [PSCredential]$Credential,
+        [PSCredential]$Credential = $o365AccountCredential,
         
         [parameter(Mandatory=$true)]
         [validateNotNullOrEmpty()]

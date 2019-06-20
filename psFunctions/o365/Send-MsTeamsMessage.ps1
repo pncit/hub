@@ -18,6 +18,10 @@ function Send-MsTeamsMessage {
     .PARAMETER text
     Message text
 
+    .NOTES
+    Summary is what shows up in the teams feed
+    Title is what is bold/h1 in the message itself
+    Text is plain text in the message itself
     .EXAMPLE
     Send-MsTeamsMessage -summary "Critical event" -title "Hard Drive Failure" -text "Hard drive has failed on server at hospital"
     #>

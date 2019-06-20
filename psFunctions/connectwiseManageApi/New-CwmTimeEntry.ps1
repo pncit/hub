@@ -79,8 +79,8 @@ function New-CwmTimeEntry {
         chargeToType = $chargeToType
         member = @{ id = $cwmMemberId }
         workRole = @{ id = $cwmWorkRoleId }
-        timeStart = $timeStart.ToString('yyyy-MM-ddTHH:mm:ssZ')
-        timeEnd = $timeEnd.ToString('yyyy-MM-ddTHH:mm:ssZ')
+        timeStart = Convert-AkToCwmUtc -akDateTime $timeStart
+        timeEnd = Convert-AkToCwmUtc -akDateTime $timeEnd
         notes = $notes
     } | ConvertTo-Json
 

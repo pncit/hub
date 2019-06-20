@@ -45,8 +45,6 @@ $global:cwmWorkRoleId = $cwmWorkRoleId
 
 $o365PasswordSecure = ConvertTo-SecureString $o365Password -AsPlainText -Force
 $o365Credential = New-Object System.Management.Automation.PSCredential( $o365Account , $o365PasswordSecure )
-$global:o365MailParams = @{ 
-    From = $o365Account
-    Credential = $o365Credential
-}
+$global:o365Account = $o365Account
+$global:o365AccountCredential = $o365Credential
 $global:msTeamsWebhook = $msTeamsWebhook

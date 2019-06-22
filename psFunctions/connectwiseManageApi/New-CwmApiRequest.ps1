@@ -81,7 +81,6 @@ function New-CwmApiRequest {
     }
 
     $content = $response.content | ConvertFrom-Json
-write-host $response.Headers['Link']
     if ( ( $null -eq $response.Headers['Link'] ) -or ( $response.Headers['Link'].IndexOf( 'rel="next"' ) -eq -1 ) ) {
         return $content
     } else {

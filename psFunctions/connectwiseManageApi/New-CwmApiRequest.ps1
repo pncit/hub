@@ -20,9 +20,9 @@ function New-CwmApiRequest {
     [CmdletBinding()]
 	param
 	(
-        [parameter(Mandatory=$true)]
+        [parameter(Mandatory=$false)]
         [validateNotNullorEmpty()]
-        [string]$endpoint,
+        [string]$endpoint=$null,
 
         [parameter(Mandatory=$true)]
         [validateNotNullorEmpty()]
@@ -46,9 +46,19 @@ function New-CwmApiRequest {
         $errorAction = $ErrorActionPreference
     }
 
+    #pull maximum records allowable unless endpoint argument already specifies a count
+    $uri = $apiUrl + [uri]::EscapeUriString($endpoint )
+    if ( $uri.ToLower().IndexOf( "pagesize" ) -eq -1 ) {
+        if ( $uri.IndexOf( "?" ) -eq -1 ) {
+            $uri += "?pageSize=1000"
+        } else {
+            $uri += "&pageSize=1000" 
+        }
+    }
+
     #set the parameters for the request
     $params = @{
-        Uri         =	$apiUrl + [uri]::EscapeUriString($endpoint )
+        Uri         =	$uri
         Method      =	$apiMethod
         ContentType	= 	'application/json'
         Headers     =	@{
@@ -62,7 +72,7 @@ function New-CwmApiRequest {
     }
 
     #make api request
-    try { $response = ( Invoke-WebRequest @params -UseBasicParsing ) | Select-Object StatusCode,Content }
+    try { $response = ( Invoke-WebRequest @params -UseBasicParsing ) | Select-Object StatusCode,Content,Headers }
     catch {
         if ( $ErrorAction.ToString().ToLower() -ne "silentycontinue") {
             Write-Log -message "API Request failed`n$PSItem" -entryType "Error"
@@ -70,6 +80,31 @@ function New-CwmApiRequest {
         throw
     }
 
-    return $response.content | ConvertFrom-Json
-
+    $content = $response.content | ConvertFrom-Json
+write-host $response.Headers['Link']
+    if ( ( $null -eq $response.Headers['Link'] ) -or ( $response.Headers['Link'].IndexOf( 'rel="next"' ) -eq -1 ) ) {
+        return $content
+    } else {
+        #extract 'next' url from a string like
+        #<https://api-na.myconnectwise.net/v4_6_release/apis/3.0/service/tickets/?pageSize=1000&page=2>; rel="next", <https://api-na.myconnectwise.net/v4_6_release/apis/3.0/service/tickets/?pageSize=1000&page=230>; rel="last"
+        $linkInfo = $response.Headers['Link']
+        $linkInfo = $linkInfo.Replace('rel=','').Replace('<','').Replace('>','').Replace('"','').Replace(' ','')
+        $linkInfo = $linkInfo.Split(',')
+        foreach ( $link in $linkInfo ) {
+            $info = $link.split(';')
+            if ( $info[1] -eq 'next') {
+                $nextUrl = $info[0]
+            }
+        }
+        $params = @{
+            "apiUrl" = $nextUrl
+            "authString" = $cwmApiAuthString
+            "apiMethod" = $apiMethod
+        }
+        if ( $apiRequestBody ) {
+            $params.Add( 'Body' , $apiRequestBody )
+        }
+        $restOfContent = New-CwmApiRequest @params
+        return $content + $restOfContent
+    }
 }

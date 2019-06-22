@@ -15,7 +15,7 @@ This is the file you attach to your components. It contains the code necessary t
 ### Notes
 - Two things are static (or at least cumbersome to change):
 1. The names and location of files that are served on a web server
-2. The encryption key used to encrypt sensitive information in files stored on a web server
+2. Anything done by or defined in Get-HubFunctions.ps1
 - There are security concerns. `hubFunctionsConfig.ps1.AES` is encrypted, but where do you store the key so that your component can use it? We have anticipated three options (detailed later under Deployment>Environment Configuration>Encryption key value (3 options)).
 - The project is structured fairly simply at this point. There are three folders:
 1. **functions** These are the functions that drive the components. They are divided into subfolders for better organization, and one functions is defined per file with the file name repeating the function name.
@@ -51,14 +51,17 @@ $hubFunctionsConfigSource = "https://example.com/hubFunctionsConfig.ps1.AES"
 ```
 This is the web location of `hubFunctionsConfig.ps1.AES` (will be created later)
 #### Encryption key value (3 options)
+##### Option 1
 ```
 $hubFunctionsConfigSourceKey = "JRLC07qB2x4M7xuU9vog4xcxsj2Ffia/zM2K17/u3N4="
 ```
 This is simple, but storing the encryption key in plaintext in Get-HubFunctions.ps1 is not ideal. Although we expect temporary files to be deleted after a component runs, it cannot be guaranteed that a key will never be left on a device. 
+##### Option 2
 ```
 $hubFunctionsConfigSourceKey = $env:encryptionKey
 ```
 With this method, when creating a component, you can add a component variable with the value of the encryption key. This prevents the value from ever being written on a client device, temporarily or otherwise. *However*, if this method is used on a component monitor, all defined variable values will be included in alert descriptions.
+##### Option 3
 ```
 $hubFunctionsConfigSourceKey = $env:udf_30
 ```

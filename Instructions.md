@@ -33,17 +33,18 @@ This is the web location of `hubFunctionsConfig.ps1.AES` (will be created later)
 ```
 $hubFunctionsConfigSourceKey = "JRLC07qB2x4M7xuU9vog4xcxsj2Ffia/zM2K17/u3N4="
 ```
-This is simple, but storing the encryption key in plaintext in Get-HubFunctions.ps1 is not ideal. Although we expect temporary files to be deleted after a component runs, it cannot be guaranteed that a key will never be left on a device. 
+This is simple, but storing the encryption key in plaintext in Get-HubFunctions.ps1 is not ideal. Although we expect temporary files to be deleted after a component runs, it cannot be guaranteed that a key will never be left on a device. In addition, if the key is compromised and has to be changed, all components will have to be updated with a new version of `Get-HubFunctions.ps1`.
 ##### Option 2
 ```
 $hubFunctionsConfigSourceKey = $env:encryptionKey
 ```
-With this method, when creating a component, you can add a component variable with the value of the encryption key. This prevents the value from ever being written on a client device, temporarily or otherwise. *However*, if this method is used on a component monitor, all defined variable values will be included in alert descriptions.
+With this method, when creating a component, you can add a component variable with the value of the encryption key. This prevents the value from ever being written on a client device, temporarily or otherwise. *However*, if this method is used on a component monitor, all defined variable values will be included in alert descriptions. In addition, if the key is compromised and has to be changed, all components will have to be updated.
 ##### Option 3
 ```
 $hubFunctionsConfigSourceKey = $env:udf_30
 ```
-With this method, the encryption key is stored in udf30 for every device in the account. This value will never be written anywhere, but will be visible to anyone who can view udf values. If using this mehod, you can update all udfs at any time with the command
+With this method, the encryption key is stored in udf30 for every device in the account. This value will never be written anywhere, but will be visible to anyone who can view udf values. In addition, you will need to define it for every new device. 
+If using this mehod, you can update all udfs at any time (whether they are online or not) with the command
 ```
 .\dattoRmm\Set-EncryptionKeyUdf.ps1
 ```

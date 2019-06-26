@@ -20,13 +20,13 @@ Once you have `hubFunctions.psm1.zip` and `hubFunctionsConfig.ps1.AES` in a publ
 ``` 
 ## Notes
 1. Two things are static (or at least cumbersome to change):
-- The names and location of files that are served on a web server
-- Anything done by or defined in Get-HubFunctions.ps1
+   - The names and location of files that are served on a web server
+   - Anything done by or defined in Get-HubFunctions.ps1
 2. There are security concerns. `hubFunctionsConfig.ps1.AES` is encrypted, but where do you store the key so that your component can use it? We have anticipated three options (detailed later under Deployment>Environment Configuration>Encryption key value (3 options)).
 3. The project is structured fairly simply at this point. There are three folders:
-- **functions** These are the functions that drive the components. They are divided into subfolders for better organization, and one functions is defined per file with the file name repeating the function name.
-- **dattoRmm** These are the files and scripts that control deployment in Datto RMM.
-- **scripts** These are scripts that leverage the functions defined under **functions**. In Datto RMM, these form the 'script' portion of custom Components.
+   - **functions** These are the functions that drive the components. They are divided into subfolders for better organization, and one functions is defined per file with the file name repeating the function name.
+   - **dattoRmm** These are the files and scripts that control deployment in Datto RMM.
+   - **scripts** These are scripts that leverage the functions defined under **functions**. In Datto RMM, these form the 'script' portion of custom Components.
 ## Contributing
 We would love to get feedback and contributions. If you are interested in contributing, please contact [rgg](https://success.autotask.net/t5/user/viewprofilepage/user-id/35934)
 ## License

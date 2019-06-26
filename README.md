@@ -13,7 +13,12 @@ This is a PowerShell module with all of the functions defined. It is compiled ou
 This is a configuration file that defines a variety of PowerShell variables. It can include sensitive information, such as passwords, non-public webhooks, and API keys. For this reason, it is encrypted (the code to encrypt and decrypt this file is included in this project and can be updated as cryptography technology changes).
 #### Get-HubFunctions.ps1
 This is the file you attach to your components. It contains the code necessary to download and import `hubFunctions.psm1` and download, decrypt, and include `hubFunctionsConfig.ps1.AES` so that by running it within your component you are, in one line, defining dozens of functions and making any number of configuration settings and constants available to you.
-### Notes
+### The line of code
+Once you have `hubFunctions.psm1.zip` and `hubFunctionsConfig.ps1.AES` in a publicly accessible place defined within `Get-HubFunctions.ps1`, attach `Get-HubFunctions.ps1` to your PowerShell Component and add this line to the beginning of the Component script:
+```
+.\Get-HubFunctions.ps1
+``` 
+## Notes
 1. Two things are static (or at least cumbersome to change):
 - The names and location of files that are served on a web server
 - Anything done by or defined in Get-HubFunctions.ps1

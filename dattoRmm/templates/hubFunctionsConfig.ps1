@@ -28,6 +28,8 @@ $msTeamsWebhook = "https://outlook.office.com/webhook/00000000-0000-0000-0000-00
 ################################################################
 # below this point all settings are dynamic
 
+$global:hubFunctionsConfigImported = $true
+
 $global:dattoRmmApiAccessParams = @{
     apiUrl = $dattoRmmApiUrl
     accessKey = $dattoRmmAccessKey

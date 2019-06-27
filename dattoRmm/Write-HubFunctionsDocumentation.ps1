@@ -9,3 +9,4 @@ Update-HubFunctions
 Remove-Item –path .\docs\functionDocumentation\* -Include *.md
 New-MarkdownHelp -Module hubFunctions -OutputFolder '.\docs\functionDocumentation' -Force
 Get-ChildItem '.\docs\functionDocumentation' *-*md | Get-Content | Set-Content '.\docs\functionDocumentation\README.md' -Force
+Remove-Item –path .\docs\functionDocumentation\* -Include *.md -Exclude README.md

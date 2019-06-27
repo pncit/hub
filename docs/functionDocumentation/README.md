@@ -1,10 +1,3 @@
----
-external help file: hubFunctions-help.xml
-Module Name: hubFunctions
-online version:
-schema: 2.0.0
----
-
 # Close-CwmTicket
 
 ## SYNOPSIS
@@ -85,13 +78,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
----
-external help file: hubFunctions-help.xml
-Module Name: hubFunctions
-online version:
-schema: 2.0.0
----
-
 # Convert-CwmCompanyNameToId
 
 ## SYNOPSIS
@@ -141,13 +127,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
----
-external help file: hubFunctions-help.xml
-Module Name: hubFunctions
-online version:
-schema: 2.0.0
----
-
 # Convert-CwmUtcToLocalTime
 
 ## SYNOPSIS
@@ -201,13 +180,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
----
-external help file: hubFunctions-help.xml
-Module Name: hubFunctions
-online version:
-schema: 2.0.0
----
-
 # Convert-LocalTimeToCwmUtc
 
 ## SYNOPSIS
@@ -261,13 +233,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
----
-external help file: hubFunctions-help.xml
-Module Name: hubFunctions
-online version:
-schema: 2.0.0
----
-
 # Get-CwmApiUrl
 
 ## SYNOPSIS
@@ -380,13 +345,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
----
-external help file: hubFunctions-help.xml
-Module Name: hubFunctions
-online version:
-schema: 2.0.0
----
-
 # Get-CwmTicket
 
 ## SYNOPSIS
@@ -466,13 +424,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
----
-external help file: hubFunctions-help.xml
-Module Name: hubFunctions
-online version:
-schema: 2.0.0
----
-
 # Get-DeviceData
 
 ## SYNOPSIS
@@ -540,13 +491,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
----
-external help file: hubFunctions-help.xml
-Module Name: hubFunctions
-online version:
-schema: 2.0.0
----
-
 # Get-DeviceId
 
 ## SYNOPSIS
@@ -580,13 +524,6 @@ $deviceId = Get-DeviceId
 ## NOTES
 
 ## RELATED LINKS
----
-external help file: hubFunctions-help.xml
-Module Name: hubFunctions
-online version:
-schema: 2.0.0
----
-
 # Get-DevicePatchStatus
 
 ## SYNOPSIS
@@ -654,13 +591,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
----
-external help file: hubFunctions-help.xml
-Module Name: hubFunctions
-online version:
-schema: 2.0.0
----
-
 # Get-PendingReboot
 
 ## SYNOPSIS
@@ -792,13 +722,6 @@ Removed .Net Registry connection, replaced with WMI StdRegProv
 Added ComputerPendingRename
 
 ## RELATED LINKS
----
-external help file: hubFunctions-help.xml
-Module Name: hubFunctions
-online version:
-schema: 2.0.0
----
-
 # New-CryptographyKey
 
 ## SYNOPSIS
@@ -884,13 +807,6 @@ Date: 9/22/2017
 Downloaded from https://gallery.technet.microsoft.com/scriptcenter/EncryptDecrypt-files-use-65e7ae5d on 3/8/2019
 
 ## RELATED LINKS
----
-external help file: hubFunctions-help.xml
-Module Name: hubFunctions
-online version:
-schema: 2.0.0
----
-
 # New-CwmApiAuthString
 
 ## SYNOPSIS
@@ -976,13 +892,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
----
-external help file: hubFunctions-help.xml
-Module Name: hubFunctions
-online version:
-schema: 2.0.0
----
-
 # New-CwmApiRequest
 
 ## SYNOPSIS
@@ -1103,13 +1012,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
----
-external help file: hubFunctions-help.xml
-Module Name: hubFunctions
-online version:
-schema: 2.0.0
----
-
 # New-CwmTicket
 
 ## SYNOPSIS
@@ -1262,13 +1164,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
----
-external help file: hubFunctions-help.xml
-Module Name: hubFunctions
-online version:
-schema: 2.0.0
----
-
 # New-CwmTimeEntry
 
 ## SYNOPSIS
@@ -1396,13 +1291,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
----
-external help file: hubFunctions-help.xml
-Module Name: hubFunctions
-online version:
-schema: 2.0.0
----
-
 # New-DattoRmmApiAccessToken
 
 ## SYNOPSIS
@@ -1494,13 +1382,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
----
-external help file: hubFunctions-help.xml
-Module Name: hubFunctions
-online version:
-schema: 2.0.0
----
-
 # New-DattoRmmApiRequest
 
 ## SYNOPSIS
@@ -1682,13 +1563,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
----
-external help file: hubFunctions-help.xml
-Module Name: hubFunctions
-online version:
-schema: 2.0.0
----
-
 # Protect-File
 
 ## SYNOPSIS
@@ -1877,13 +1751,6 @@ Date: 9/22/2017
 Downloaded from https://gallery.technet.microsoft.com/scriptcenter/EncryptDecrypt-files-use-65e7ae5d on 3/8/2019
 
 ## RELATED LINKS
----
-external help file: hubFunctions-help.xml
-Module Name: hubFunctions
-online version:
-schema: 2.0.0
----
-
 # Protect-ModuleData
 
 ## SYNOPSIS
@@ -1915,13 +1782,6 @@ Protect-ModuleData
 ## NOTES
 
 ## RELATED LINKS
----
-external help file: hubFunctions-help.xml
-Module Name: hubFunctions
-online version:
-schema: 2.0.0
----
-
 # Send-MsTeamsMessage
 
 ## SYNOPSIS
@@ -2021,13 +1881,6 @@ Title is what is bold/h1 in the message itself
 Text is plain text in the message itself
 
 ## RELATED LINKS
----
-external help file: hubFunctions-help.xml
-Module Name: hubFunctions
-online version:
-schema: 2.0.0
----
-
 # Send-Office365MailMessage
 
 ## SYNOPSIS
@@ -2139,13 +1992,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
----
-external help file: hubFunctions-help.xml
-Module Name: hubFunctions
-online version:
-schema: 2.0.0
----
-
 # Set-DeviceUdf
 
 ## SYNOPSIS
@@ -2274,13 +2120,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
----
-external help file: hubFunctions-help.xml
-Module Name: hubFunctions
-online version:
-schema: 2.0.0
----
-
 # Test-RebootRequired
 
 ## SYNOPSIS
@@ -2312,13 +2151,6 @@ $rebootRequired = Test-RebootRequired
 ## NOTES
 
 ## RELATED LINKS
----
-external help file: hubFunctions-help.xml
-Module Name: hubFunctions
-online version:
-schema: 2.0.0
----
-
 # Test-RegistryKeyValueData
 
 ## SYNOPSIS
@@ -2400,13 +2232,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
----
-external help file: hubFunctions-help.xml
-Module Name: hubFunctions
-online version:
-schema: 2.0.0
----
-
 # Unprotect-File
 
 ## SYNOPSIS
@@ -2595,13 +2420,6 @@ Date: 9/22/2017
 Downloaded from https://gallery.technet.microsoft.com/scriptcenter/EncryptDecrypt-files-use-65e7ae5d on 3/8/2019
 
 ## RELATED LINKS
----
-external help file: hubFunctions-help.xml
-Module Name: hubFunctions
-online version:
-schema: 2.0.0
----
-
 # Write-CustomUdf
 
 ## SYNOPSIS
@@ -2665,13 +2483,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
----
-external help file: hubFunctions-help.xml
-Module Name: hubFunctions
-online version:
-schema: 2.0.0
----
-
 # Write-Log
 
 ## SYNOPSIS

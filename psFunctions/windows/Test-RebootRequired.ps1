@@ -1,4 +1,18 @@
 function Test-RebootRequired {
+    <#
+    .SYNOPSIS 
+    Detects whether a reboot is required
+
+    .DESCRIPTION
+    Detects whether a reboot is required
+
+    .OUTPUTS
+    [Boolean]
+
+    .EXAMPLE
+    $rebootRequired = Test-RebootRequired
+    #>
+
     #in the future these can be changed into switches if that is deemed useful
     $chkCBServicing = $true
     $chkWindowsUpdate = $true

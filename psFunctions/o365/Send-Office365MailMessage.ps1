@@ -4,36 +4,28 @@ function Send-Office365MailMessage {
     Posts a message via o365 email
 
     .DESCRIPTION
-    Uses a pre-created webhook to post a message to a Teams channel
+    Sends an email from an Office365 account with HTML-encoded message content.
 
-    .PARAMETER from
-    email address to send from
+    .PARAMETER From
+    Email address to send from
 
-    .PARAMETER to
-    email address to send to
+    .PARAMETER Credential
+    Credential object containing credentials for $o365Account
 
-    .PARAMETER subject
-    email subject
+    .PARAMETER To
+    Email address to send to
 
-    .PARAMETER bodyAsHtml
+    .PARAMETER Subject
+    Email subject
+
+    .PARAMETER BodyAsHtml
     Message (as html)
-
-    .PARAMETER credential
-    Credential object for from account
-
-    .OUTPUTS
-    None
-
-    .EXAMPLE
-    $o365PasswordSecure = ConvertTo-SecureString "mypassword" -AsPlainText -Force
-    $o365Credential = New-Object System.Management.Automation.PSCredential( "sender@conosto.com" , $o365PasswordSecure )
-    Send-Office365MailMessage -from "sender@conosto.com" -credential $o365Credential -to "recipient@conosto.com" -subject "message subject" -bodyAsHtml "<html><body>Hello</body></html>"
     #>
     
     param(
         [parameter(Mandatory=$false)]
         [validateNotNullOrEmpty()]
-        [string]$from = $o365Account,
+        [string]$From = $O365Account,
 
         [parameter(Mandatory=$false)]
         [validateNotNullOrEmpty()]
@@ -41,15 +33,15 @@ function Send-Office365MailMessage {
         
         [parameter(Mandatory=$true)]
         [validateNotNullOrEmpty()]
-        [string]$to,
+        [string]$To,
 
         [parameter(Mandatory=$true)]
         [validateNotNullOrEmpty()]
-        [string]$subject,
+        [string]$Subject,
 
         [parameter(Mandatory=$true)]
         [validateNotNullOrEmpty()]
-        [string]$bodyAsHtml
+        [string]$BodyAsHtml
     )
 
     $o365SmtpServer = "smtp.office365.com"

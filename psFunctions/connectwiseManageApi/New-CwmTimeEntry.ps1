@@ -1,19 +1,28 @@
 function New-CwmTimeEntry {
     <#
     .SYNOPSIS 
-    Creates a new CWM time entry
+    Creates a new ConnectWise Manage time entry
 
     .DESCRIPTION
-    Creates a new CWM ticket on the default board with the default source for the given comand the supplied 
+    Creates a new ConnectWise Manage ticket on the default board with the default source for the given comand the supplied 
 
-    .PARAMETER companyName
-    The name of the company
+    .PARAMETER ticketId
+    Id for ticket to which to add time.
 
-    .OUTPUTS
-    int32 company id
+    .PARAMETER timeStart
+    DateTime value indicating when work began.
 
-    .EXAMPLE
-    $companyId = Convert-CwmCompanyNameToId -name "Test Company"
+    .PARAMETER timeEnd
+    DateTime value indicating when work ended. If $timeEnd -le $timeStart, then $timeEnd will be set to $timeStart + 1 minute.
+
+    .PARAMETER notes
+    Notes to include in time entry.
+
+    .PARAMETER apiUrl
+    The base ConnectWise Manage API URL
+
+    .PARAMETER authString
+    Authorization string to access the ConnectWise Manage API
 
     .NOTES
     #>

@@ -21,54 +21,32 @@ function Set-DeviceUdf {
 
     .PARAMETER value
     Value for the udf. User-defined fields have a limit of 255 characters.
-
-    .OUTPUTS
-    none
-
-    .EXAMPLE
-    $dattoRmmApiAccessParams = @{
-        apiUrl = https://zinfandel-api.centrastage.net
-        accessKey = "ewfoijdfsoji"
-        secretKey = "fdlkjfdjklsd"
-    }
-    $deviceId = (Get-ItemProperty -Path 'HKLM:\SOFTWARE\CentraStage' -Name deviceId).deviceId
-    Set-DeviceUdf -dattoRmmApiAccessParams $dattoRmmApiAccessParams -deviceId $deviceId -udf 25 -value "hello world"
-
-    .EXAMPLE
-    $dattoRmmApiAccessParams = @{
-        apiUrl = https://zinfandel-api.centrastage.net
-        apiAccessToken = "dfjkfdkjlsdjklfdjlkdsfjkldfsklj"
-    }
-    $deviceId = (Get-ItemProperty -Path 'HKLM:\SOFTWARE\CentraStage' -Name deviceId).deviceId
-    Set-DeviceUdf -dattoRmmApiAccessParams $dattoRmmApiAccessParams -deviceId $deviceId -udf 30 -value "hello world"
-
-    .NOTES
     #>
     param
 	(
-        [parameter(Mandatory=$true,ParameterSetName = "Device")]
-        [parameter(Mandatory=$true,ParameterSetName = "Site")]
-        [parameter(Mandatory=$true,ParameterSetName = "Account")]
+        [parameter(Mandatory=$true,ParameterSetName = "Set value for a single device")]
+        [parameter(Mandatory=$true,ParameterSetName = "Set value for all devices at a site")]
+        [parameter(Mandatory=$true,ParameterSetName = "Set value for all devices in account")]
         [validateNotNullOrEmpty()]
         [hashtable]$dattoRmmApiAccessParams,
 
-        [parameter(Mandatory=$true,ParameterSetName = "Device")]
+        [parameter(Mandatory=$true,ParameterSetName = "Set value for a single device")]
         [validateNotNullorEmpty()]
         [string]$deviceId,
 
-        [parameter(Mandatory=$true,ParameterSetName = "Site")]
+        [parameter(Mandatory=$true,ParameterSetName = "Set value for all devices at a site")]
         [validateNotNullorEmpty()]
         [string]$siteId,
 
-        [parameter(Mandatory=$true,ParameterSetName = "Device")]
-        [parameter(Mandatory=$true,ParameterSetName = "Site")]
-        [parameter(Mandatory=$true,ParameterSetName = "Account")]
+        [parameter(Mandatory=$true,ParameterSetName = "Set value for a single device")]
+        [parameter(Mandatory=$true,ParameterSetName = "Set value for all devices at a site")]
+        [parameter(Mandatory=$true,ParameterSetName = "Set value for all devices in account")]
         [ValidateRange(1,30)]
         [int32]$udf,
 
-        [parameter(Mandatory=$true,ParameterSetName = "Device")]
-        [parameter(Mandatory=$true,ParameterSetName = "Site")]
-        [parameter(Mandatory=$true,ParameterSetName = "Account")]
+        [parameter(Mandatory=$true,ParameterSetName = "Set value for a single device")]
+        [parameter(Mandatory=$true,ParameterSetName = "Set value for all devices at a site")]
+        [parameter(Mandatory=$true,ParameterSetName = "Set value for all devices in account")]
         [ValidateLength(0,255)]
         [AllowEmptyString()]
         [string]$value

@@ -4,14 +4,17 @@ function Get-CwmApiUrl {
     Gets the Connectwise Manage API url
 
     .DESCRIPTION
-    Connectwise changes their code bases regularly. This function generates an api url either for a specified code base or returns the most updated
+    Connectwise changes their code bases regularly. This function generates an API URL either for a specified code base or returns the most updated
     code base available to your company.
 
     .PARAMETER apiRegion
-    API region. Allowable values are:
+    API region. Allowable values are: 
+    
     au
+    
     eu
-    ​na
+    
+    na
 
     .PARAMETER company
     In order to get the most current code base available to you, you must specify your company. This is not needed if specifying codebase.
@@ -20,10 +23,10 @@ function Get-CwmApiUrl {
     To avoid breaking changes as the API develops, you can specify a specific code base (e.g. v4_6_release/). If this is not specified, the function
     will return the URL for the most current code base. This is not needed if specifying company.
 
-    codebase value must end in a forward slash "/"
+    Codebase value must end in a forward slash "/"
 
     .OUTPUTS
-    API url (string)
+    [string] API URL
 
     .EXAMPLE
     $apiUrl = Get-CwmApiUrl -apiRegion "na" -company "mycompany"

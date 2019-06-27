@@ -1,21 +1,26 @@
 function Get-CwmTicket {
     <#
     .SYNOPSIS 
-    Gets a CWM ticket
+    Gets data for a ConnectWise Manage Ticket
 
     .DESCRIPTION
-    Gets a CWM ticket 
+    Queries the ConnectWise Manage API for a ticket with a specified Id and returns the data for that ticket.
 
-    .PARAMETER id
-    The id of the ticket to get
+    .PARAMETER ticketId
+    The id (as defined within ConnectWise Manage) of the ticket to get data for
+
+    .PARAMETER apiUrl
+    ConnectWise Manage API URL
+
+    .PARAMETER authString
+    ConnectWise Manage API authorization string
 
     .OUTPUTS
-    none
+    [System.Object] custom object containing ticket data
 
     .EXAMPLE
-    Get-CwmTicket -ticketId 12345678
+    Get-CwmTicket -ticketId 12345678-apiUrl "https://api-na.myconnectwise.net/v2019_4/apis/3.0/" -authString "Basic ZmRqa2VvaXdmaithZHNmYXNkZmFzZmRkZmZpOmZkaWVqZmlkamZpZGZkZmo="
 
-    .NOTES
     #>
     Param(
     

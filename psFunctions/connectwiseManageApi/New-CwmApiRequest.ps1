@@ -3,17 +3,33 @@ function New-CwmApiRequest {
     .SYNOPSIS 
     Performs a query against the Connectwise Manage API
 
-    .PARAMETER endpoint
+    .DESCRIPTION
+    This is a very generic function that performs GET, POST, and PATCH requests to the ConnectWise Manage API. If pageSize is not
+    specified in the endpoint parameter, this function will automatically pull the maximum page size (1000) and then loop to pull
+    any additional pages, returning all responses combined into a single response object.
 
+    .PARAMETER endpoint
+    The ConnectWise Manage API endpoint to hit. This can include additional query data. Endpoint should NOT be URL encoded.
+
+    .PARAMETER apiMethod
+    API method (get, post, patch)
+    
+    .PARAMETER apiRequestBody
+    API request body
+    
     .PARAMETER apiUrl
+    The base ConnectWise Manage API URL
 
     .PARAMETER authString
+    Authorization string to access the ConnectWise Manage API
 
     .OUTPUTS
-    API response
+    [System.Object] custom object containing API response
 
-     .EXAMPLE
-    $contacts = New-CwmApiRequest -endpoint "company/contacts" -apiMethod "get" -apiUrl "https://api-na.myconnectwise.net/v2019_3/apis/3.0/" -authString "Basic XXX" 
+    .EXAMPLE
+    $tickets = New-CwmApiRequest -endpoint "/service/tickets?conditions=board/id=1 and status/id=505&fields=id,owner/id" -apiMethod "get" -apiUrl "https://api-na.myconnectwise.net/v2019_3/apis/3.0/" -authString "Basic a2lqbHUrSTEyMzQ1NjdOTTBwaEpDbjozVmFKbzA5OTk5OTk4ODhG" 
+
+    .EXAMPLE
 
     .NOTES
     #>

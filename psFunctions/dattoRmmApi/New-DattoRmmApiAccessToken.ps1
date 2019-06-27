@@ -9,10 +9,15 @@ function New-DattoRmmApiAccessToken {
 
     .PARAMETER apiUrl
     Region-specific API Url. Allowable values are:
+
     https://pinotage-api.centrastage.net
+
     https://merlot-api.centrastage.net
+
     https://concord-api.centrastage.net
+
     https://zinfandel-api.centrastage.net
+
     https://syrah-api.centrastage.net
 
     .PARAMETER accessKey
@@ -22,7 +27,7 @@ function New-DattoRmmApiAccessToken {
     API Secret Key
 
     .OUTPUTS
-    Authorization Token (string)
+    [String] Authorization Token
 
     .EXAMPLE
     $apiAccessToken = New-DattoRmmApiAccessToken -apiUrl = "https://zinfandel-api.centrastage.net" - accessKey = "fjlkdjk" -secretKey = "adlsfaffdk"

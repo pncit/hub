@@ -1,16 +1,16 @@
 function Convert-CwmCompanyNameToId {
     <#
     .SYNOPSIS 
-    Returns the CWM id for a given company
+    Returns the ConnectWise Manage id for a given company
 
     .DESCRIPTION
-    If provided with a valid company name, this function will return the CWM company id.
+    If provided with a valid company name, this function will return the corresponding ConnectWise Manage company id.
 
     .PARAMETER companyName
-    The name of the company
+    The name of the company as defined in ConnectWise Manage.
 
     .OUTPUTS
-    int32 company id
+    [int32] ConnectWise Manage company id
 
     .EXAMPLE
     $companyId = Convert-CwmCompanyNameToId -name "Test Company"

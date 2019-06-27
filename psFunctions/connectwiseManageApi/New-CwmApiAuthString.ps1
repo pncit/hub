@@ -6,22 +6,25 @@ function New-CwmApiAuthString {
     .DESCRIPTION
     If provided with a valid combination of company id, public key, and private key, this will return a basic auth string for api requests
 
+    The output can be used in headers as:
+
+    $headers = @{ Authorization = $authString }
+
     .PARAMETER company
-    Your company id
+    Your company id as defined in ConnectWise Manage
 
     .PARAMETER publicKey
-    Public key for your api access (https://developer.connectwise.com/Products/Manage/Developer_Guide)
+    Public key for your ConnectWise Manage API access (https://developer.connectwise.com/Products/Manage/Developer_Guide)
 
     .PARAMETER privateKey
-    Private key for your api access (https://developer.connectwise.com/Products/Manage/Developer_Guide)
+    Private key for your ConnectWise Manage API access (https://developer.connectwise.com/Products/Manage/Developer_Guide)
 
     .OUTPUTS
-    Authorization String (string)
+    [String] authorization sring
 
     .EXAMPLE
     $authString = New-CwmApiAuthString -company "mycompany" - publicKey "fjlkdjk" -privateKey "adlsfaffdk"
-    This would return a string "Basic a2lqbHUrSTEyMzQ1NjdOTTBwaEpDbjozVmFKbzA5OTk5OTk4ODhG" that could be used in header as
-    $headers = @{ Authorization = $authString }
+    This would return a string "Basic a2lqbHUrSTEyMzQ1NjdOTTBwaEpDbjozVmFKbzA5OTk5OTk4ODhG"
 
     .NOTES
     #>

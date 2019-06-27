@@ -4,10 +4,10 @@ function Protect-ModuleData {
     Checks whether module logging is turned on and exits if so
 
     .DESCRIPTION
-    If module logging is enabled, private data may be written to the windows event log. This function checks for that condition and exits if so.
+    If module logging is enabled, private data may be written to the windows event log. This function checks for whether logging is enabled and exits if it is.
 
     .EXAMPLE
-    Protect-Logs
+    Protect-ModuleData
 
     .NOTES
     #>

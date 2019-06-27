@@ -16,7 +16,7 @@ function Test-RegistryKeyValueData {
     Value data to compare to
 
     .OUTPUTS
-    Boolean result of test
+    [Boolean]
 
     .EXAMPLE
     Test-registryentry -path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\PowerShell\ModuleLogging' -key 'EnableModuleLogging' -value '1'

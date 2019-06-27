@@ -1,21 +1,25 @@
 function Close-CwmTicket {
     <#
     .SYNOPSIS 
-    Closes a CWM ticket
+    Closes a ConnectWise Manage ticket
 
     .DESCRIPTION
-    Closes a CWM ticket 
+    Sets a ticket to "closed" status. This status differs for service and project tickets, and the exact values are defined elsewhere as global parameters ($cwmServiceTicketStatusClosed and $cwmProjectTicketStatusClosed).
 
-    .PARAMETER id
-    The id of the ticket to close
+    .PARAMETER ticketId
+    The id (as defined within ConnectWise Manage) of the ticket to close
 
-    .OUTPUTS
-    none
+    .PARAMETER apiUrl
+    ConnectWise Manage API URL
+
+    .PARAMETER authString
+    ConnectWise Manage API authorization string
 
     .EXAMPLE
-    Close-CwmTicket -ticketId 12345678
+    Close-CwmTicket -ticketId 12345678 -apiUrl "https://api-na.myconnectwise.net/v2019_4/apis/3.0/" -authString "Basic ZmRqa2VvaXdmaithZHNmYXNkZmFzZmRkZmZpOmZkaWVqZmlkamZpZGZkZmo="
 
-    .NOTES
+    .OUTPUTS
+    [System.Object] custom object containing ticket data
     #>
     Param(
     
@@ -31,7 +35,6 @@ function Close-CwmTicket {
         [validateNotNullOrEmpty()]
         [string]$authString
     
-
     )
 
     try {

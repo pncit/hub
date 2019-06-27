@@ -4,23 +4,16 @@ function Write-Log {
     Writes to the event log and the Datto RMM stdout window.
 
     .DESCRIPTION
-    Writes to the event log and the Datto RMM stdout window.
+    Creates a Weindows event event log source "Datto RMM" and writes log messages to that log. Simultaneously writes to stdout.
 
     .PARAMETER message
     The text to write to the event log and stdout 
 
     .PARAMETER entryType
-    The event log entry type
-    Must be "Information", "Warning", or "Error"
+    The event log entry type. Must be "Information", "Warning", or "Error"
 
     .PARAMETER eventID
-    The event log event id (default = 20)
-    # ID 0 = Adding Windows Eventlog source
-    # ID 10 = Global Functions
-    # ID 20 = Script components
-
-    .OUTPUTS
-    None
+    The event log event id (default = 20). 0 = Adding Windows Eventlog source, 10 = Global Functions, 20 = Script components
 
     .EXAMPLE
     Write-Log -Message "This is a log message`nThat spans two lines" -EntryType "Information" -EventID 10

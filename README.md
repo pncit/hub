@@ -18,8 +18,10 @@ Once you have `hubFunctions.psm1.zip` and `hubFunctionsConfig.ps1.AES` in a publ
 ```
 .\Get-HubFunctions.ps1
 ``` 
+### The library of code
+See the [Hub Functions Documentation](https://github.com/pncit/hub/tree/master/docs/functionDocumentation) to see what has been developed can be used.
 ## Deployment
-See our [Installation Instructions](https://github.com/pncit/hub/blob/master/Instructions.md)
+See our [Installation Instructions](https://github.com/pncit/hub/blob/master/docs/installationInstructions.md)
 ## Notes
 1. Two things are static (or at least cumbersome to change):
    - The names and location of files that are served on a web server

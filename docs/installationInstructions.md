@@ -2,7 +2,7 @@
 ## Requirements
 This system assumes you are running **PowerShell 5.0**. We know for sure it will fail on versions prior to 3.0, and *no attempt is made for backward compatibility*. Keep your software updated.
 ## Deployment
-All PS commands as written should be run from the top of the repo
+All PS commands as written below should be executed from the top of the repo
 ### Starting Out
 The first time you use this system you need to create some files excluded from the repo for security reasons. This only has to be repeated if your encryption key is compromised or if there is a change to the ".\dattoRmm\protected\Get-HubFunctions.ps1" file, which will always be avoided when possible.
 ```

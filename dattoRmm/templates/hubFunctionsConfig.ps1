@@ -12,8 +12,10 @@ $cwmServiceBoardId = 0
 $cwmProjectBoardId = 0
 $cwmServiceTicketStatusClosed = 0
 $cwmServiceTicketStatusOpen = 0
+$cwmServiceTicketTimeAllowedStatus = { 0 , 1 , 2 }
 $cwmProjectTicketStatusClosed = 0
 $cwmProjectTicketStatusOpen = 0
+$cwmProjectTicketTimeAllowedStatus = { 0 , 1 , 2 }
 $cwmMemberId = 0
 $cwmWorkRoleId = 0
 
@@ -40,6 +42,8 @@ $global:cwmServiceTicketStatusClosed = $cwmServiceTicketStatusClosed
 $global:cwmProjectTicketStatusClosed = $cwmProjectTicketStatusClosed
 $global:cwmServiceTicketStatusOpen = $cwmServiceTicketStatusOpen
 $global:cwmProjectTicketStatusOpen = $cwmProjectTicketStatusOpen
+$global:cwmServiceTicketTimeAllowedStatus = $cwmServiceTicketTimeAllowedStatus
+$global:cwmProjectTicketTimeAllowedStatus = $cwmProjectTicketTimeAllowedStatus
 $global:cwmMemberId = $cwmMemberId
 $global:cwmWorkRoleId = $cwmWorkRoleId
 

@@ -64,12 +64,12 @@ function New-CwmTimeEntry {
     if ( $ticket.board.id -eq $cwmProjectBoardId ) {
         $endpoint = "project/tickets/$ticketId"
         $chargeToType = "ProjectTicket"
-        $timeAllowedStatus = { 541 , 543 , 544 , 545 , 546 , 576 , 577 , 578 , 579 }
+        $timeAllowedStatus = $global:cwmProjectTicketTimeAllowedStatus
         $openStatus = $cwmProjectTicketStatusOpen
     } else {
         $endpoint = "service/tickets/$ticketId"
         $chargeToType = "ServiceTicket"
-        $timeAllowedStatus = {  56 , 439 , 489 , 560 , 574 , 575 }
+        $timeAllowedStatus = $global:cwmServiceTicketTimeAllowedStatus
         $openStatus = $cwmServiceTicketStatusOpen
     }
     #check whether ticket is in a time-entry allowed status

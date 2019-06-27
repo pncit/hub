@@ -5,38 +5,38 @@ online version:
 schema: 2.0.0
 ---
 
-# Convert-CwmUtcToAk
+# Convert-LocalTimeToCwmUtc
 
 ## SYNOPSIS
-Generates a DateTime value in AK time matching the CWM formatted UTC string passed as a parameter
+Generates a CWM formatted UTC string from the DateTime value in local time passed as a parameter
 
 ## SYNTAX
 
 ```
-Convert-CwmUtcToAk [-dateTimeString] <String> [<CommonParameters>]
+Convert-LocalTimeToCwmUtc [-localDateTime] <DateTime> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 CWM encodes dates as YYYY-MM-DDTHH:MM:SSZ in UTC.
-This function converts those strings into DateTime ojects where the time zone is AK standard time
+This function converts DateTime ojects where the time zone is the local time zone into those strings
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-$cwmDateTime = "2019-04-20T10:06:29Z"
+$localDateTime = Get-Date
 ```
 
-$akDateTime = Convert-CwmUtcToAk -dateTimeString $cwmDateTime
-This would return a dateTime object with value "Saturday, April 20, 2019 2:06:29 AM"
+$cwmDateTime = Convert-LocalTimeToCwmUtc -localDateTime $localDateTime
+This would return a dateTime object with value "2019-04-20T10:06:29Z"
 
 ## PARAMETERS
 
-### -dateTimeString
-DateTime string in format YYYY-MM-DDTHH:MM:SSZ
+### -localDateTime
+DateTime in local time zone
 
 ```yaml
-Type: String
+Type: DateTime
 Parameter Sets: (All)
 Aliases:
 
@@ -54,7 +54,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### DateTime object in AK time
+### DateTime string in format YYYY-MM-DDTHH:MM:SSZ
 ## NOTES
 
 ## RELATED LINKS

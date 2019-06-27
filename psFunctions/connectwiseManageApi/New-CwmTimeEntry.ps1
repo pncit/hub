@@ -88,8 +88,8 @@ function New-CwmTimeEntry {
         chargeToType = $chargeToType
         member = @{ id = $cwmMemberId }
         workRole = @{ id = $cwmWorkRoleId }
-        timeStart = Convert-AkToCwmUtc -akDateTime $timeStart
-        timeEnd = Convert-AkToCwmUtc -akDateTime $timeEnd
+        timeStart = Convert-LocalTimeToCwmUtc -localDateTime $timeStart
+        timeEnd = Convert-LocalTimeToCwmUtc -localDateTime  $timeEnd
         notes = $notes
     } | ConvertTo-Json
 

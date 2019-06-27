@@ -35,7 +35,10 @@ if ( $null -eq $test ) {
 Write-Log -Message "Hub Functions Successfully Imported" -EntryType "Information"
 
 #check for security risk in log settings before proceeding
-Protect-ModuleData
+if ( ( Test-ModuleDataSecurity ) -eq $false ) {
+    Write-Log -Message "PowerShell Module Logging is enabled. This puts sensitive information at risk." -entryType "Error"
+    exit 1
+}
 
 #decrypt, import, and remove the pncit functions
 $global:hubFunctionsConfigImported = $false

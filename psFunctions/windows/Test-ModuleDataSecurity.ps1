@@ -1,4 +1,4 @@
-function Protect-ModuleData {
+function Test-ModuleDataSecurity {
     <#
     .SYNOPSIS 
     Checks whether module logging is turned on and exits if so
@@ -7,7 +7,10 @@ function Protect-ModuleData {
     If module logging is enabled, private data may be written to the windows event log. This function checks for whether logging is enabled and exits if it is.
 
     .EXAMPLE
-    Protect-ModuleData
+    $moduleDataSecure = Test-ModuleDataSecurity
+
+    .OUTPUTS
+    [Boolean]
 
     .NOTES
     #>
@@ -19,7 +22,8 @@ function Protect-ModuleData {
     $loggingEnabled2 = ( Test-RegistryKeyValueData -key $key64 -Value $Value -TestValueData '1' ) -eq $true
     
     if ( $loggingEnabled1 -or $loggingEnabled2 ) {
-        Write-Log -Message "PowerShell Module Logging is enabled. This puts sensitive information at risk. This script will now exit." -entryType "Error"
-        exit 1
+        return $false
+    } else {
+        return $true
     }
 }

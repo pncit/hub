@@ -46,9 +46,5 @@ function Get-DeviceData {
         [string]$deviceId
     )   
     $response = New-DattoRmmApiRequest @dattoRmmApiAccessParams -apiMethod "get" -apiRequest "device/$deviceId"
-    if ( $response.StatusCode -eq 200 ) {
-	    return $response.Content
-    } else {
-        Throw "API Request failed (Response Code " + $response.StatusCode + ")"
-    } 
+    return $response
 }

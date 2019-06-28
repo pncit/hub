@@ -66,12 +66,12 @@ function New-CwmTicket {
         [parameter(Mandatory=$true,ParameterSetName = "Create a service ticket")]
         [parameter(Mandatory=$true,ParameterSetName = "Create a project ticket")]
         [validateNotNullOrEmpty()]
-        [string]$apiUrl,
+        [string]$apiUrl=$cwmApiUrl,
 
         [parameter(Mandatory=$true,ParameterSetName = "Create a service ticket")]
         [parameter(Mandatory=$true,ParameterSetName = "Create a project ticket")]
         [validateNotNullOrEmpty()]
-        [string]$authString
+        [string]$authString=$cwmApiAuthString
     )
 
     if ( ( $PSBoundParameters.ContainsKey( 'projectId')  ) -eq $true ) {

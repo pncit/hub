@@ -18,17 +18,13 @@ New-CryptographyKey -AsPlainText | Set-Content ".\dattoRmm\protected\encryptionK
 ```
 ### Environment configurations
 You need to establish a few fixed facts about your live environment. These settings are hard to change later, because that will require changing all components that use this system. When first deploying the system, define the following variables in `.\dattoRmm\protected\Get-HubFunctions.ps1`. Put serious thought into this - making changes down the road may be difficult, as you will have to change the Get-HubFunctions.ps1 file attached to every component that uses it.
-#### Location of function definitions
+#### Location of hub function data
 ```
-$hubFunctionsSource = "https://example.com/hubFunctions.psm1.zip"
+$hubFunctionsSource = "https://example.com/hubFunctions.zip"
 ```
-This is the web location of `hubFunctions.psm1.zip` (will be created later)
-#### Location of encrypted config file
-```
-$hubFunctionsConfigSource = "https://example.com/hubFunctionsConfig.ps1.AES"
-```
-This is the web location of `hubFunctionsConfig.ps1.AES` (will be created later)
+This is the web location of `hubFunctions.zip` (will be created later)
 #### Encryption key value (3 options)
+The configuration file (`.\dattoRmm\protected\hubFunctionsConfig.ps1`, which will be set up later) is expected to contain API keys, passwords, and any manner of private data. It needs to be publicly available so that Datto RMM components can download it, but it needs to be protected via encryption. The question then is where/how to store the encryption key.
 ##### Option 1
 ```
 $hubFunctionsConfigSourceKey = "JRLC07qB2x4M7xuU9vog4xcxsj2Ffia/zM2K17/u3N4="
@@ -48,18 +44,14 @@ If using this mehod, you can update all udfs at any time (whether they are onlin
 ```
 .\dattoRmm\Set-EncryptionKeyUdf.ps1
 ```
-### Building the functions module
-When your environment is first set up and whenever updates are made within the /functions folder, the functions module will need to be rebuilt.
+### Setting up the config file
+`.\dattoRmm\protected\hubFunctionsConfig.ps1` needs to be updated to match your tools and environment. Sample values are included. If you do not use a particular integration, you do not need to define those variables.
+### Building your deployment
+When your environment is first set up and whenever updates are made within the /functions folder or to your config file, you need to rebuild by running
 ```
 .\dattoRmm\Build-HubFunctions.ps1
 ```
-This will create two files - `.\dattoRmm\protected\hubFunctions.psm1` and `.\dattoRmm\protected\hubFunctions.psm1.zip`. Put `.\dattoRmm\protected\hubFunctions.psm1.zip` into the location you set via `$hubFunctionsSource` in `.\dattoRmm\protected\Get-HubFunctions.ps1`
-### Encrypting the config file
-`hubFunctionsConfig.ps1` stores all configuration settings by simply defining a set of variables. When your environment is first set up and whenever updates are made to `hubFunctionsConfig.ps1`, it needs to be encrypted. This config file is expected to contain API keys, passwords, and any manner of private data.
-```
-.\dattoRmm\Build-ProtectedHubFunctionsConfig.ps1 
-```
-This will create one file `.\dattoRmm\protected\hubFunctionsConfig.ps1.AES`. Put it into the location you set via `$hubFunctionsConfigSource` in `.\dattoRmm\protected\Get-HubFunctions.ps1`
+This will create three files - `.\dattoRmm\protected\hubFunctions.psm1`, `.\dattoRmm\protected\hubFunctionsConfig.ps1.AES`, and `.\dattoRmm\protected\hubFunctions.zip` (the zip file contains the other two). Put `.\dattoRmm\protected\hubFunctions.zip` into the location you set via `$hubFunctionsSource` in `.\dattoRmm\protected\Get-HubFunctions.ps1`
 ## Using the system within a component
 Using the system within a component is a two-step process. After this is done, all functions defined in /functions will be available for use, as will all variables defined in your config file :
 1. Attach `Get-HubFunctions.ps1` to any PowerShell component
@@ -68,14 +60,8 @@ Using the system within a component is a two-step process. After this is done, a
 .\Get-HubFunctions.ps1
 ```
 ## Updating After Deployment
-If you make changes to any functions, you will need to rerun
+If you make changes to any functions or the config file, you will need to rerun
 ```
 .\dattoRmm\Build-HubFunctions.ps1
 ```
-and re-upload the newly generated `.\dattoRmm\protected\hubFunctions.psm1.zip` into the location you set via `$hubFunctionsSource` in `.\dattoRmm\protected\Get-HubFunctions.ps1`
-
-If you make changes that require configuration changes (e.g. adding a new integration that requires an API key), you will need to rerun
-```
-.\dattoRmm\Build-ProtectedHubFunctionsConfig.ps1 
-```
-and re-upload the newly generated `.\dattoRmm\protected\hubFunctionsConfig.ps1.AES`. Put it into the location you set via `$hubFunctionsConfigSource` in `.\dattoRmm\protected\Get-HubFunctions.ps1`
+and re-upload the newly generated `.\dattoRmm\protected\hubFunctions.zip` into the location you set via `$hubFunctionsSource` in `.\dattoRmm\protected\Get-HubFunctions.ps1`

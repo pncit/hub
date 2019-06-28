@@ -7,30 +7,30 @@ The idea is limit code duplication and, as much as possible, allow components to
 We have abstracted as much as we can from that file so that system changes should almost never necessitate updating all of the components that are using it. 
 ### The three files
 In a live environment, three files and one line of code enable you to include a limitless number of functions within your components - including bug fixes and enhancements. The three files are:
-#### hubFunctions.psm1.zip
+#### hubFunctions.psm1
 This is a PowerShell module with all of the functions defined. It is compiled out of the functions in the folder (and subfolders under) `/functions`.
-#### hubFunctionsConfig.ps1.AES
-This is a configuration file that defines a variety of PowerShell variables. It can include sensitive information, such as passwords, non-public webhooks, and API keys. For this reason, it is encrypted (the code to encrypt and decrypt this file is included in this project and can be updated as cryptography technology changes).
+#### hubFunctionsConfig.ps1
+This is a configuration file that defines a variety of PowerShell variables. It can include sensitive information, such as passwords, non-public webhooks, and API keys. For this reason, it is encrypted as `hubFunctionsConfig.ps1protected` (the code to encrypt and decrypt this file is included in this project and can be updated as cryptography technology changes).
 #### Get-HubFunctions.ps1
 This is the file you attach to your components. It contains the code necessary to download and import `hubFunctions.psm1` and download, decrypt, and include `hubFunctionsConfig.ps1.AES` so that by running it within your component you are, in one line, defining dozens of functions and making any number of configuration settings and constants available to you.
 ### The line of code
-Once you have `hubFunctions.psm1.zip` and `hubFunctionsConfig.ps1.AES` in a publicly accessible place defined within `Get-HubFunctions.ps1`, attach `Get-HubFunctions.ps1` to your PowerShell Component and add this line to the beginning of the Component script:
+Once you have `hubFunctions.zip` (containing `hubFunctions.psm1` and `hubFunctionsConfig.ps1protected` in a publicly accessible place defined within `Get-HubFunctions.ps1`, attach `Get-HubFunctions.ps1` to your PowerShell Component and add this line to the beginning of the Component script:
 ```
 .\Get-HubFunctions.ps1
 ``` 
 ### The library of code
-See the [Hub Functions Documentation](https://github.com/pncit/hub/tree/master/docs/functionDocumentation) to see what has been developed can be used.
+See the [Functions Documentation](https://github.com/pncit/hub/tree/master/docs/psFunctionDocumentation) to see what has been developed and can be used.
 ## Deployment
 See our [Installation Instructions](https://github.com/pncit/hub/blob/master/docs/installationInstructions.md)
 ## Notes
 1. Two things are static (or at least cumbersome to change):
    - The names and location of files that are served on a web server
    - Anything done by or defined in Get-HubFunctions.ps1
-2. There are security concerns. `hubFunctionsConfig.ps1.AES` is encrypted, but where do you store the key so that your component can use it? We have anticipated three options (detailed later under Deployment>Environment Configuration>Encryption key value (3 options)).
+2. There are security concerns. `hubFunctionsConfig.ps1protected` is encrypted, but where do you store the key so that your component can use it? We have three solutions (detailed in [Installation Instructions](https://github.com/pncit/hub/blob/master/docs/installationInstructions.md)).
 3. The project is structured fairly simply at this point. There are three folders:
-   - **functions** These are the functions that drive the components. They are divided into subfolders for better organization, and one functions is defined per file with the file name repeating the function name.
+   - **docs** This contains documentation on installation and the individual functions available
+   - **psFunctions** These are the functions that drive the components. They are divided into subfolders for better organization, and one functions is defined per file with the file name repeating the function name.
    - **dattoRmm** These are the files and scripts that control deployment in Datto RMM.
-   - **scripts** These are scripts that leverage the functions defined under **functions**. In Datto RMM, these form the 'script' portion of custom Components.
 ## Contributing
 We would love to get feedback and contributions. If you are interested in contributing, please contact [rgg](https://success.autotask.net/t5/user/viewprofilepage/user-id/35934)
 ## License

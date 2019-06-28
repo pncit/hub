@@ -19,7 +19,7 @@ function Write-Documentation {
     # import functions
     Import-Module $tempFile
     Remove-Item -Path $tempFile
-    New-MarkdownHelp -Module $module -OutputFolder "$tempFolder" -Force
+    New-MarkdownHelp -Module $module -OutputFolder "$tempFolder" -Force -NoMetadata
     Get-ChildItem "$tempFolder" *-*md | Get-Content | Set-Content ".\docs\psFunctionDocumentation\$module.md" -Force
     Remove-Item -Path $tempFolder -Recurse -Force
 }

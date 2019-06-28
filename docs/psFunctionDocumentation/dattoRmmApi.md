@@ -1,10 +1,3 @@
----
-external help file: dattoRmmApi-help.xml
-Module Name: dattoRmmApi
-online version:
-schema: 2.0.0
----
-
 # Get-DeviceData
 
 ## SYNOPSIS
@@ -72,13 +65,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
----
-external help file: dattoRmmApi-help.xml
-Module Name: dattoRmmApi
-online version:
-schema: 2.0.0
----
-
 # Get-DevicePatchStatus
 
 ## SYNOPSIS
@@ -146,13 +132,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
----
-external help file: dattoRmmApi-help.xml
-Module Name: dattoRmmApi
-online version:
-schema: 2.0.0
----
-
 # New-DattoRmmApiAccessToken
 
 ## SYNOPSIS
@@ -244,13 +223,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
----
-external help file: dattoRmmApi-help.xml
-Module Name: dattoRmmApi
-online version:
-schema: 2.0.0
----
-
 # New-DattoRmmApiRequest
 
 ## SYNOPSIS
@@ -432,13 +404,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
----
-external help file: dattoRmmApi-help.xml
-Module Name: dattoRmmApi
-online version:
-schema: 2.0.0
----
-
 # Set-DeviceUdf
 
 ## SYNOPSIS

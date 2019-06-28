@@ -1,10 +1,3 @@
----
-external help file: cryptography-help.xml
-Module Name: cryptography
-online version:
-schema: 2.0.0
----
-
 # New-CryptographyKey
 
 ## SYNOPSIS
@@ -90,13 +83,6 @@ Date: 9/22/2017
 Downloaded from https://gallery.technet.microsoft.com/scriptcenter/EncryptDecrypt-files-use-65e7ae5d on 3/8/2019
 
 ## RELATED LINKS
----
-external help file: cryptography-help.xml
-Module Name: cryptography
-online version:
-schema: 2.0.0
----
-
 # Protect-File
 
 ## SYNOPSIS
@@ -285,13 +271,6 @@ Date: 9/22/2017
 Downloaded from https://gallery.technet.microsoft.com/scriptcenter/EncryptDecrypt-files-use-65e7ae5d on 3/8/2019
 
 ## RELATED LINKS
----
-external help file: cryptography-help.xml
-Module Name: cryptography
-online version:
-schema: 2.0.0
----
-
 # Unprotect-File
 
 ## SYNOPSIS

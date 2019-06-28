@@ -1,10 +1,3 @@
----
-external help file: connectwiseManageApi-help.xml
-Module Name: connectwiseManageApi
-online version:
-schema: 2.0.0
----
-
 # Close-CwmTicket
 
 ## SYNOPSIS
@@ -85,13 +78,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
----
-external help file: connectwiseManageApi-help.xml
-Module Name: connectwiseManageApi
-online version:
-schema: 2.0.0
----
-
 # Convert-CwmCompanyNameToId
 
 ## SYNOPSIS
@@ -141,13 +127,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
----
-external help file: connectwiseManageApi-help.xml
-Module Name: connectwiseManageApi
-online version:
-schema: 2.0.0
----
-
 # Convert-CwmUtcToLocalTime
 
 ## SYNOPSIS
@@ -201,13 +180,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
----
-external help file: connectwiseManageApi-help.xml
-Module Name: connectwiseManageApi
-online version:
-schema: 2.0.0
----
-
 # Convert-LocalTimeToCwmUtc
 
 ## SYNOPSIS
@@ -261,13 +233,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
----
-external help file: connectwiseManageApi-help.xml
-Module Name: connectwiseManageApi
-online version:
-schema: 2.0.0
----
-
 # Get-CwmApiUrl
 
 ## SYNOPSIS
@@ -380,13 +345,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
----
-external help file: connectwiseManageApi-help.xml
-Module Name: connectwiseManageApi
-online version:
-schema: 2.0.0
----
-
 # Get-CwmTicket
 
 ## SYNOPSIS
@@ -466,13 +424,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
----
-external help file: connectwiseManageApi-help.xml
-Module Name: connectwiseManageApi
-online version:
-schema: 2.0.0
----
-
 # New-CwmApiAuthString
 
 ## SYNOPSIS
@@ -558,13 +509,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
----
-external help file: connectwiseManageApi-help.xml
-Module Name: connectwiseManageApi
-online version:
-schema: 2.0.0
----
-
 # New-CwmApiRequest
 
 ## SYNOPSIS
@@ -685,13 +629,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
----
-external help file: connectwiseManageApi-help.xml
-Module Name: connectwiseManageApi
-online version:
-schema: 2.0.0
----
-
 # New-CwmTicket
 
 ## SYNOPSIS
@@ -844,13 +781,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
----
-external help file: connectwiseManageApi-help.xml
-Module Name: connectwiseManageApi
-online version:
-schema: 2.0.0
----
-
 # New-CwmTimeEntry
 
 ## SYNOPSIS

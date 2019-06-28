@@ -1,10 +1,3 @@
----
-external help file: windows-help.xml
-Module Name: windows
-online version:
-schema: 2.0.0
----
-
 # Get-PendingReboot
 
 ## SYNOPSIS
@@ -136,13 +129,6 @@ Removed .Net Registry connection, replaced with WMI StdRegProv
 Added ComputerPendingRename
 
 ## RELATED LINKS
----
-external help file: windows-help.xml
-Module Name: windows
-online version:
-schema: 2.0.0
----
-
 # Test-ModuleDataSecurity
 
 ## SYNOPSIS
@@ -175,13 +161,6 @@ $moduleDataSecure = Test-ModuleDataSecurity
 ## NOTES
 
 ## RELATED LINKS
----
-external help file: windows-help.xml
-Module Name: windows
-online version:
-schema: 2.0.0
----
-
 # Test-RebootRequired
 
 ## SYNOPSIS
@@ -213,13 +192,6 @@ $rebootRequired = Test-RebootRequired
 ## NOTES
 
 ## RELATED LINKS
----
-external help file: windows-help.xml
-Module Name: windows
-online version:
-schema: 2.0.0
----
-
 # Test-RegistryKeyValueData
 
 ## SYNOPSIS
@@ -301,13 +273,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
----
-external help file: windows-help.xml
-Module Name: windows
-online version:
-schema: 2.0.0
----
-
 # Write-Log
 
 ## SYNOPSIS

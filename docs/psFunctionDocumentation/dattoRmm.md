@@ -1,10 +1,3 @@
----
-external help file: dattoRmm-help.xml
-Module Name: dattoRmm
-online version:
-schema: 2.0.0
----
-
 # Get-DeviceId
 
 ## SYNOPSIS
@@ -38,13 +31,6 @@ $deviceId = Get-DeviceId
 ## NOTES
 
 ## RELATED LINKS
----
-external help file: dattoRmm-help.xml
-Module Name: dattoRmm
-online version:
-schema: 2.0.0
----
-
 # Write-CustomUdf
 
 ## SYNOPSIS

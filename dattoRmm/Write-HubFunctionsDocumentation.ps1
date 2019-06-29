@@ -17,9 +17,11 @@ function Write-Documentation {
     mkdir $tempFolder
     Get-ChildItem ".\psFunctions\$module" *ps1 -Recurse | Get-Content | Set-Content $tempFile -Force
     # import functions
+    Remove-Module $module -ErrorAction SilentlyContinue
     Import-Module $tempFile
     Remove-Item -Path $tempFile
     New-MarkdownHelp -Module $module -OutputFolder "$tempFolder" -Force -NoMetadata
+    Remove-Module $module -ErrorAction SilentlyContinue
     Get-ChildItem "$tempFolder" *-*md | Get-Content | Set-Content ".\docs\psFunctionDocumentation\$module.md" -Force
     Remove-Item -Path $tempFolder -Recurse -Force
 }

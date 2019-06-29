@@ -30,11 +30,8 @@ $msTeamsWebhook = "https://outlook.office.com/webhook/00000000-0000-0000-0000-00
 
 $global:hubFunctionsConfigImported = $true
 
-$global:dattoRmmApiAccessParams = @{
-    apiUrl = $dattoRmmApiUrl
-    accessKey = $dattoRmmAccessKey
-    secretKey = $dattoRmmSecretKey
-}
+$global:dattoRmmApiAccessToken = New-DattoRmmApiAccessToken -apiUrl $dattoRmmApiUrl -accessKey $dattoRmmAccessKey -secretKey $dattoRmmSecretKey
+$global:dattoRmmApiUrl = $dattoRmmApiUrl
 
 $global:cwmApiUrl = Get-CwmApiUrl -apiRegion $cwmApiRegion -company $cwmCompany
 $global:cwmApiAuthString = New-CwmApiAuthString -company $cwmCompany -publicKey $cwmApiPublicKey -privateKey $cwmApiPrivateKey

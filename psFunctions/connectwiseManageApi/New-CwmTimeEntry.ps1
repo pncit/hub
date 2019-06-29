@@ -44,13 +44,13 @@ function New-CwmTimeEntry {
     [validateNotNullOrEmpty()]
     [string]$notes,
 
-    [parameter(Mandatory=$true)]
+    [parameter(Mandatory=$false)]
     [validateNotNullOrEmpty()]
-    [string]$apiUrl,
+    [string]$apiUrl=$global:cwmApiUrl,
 
-    [parameter(Mandatory=$true)]
+    [parameter(Mandatory=$false)]
     [validateNotNullOrEmpty()]
-    [string]$authString
+    [string]$authString=$global:cwmApiAuthString
 
     )
 
@@ -60,7 +60,7 @@ function New-CwmTimeEntry {
         $timeEnd = $timeStart.AddMinutes(1)
     }
 
-    $ticket = Get-CwmTicket -ticketId $ticketId  -apiUrl $apiUrl -authString $authString -ErrorAction SilentlyContinue
+    $ticket = Get-CwmTicket -ticketId $ticketId -apiUrl $apiUrl -authString $authString -ErrorAction SilentlyContinue
     if ( $ticket.board.id -eq $cwmProjectBoardId ) {
         $endpoint = "project/tickets/$ticketId"
         $chargeToType = "ProjectTicket"

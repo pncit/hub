@@ -27,24 +27,24 @@ function Close-CwmTicket {
         [validateNotNullOrEmpty()]
         [int]$ticketId,
 
-        [parameter(Mandatory=$true)]
+        [parameter(Mandatory=$false)]
         [validateNotNullOrEmpty()]
-        [string]$apiUrl,
+        [string]$apiUrl=$global:cwmApiUrl,
     
-        [parameter(Mandatory=$true)]
+        [parameter(Mandatory=$false)]
         [validateNotNullOrEmpty()]
-        [string]$authString
+        [string]$authString=$global:cwmApiAuthString
     
     )
 
     try {
         $endpoint = "service/tickets/$ticketId"
         $ticket = New-CwmApiRequest -endpoint $endpoint -apiMethod "get" -apiUrl $cwmApiUrl -authString $cwmApiAuthString -ErrorAction silentlycontinue
-        $closedStatus = $cwmServiceTicketStatusClosed
+        $closedStatus = $global:cwmServiceTicketStatusClosed
     } catch {
         $endpoint = "project/tickets/$ticketId"
         $ticket = New-CwmApiRequest -endpoint $endpoint -apiMethod "get" -apiUrl $cwmApiUrl -authString $cwmApiAuthString
-        $closedStatus = $cwmProjectTicketStatusClosed
+        $closedStatus = $global:cwmProjectTicketStatusClosed
     }
     
     $body = @{

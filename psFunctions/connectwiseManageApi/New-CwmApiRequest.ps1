@@ -48,13 +48,13 @@ function New-CwmApiRequest {
         [validateNotNullorEmpty()]
         [string]$apiRequestBody,
 
-        [parameter(Mandatory=$true)]
+        [parameter(Mandatory=$false)]
         [validateNotNullorEmpty()]
-        [string]$apiUrl,
+        [string]$apiUrl=$global:cwmApiUrl,
 
-        [parameter(Mandatory=$true)]
+        [parameter(Mandatory=$false)]
         [validateNotNullorEmpty()]
-        [string]$authString
+        [string]$authString=$global:cwmApiAuthString
     )
 
     $errorAction = $PSBoundParameters["ErrorAction"]

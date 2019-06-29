@@ -6,7 +6,7 @@ Closes a ConnectWise Manage ticket
 ## SYNTAX
 
 ```
-Close-CwmTicket [-ticketId] <Int32> [-apiUrl] <String> [-authString] <String> [<CommonParameters>]
+Close-CwmTicket [-ticketId] <Int32> [[-apiUrl] <String>] [[-authString] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -45,9 +45,9 @@ Type: String
 Parameter Sets: (All)
 Aliases:
 
-Required: True
+Required: False
 Position: 2
-Default value: None
+Default value: $global:cwmApiUrl
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -60,9 +60,9 @@ Type: String
 Parameter Sets: (All)
 Aliases:
 
-Required: True
+Required: False
 Position: 3
-Default value: None
+Default value: $global:cwmApiAuthString
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -517,8 +517,8 @@ Performs a query against the Connectwise Manage API
 ## SYNTAX
 
 ```
-New-CwmApiRequest [[-endpoint] <String>] [-apiMethod] <String> [[-apiRequestBody] <String>] [-apiUrl] <String>
- [-authString] <String> [<CommonParameters>]
+New-CwmApiRequest [[-endpoint] <String>] [-apiMethod] <String> [[-apiRequestBody] <String>]
+ [[-apiUrl] <String>] [[-authString] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -596,9 +596,9 @@ Type: String
 Parameter Sets: (All)
 Aliases:
 
-Required: True
+Required: False
 Position: 4
-Default value: None
+Default value: $global:cwmApiUrl
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -611,9 +611,9 @@ Type: String
 Parameter Sets: (All)
 Aliases:
 
-Required: True
+Required: False
 Position: 5
-Default value: None
+Default value: $global:cwmApiAuthString
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -639,13 +639,13 @@ Creates a new ConnectWise Manage ticket
 ### Create a project ticket
 ```
 New-CwmTicket -summary <String> -initialDescription <String> -projectId <Int32> -phaseDescription <String>
- -apiUrl <String> -authString <String> [<CommonParameters>]
+ [-apiUrl <String>] [-authString <String>] [<CommonParameters>]
 ```
 
 ### Create a service ticket
 ```
-New-CwmTicket -summary <String> -initialDescription <String> [-priority <Int32>] -apiUrl <String>
- -authString <String> [<CommonParameters>]
+New-CwmTicket -summary <String> -initialDescription <String> [-priority <Int32>] [-apiUrl <String>]
+ [-authString <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -748,9 +748,9 @@ Type: String
 Parameter Sets: (All)
 Aliases:
 
-Required: True
+Required: False
 Position: Named
-Default value: $cwmApiUrl
+Default value: $global:cwmApiUrl
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -763,9 +763,9 @@ Type: String
 Parameter Sets: (All)
 Aliases:
 
-Required: True
+Required: False
 Position: Named
-Default value: $cwmApiAuthString
+Default value: $global:cwmApiAuthString
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -790,7 +790,7 @@ Creates a new ConnectWise Manage time entry
 
 ```
 New-CwmTimeEntry [-ticketId] <Int32> [-timeStart] <DateTime> [-timeEnd] <DateTime> [-notes] <String>
- [-apiUrl] <String> [-authString] <String> [<CommonParameters>]
+ [[-apiUrl] <String>] [[-authString] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -876,9 +876,9 @@ Type: String
 Parameter Sets: (All)
 Aliases:
 
-Required: True
+Required: False
 Position: 5
-Default value: None
+Default value: $global:cwmApiUrl
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -891,9 +891,9 @@ Type: String
 Parameter Sets: (All)
 Aliases:
 
-Required: True
+Required: False
 Position: 6
-Default value: None
+Default value: $global:cwmApiAuthString
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

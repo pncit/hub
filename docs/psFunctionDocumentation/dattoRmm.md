@@ -31,7 +31,7 @@ $deviceId = Get-DeviceId
 ## NOTES
 
 ## RELATED LINKS
-# Write-CustomUdf
+# Set-CustomUdf
 
 ## SYNOPSIS
 Writes a value to a Datto RMM Custom UDF
@@ -39,7 +39,7 @@ Writes a value to a Datto RMM Custom UDF
 ## SYNTAX
 
 ```
-Write-CustomUdf [-udf] <Int32> [-Value] <String> [<CommonParameters>]
+Set-CustomUdf [-udf] <Int32> [-Value] <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -49,7 +49,7 @@ Writes a specified value to a specified Datto RMM Custom UDF via the registry
 
 ### EXAMPLE 1
 ```
-Write-CustomUdf -customUdf 22 -value 'Complete'
+Set-CustomUdf -customUdf 22 -value 'Complete'
 ```
 
 ## PARAMETERS

@@ -1,4 +1,4 @@
-function Write-CustomUdf {
+function Set-CustomUdf {
     <#
     .SYNOPSIS 
     Writes a value to a Datto RMM Custom UDF
@@ -13,7 +13,7 @@ function Write-CustomUdf {
     Value to write
 
     .EXAMPLE
-    Write-CustomUdf -customUdf 22 -value 'Complete'
+    Set-CustomUdf -customUdf 22 -value 'Complete'
     #>
     param (
         [parameter(Mandatory=$true)]

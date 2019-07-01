@@ -1,3 +1,7 @@
+
+&nbsp;
+&nbsp;
+&nbsp;
 # Get-PendingReboot
 
 ## SYNOPSIS
@@ -129,6 +133,10 @@ Removed .Net Registry connection, replaced with WMI StdRegProv
 Added ComputerPendingRename
 
 ## RELATED LINKS
+
+&nbsp;
+&nbsp;
+&nbsp;
 # Test-ModuleDataSecurity
 
 ## SYNOPSIS
@@ -161,6 +169,10 @@ $moduleDataSecure = Test-ModuleDataSecurity
 ## NOTES
 
 ## RELATED LINKS
+
+&nbsp;
+&nbsp;
+&nbsp;
 # Test-RebootRequired
 
 ## SYNOPSIS
@@ -192,6 +204,10 @@ $rebootRequired = Test-RebootRequired
 ## NOTES
 
 ## RELATED LINKS
+
+&nbsp;
+&nbsp;
+&nbsp;
 # Test-RegistryKeyValueData
 
 ## SYNOPSIS
@@ -273,6 +289,10 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
+
+&nbsp;
+&nbsp;
+&nbsp;
 # Write-Log
 
 ## SYNOPSIS

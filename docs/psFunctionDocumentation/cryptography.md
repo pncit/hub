@@ -1,3 +1,7 @@
+
+&nbsp;
+&nbsp;
+&nbsp;
 # New-CryptographyKey
 
 ## SYNOPSIS
@@ -83,6 +87,10 @@ Date: 9/22/2017
 Downloaded from https://gallery.technet.microsoft.com/scriptcenter/EncryptDecrypt-files-use-65e7ae5d on 3/8/2019
 
 ## RELATED LINKS
+
+&nbsp;
+&nbsp;
+&nbsp;
 # Protect-File
 
 ## SYNOPSIS
@@ -271,6 +279,10 @@ Date: 9/22/2017
 Downloaded from https://gallery.technet.microsoft.com/scriptcenter/EncryptDecrypt-files-use-65e7ae5d on 3/8/2019
 
 ## RELATED LINKS
+
+&nbsp;
+&nbsp;
+&nbsp;
 # Unprotect-File
 
 ## SYNOPSIS

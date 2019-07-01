@@ -1,3 +1,7 @@
+
+&nbsp;
+&nbsp;
+&nbsp;
 # Get-DeviceData
 
 ## SYNOPSIS
@@ -91,6 +95,10 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
+
+&nbsp;
+&nbsp;
+&nbsp;
 # Get-DevicePatchStatus
 
 ## SYNOPSIS
@@ -185,6 +193,10 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
+
+&nbsp;
+&nbsp;
+&nbsp;
 # New-DattoRmmApiAccessToken
 
 ## SYNOPSIS
@@ -276,6 +288,10 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
+
+&nbsp;
+&nbsp;
+&nbsp;
 # New-DattoRmmApiRequest
 
 ## SYNOPSIS
@@ -399,6 +415,10 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
+
+&nbsp;
+&nbsp;
+&nbsp;
 # Set-DeviceUdf
 
 ## SYNOPSIS

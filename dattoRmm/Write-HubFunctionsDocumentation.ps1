@@ -13,18 +13,21 @@ function Write-Documentation {
     param( $module ) 
     #combine all function definitions into one file
     $tempFolder = "$env:temp\$module"
-    $tempFile = "$tempFolder\$module.psm1"
+    $tempModule = "$tempFolder\$module.psm1"
+    $tempDoc = "$tempFolder\$module.md"
     $docFile = ".\docs\psFunctionDocumentation\$module.md"
     mkdir $tempFolder
-    Get-ChildItem ".\psFunctions\$module" *ps1 -Recurse | Get-Content | Set-Content $tempFile -Force
+    Get-ChildItem ".\psFunctions\$module" *ps1 -Recurse | Get-Content | Set-Content $tempModule -Force
     # import functions
     Remove-Module $module -ErrorAction SilentlyContinue
-    Import-Module $tempFile
-    Remove-Item -Path $tempFile
+    Import-Module $tempModule
+    Remove-Item -Path $tempModule
     New-MarkdownHelp -Module $module -OutputFolder "$tempFolder" -Force -NoMetadata
     Remove-Module $module -ErrorAction SilentlyContinue
-    Get-ChildItem "$tempFolder" *-*md | Get-Content | Set-Content $docFile -Force
-    (Get-Content $docFile) -replace "^# ","`r`n&nbsp;`r`n&nbsp;`r`n&nbsp;`r`n# " | Set-Content $docFile
+    Get-ChildItem "$tempFolder" *-*md | Get-Content | Set-Content $tempDoc -Force
+    $functionList = (((Get-Content $tempDoc) | Where-Object { $_ -match "^# " } ) -replace "# ","") | ForEach-Object { "[$_](#$_)`r`n" }
+    $functionList + (Get-Content $tempDoc) | Set-Content $docFile
+    (Get-Content $docFile) -replace "^# ","`r`n&nbsp;`r`n&nbsp;`r`n&nbsp;`r`n# " | Add-Content $docFile
 
     Remove-Item -Path $tempFolder -Recurse -Force
 }

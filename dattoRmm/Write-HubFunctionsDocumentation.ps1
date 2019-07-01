@@ -25,10 +25,9 @@ function Write-Documentation {
     New-MarkdownHelp -Module $module -OutputFolder "$tempFolder" -Force -NoMetadata
     Remove-Module $module -ErrorAction SilentlyContinue
     Get-ChildItem "$tempFolder" *-*md | Get-Content | Set-Content $tempDoc -Force
-    $functionList = (((Get-Content $tempDoc) | Where-Object { $_ -match "^# " } ) -replace "# ","") | ForEach-Object { "[$_](#$_)`r`n" }
-    $functionList + (Get-Content $tempDoc) | Set-Content $docFile
-    (Get-Content $docFile) -replace "^# ","`r`n&nbsp;`r`n&nbsp;`r`n&nbsp;`r`n# " | Add-Content $docFile
-
+    $functionList = (((Get-Content $tempDoc) | Where-Object { $_ -match "^# " } ) -replace "# ","") | ForEach-Object { "##[$_](#$_)`r`n" }
+    "Functions:`r`n$functionList" | Set-Content $docFile
+    (Get-Content $tempDoc) -replace "^# ","`r`n&nbsp;`r`n&nbsp;`r`n&nbsp;`r`n# " | Add-Content $docFile
     Remove-Item -Path $tempFolder -Recurse -Force
 }
 

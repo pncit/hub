@@ -1,6 +1,6 @@
 # Using the PNC IT Hub System in your Datto RMM Environment
 ## Requirements
-This system assumes you are running **PowerShell 5.0**. We know for sure it will fail on versions prior to 3.0, and *no attempt is made for backward compatibility*. Keep your software updated.
+This system assumes you are running **PowerShell 5.0**. We know for sure it will fail on versions prior to 3.0, and *no attempt is made for backward compatibility*.
 ## Deployment
 All PS commands as written below should be executed from the top of the repo
 ### Starting Out

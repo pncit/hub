@@ -1,150 +1,13 @@
 # Functions:
-- [Get-PendingReboot](#Get-PendingReboot)
+- [Test-ModuleDataSecurity](#Test-ModuleDataSecurity)
 
- - [Test-ModuleDataSecurity](#Test-ModuleDataSecurity)
-
- - [Test-RebootRequired](#Test-RebootRequired)
+ - [Test-PendingReboot](#Test-PendingReboot)
 
  - [Test-RegistryKeyValueData](#Test-RegistryKeyValueData)
 
  - [Write-Log](#Write-Log)
 
 
-
-&nbsp;
-&nbsp;
-&nbsp;
-# Get-PendingReboot
-
-## SYNOPSIS
-Gets the pending reboot status on a local or remote computer.
-
-## SYNTAX
-
-```
-Get-PendingReboot [[-ComputerName] <String[]>] [-ErrorLog <String>] [<CommonParameters>]
-```
-
-## DESCRIPTION
-This function will query the registry on a local or remote computer and determine if the
-system is pending a reboot, from Microsoft updates, Configuration Manager Client SDK, Pending Computer 
-Rename, Domain Join or Pending File Rename Operations.
-For Windows 2008+ the function will query the 
-CBS registry key as another factor in determining pending reboot state. 
-"PendingFileRenameOperations" 
-and "Auto Update\RebootRequired" are observed as being consistant across Windows Server 2003 & 2008.
-
-CBServicing = Component Based Servicing (Windows 2008+)
-WindowsUpdate = Windows Update / Auto Update (Windows 2003+)
-CCMClientSDK = SCCM 2012 Clients only (DetermineIfRebootPending method) otherwise $null value
-PendComputerRename = Detects either a computer rename or domain join operation (Windows 2003+)
-PendFileRename = PendingFileRenameOperations (Windows 2003+)
-PendFileRenVal = PendingFilerenameOperations registry value; used to filter if need be, some Anti-
-Virus leverage this key for def/dat removal, giving a false positive PendingReboot
-
-## EXAMPLES
-
-### EXAMPLE 1
-```
-Get-PendingReboot -ComputerName (Get-Content C:\ServerList.txt) | Format-Table -AutoSize
-```
-
-Computer CBServicing WindowsUpdate CCMClientSDK PendFileRename PendFileRenVal RebootPending
--------- ----------- ------------- ------------ -------------- -------------- -------------
-DC01           False         False                       False                        False
-DC02           False         False                       False                        False
-FS01           False         False                       False                        False
-
-This example will capture the contents of C:\ServerList.txt and query the pending reboot
-information from the systems contained in the file and display the output in a table.
-The
-null values are by design, since these systems do not have the SCCM 2012 client installed,
-nor was the PendingFileRenameOperations value populated.
-
-### EXAMPLE 2
-```
-Get-PendingReboot
-```
-
-Computer           : WKS01
-CBServicing        : False
-WindowsUpdate      : True
-CCMClient          : False
-PendComputerRename : False
-PendFileRename     : False
-PendFileRenVal     : 
-RebootPending      : True
-
-This example will query the local machine for pending reboot information.
-
-### EXAMPLE 3
-```
-$Servers = Get-Content C:\Servers.txt
-```
-
-PS C:\\\> Get-PendingReboot -Computer $Servers | Export-Csv C:\PendingRebootReport.csv -NoTypeInformation
-
-This example will create a report that contains pending reboot information.
-
-## PARAMETERS
-
-### -ComputerName
-A single Computer or an array of computer names. 
-The default is localhost ($env:COMPUTERNAME).
-
-```yaml
-Type: String[]
-Parameter Sets: (All)
-Aliases: CN, Computer
-
-Required: False
-Position: 1
-Default value: "$env:COMPUTERNAME"
-Accept pipeline input: True (ByPropertyName, ByValue)
-Accept wildcard characters: False
-```
-
-### -ErrorLog
-A single path to send error data to a log file.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
-
-## INPUTS
-
-## OUTPUTS
-
-## NOTES
-Author:  Brian Wilhite
-Email:   bcwilhite (at) live.com
-Date:    29AUG2012
-PSVer:   2.0/3.0/4.0/5.0
-Updated: 27JUL2015
-UpdNote: Added Domain Join detection to PendComputerRename, does not detect Workgroup Join/Change
-Fixed Bug where a computer rename was not detected in 2008 R2 and above if a domain join occurred at the same time.
-Fixed Bug where the CBServicing wasn't detected on Windows 10 and/or Windows Server Technical Preview (2016)
-Added CCMClient property - Used with SCCM 2012 Clients only
-Added ValueFromPipelineByPropertyName=$true to the ComputerName Parameter
-Removed $Data variable from the PSObject - it is not needed
-Bug with the way CCMClientSDK returned null value if it was false
-Removed unneeded variables
-Added PendFileRenVal - Contents of the PendingFileRenameOperations Reg Entry
-Removed .Net Registry connection, replaced with WMI StdRegProv
-Added ComputerPendingRename
-
-## RELATED LINKS
 
 &nbsp;
 &nbsp;
@@ -185,37 +48,242 @@ $moduleDataSecure = Test-ModuleDataSecurity
 &nbsp;
 &nbsp;
 &nbsp;
-# Test-RebootRequired
+# Test-PendingReboot
 
 ## SYNOPSIS
-Detects whether a reboot is required
+Test the pending reboot status on a local and/or remote computer.
 
 ## SYNTAX
 
 ```
-Test-RebootRequired
+Test-PendingReboot [[-ComputerName] <String[]>] [-Credential <PSCredential>] [-Detailed]
+ [-SkipConfigurationManagerClientCheck] [-SkipPendingFileRenameOperationsCheck] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Detects whether a reboot is required
+This function will query the registry on a local and/or remote computer and determine if the
+system is pending a reboot, from Microsoft/Windows updates, Configuration Manager Client SDK, Pending
+Computer Rename, Domain Join, Pending File Rename Operations and Component Based Servicing.
+
+ComponentBasedServicing = Component Based Servicing
+WindowsUpdate = Windows Update / Auto Update
+CCMClientSDK = SCCM 2012 Clients only (DetermineifRebootPending method) otherwise $null value
+PendingComputerRenameDomainJoin = Detects a pending computer rename and/or pending domain join
+PendingFileRenameOperations = PendingFileRenameOperations, when this property returns true,
+                              it can be a false positive
+PendingFileRenameOperationsValue = PendingFilerenameOperations registry value; used to filter if need be,
+                                   Anti-Virus will leverage this key property for def/dat removal,
+                                   giving a false positive
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-$rebootRequired = Test-RebootRequired
+Test-PendingReboot
 ```
 
+ComputerName IsRebootPending
+------------ ---------------
+WKS01                   True
+
+This example returns the ComputerName and IsRebootPending properties.
+
+### EXAMPLE 2
+```
+(Test-PendingReboot).IsRebootPending
+```
+
+True
+
+This example will return a bool value based on the pending reboot test for the local computer.
+
+### EXAMPLE 3
+```
+Test-PendingReboot -ComputerName DC01 -Detailed
+```
+
+ComputerName                     : dc01
+ComponentBasedServicing          : True
+PendingComputerRenameDomainJoin  : False
+PendingFileRenameOperations      : False
+PendingFileRenameOperationsValue :
+SystemCenterConfigManager        : False
+WindowsUpdateAutoUpdate          : True
+IsRebootPending                  : True
+
+This example will test the pending reboot status for dc01, providing detailed information
+
+### EXAMPLE 4
+```
+Test-PendingReboot -ComputerName DC01 -SkipConfigurationManagerClientCheck -SkipPendingFileRenameOperationsCheck -Detailed
+```
+
+CommputerName                    : dc01
+ComponentBasedServicing          : True
+PendingComputerRenameDomainJoin  : False
+PendingFileRenameOperations      : False
+PendingFileRenameOperationsValue :
+SystemCenterConfigManager        :
+WindowsUpdateAutoUpdate          : True
+IsRebootPending                  : True
+
 ## PARAMETERS
+
+### -ComputerName
+A single computer name or an array of computer names. 
+The default is localhost ($env:COMPUTERNAME).
+
+```yaml
+Type: String[]
+Parameter Sets: (All)
+Aliases: CN, Computer
+
+Required: False
+Position: 1
+Default value: $env:COMPUTERNAME
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Credential
+Specifies a user account that has permission to perform this action.
+The default is the current user.
+Type a username, such as User01, Domain01\User01, or User@Contoso.com.
+Or, enter a PSCredential object,
+such as an object that is returned by the Get-Credential cmdlet.
+When you type a user name, you are
+prompted for a password.
+
+```yaml
+Type: PSCredential
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Detailed
+Indicates that this function returns a detailed result of pending reboot information, why the system is
+pending a reboot, not just a true/false response.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -SkipConfigurationManagerClientCheck
+Indicates that this function will not test the Client SDK WMI class that is provided by the System
+Center Configuration Manager Client. 
+This parameter is useful when SCCM is not used/installed on
+the targeted systems.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -SkipPendingFileRenameOperationsCheck
+Indicates that this function will not test the PendingFileRenameOperations MultiValue String property
+of the Session Manager registry key. 
+This parameter is useful for eliminating possible false positives.
+Many Anti-Virus packages will use the PendingFileRenameOperations MultiString Value in order to remove
+stale definitions and/or .dat files.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ## OUTPUTS
 
-### [Boolean]
 ## NOTES
+Author:  Brian Wilhite
+Email:   bcwilhite (at) live.com
+Source: https://github.com/bcwilhite/PendingReboot
+
+MIT License
+
+Copyright (c) 2018 Brian Wilhite
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 
 ## RELATED LINKS
+
+[Background:
+https://blogs.technet.microsoft.com/heyscriptingguy/2013/06/10/determine-pending-reboot-statuspowershell-style-part-1/
+https://blogs.technet.microsoft.com/heyscriptingguy/2013/06/11/determine-pending-reboot-statuspowershell-style-part-2/
+
+Component-Based Servicing:
+http://technet.microsoft.com/en-us/library/cc756291(v=WS.10).aspx
+
+PendingFileRename/Auto Update:
+http://support.microsoft.com/kb/2723674
+http://technet.microsoft.com/en-us/library/cc960241.aspx
+http://blogs.msdn.com/b/hansr/archive/2006/02/17/patchreboot.aspx
+
+CCM_ClientSDK:
+http://msdn.microsoft.com/en-us/library/jj902723.aspx](Background:
+https://blogs.technet.microsoft.com/heyscriptingguy/2013/06/10/determine-pending-reboot-statuspowershell-style-part-1/
+https://blogs.technet.microsoft.com/heyscriptingguy/2013/06/11/determine-pending-reboot-statuspowershell-style-part-2/
+
+Component-Based Servicing:
+http://technet.microsoft.com/en-us/library/cc756291(v=WS.10).aspx
+
+PendingFileRename/Auto Update:
+http://support.microsoft.com/kb/2723674
+http://technet.microsoft.com/en-us/library/cc960241.aspx
+http://blogs.msdn.com/b/hansr/archive/2006/02/17/patchreboot.aspx
+
+CCM_ClientSDK:
+http://msdn.microsoft.com/en-us/library/jj902723.aspx)
+
 
 &nbsp;
 &nbsp;

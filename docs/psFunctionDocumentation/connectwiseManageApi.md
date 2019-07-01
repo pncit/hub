@@ -1,23 +1,23 @@
 # Functions:
-## [Close-CwmTicket](#Close-CwmTicket)
+- [Close-CwmTicket](#Close-CwmTicket)
 
- ## [Convert-CwmCompanyNameToId](#Convert-CwmCompanyNameToId)
+ - [Convert-CwmCompanyNameToId](#Convert-CwmCompanyNameToId)
 
- ## [Convert-CwmUtcToLocalTime](#Convert-CwmUtcToLocalTime)
+ - [Convert-CwmUtcToLocalTime](#Convert-CwmUtcToLocalTime)
 
- ## [Convert-LocalTimeToCwmUtc](#Convert-LocalTimeToCwmUtc)
+ - [Convert-LocalTimeToCwmUtc](#Convert-LocalTimeToCwmUtc)
 
- ## [Get-CwmApiUrl](#Get-CwmApiUrl)
+ - [Get-CwmApiUrl](#Get-CwmApiUrl)
 
- ## [Get-CwmTicket](#Get-CwmTicket)
+ - [Get-CwmTicket](#Get-CwmTicket)
 
- ## [New-CwmApiAuthString](#New-CwmApiAuthString)
+ - [New-CwmApiAuthString](#New-CwmApiAuthString)
 
- ## [New-CwmApiRequest](#New-CwmApiRequest)
+ - [New-CwmApiRequest](#New-CwmApiRequest)
 
- ## [New-CwmTicket](#New-CwmTicket)
+ - [New-CwmTicket](#New-CwmTicket)
 
- ## [New-CwmTimeEntry](#New-CwmTimeEntry)
+ - [New-CwmTimeEntry](#New-CwmTimeEntry)
 
 
 

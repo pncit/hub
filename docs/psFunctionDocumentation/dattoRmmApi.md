@@ -1,13 +1,13 @@
 # Functions:
-## [Get-DeviceData](#Get-DeviceData)
+- [Get-DeviceData](#Get-DeviceData)
 
- ## [Get-DevicePatchStatus](#Get-DevicePatchStatus)
+ - [Get-DevicePatchStatus](#Get-DevicePatchStatus)
 
- ## [New-DattoRmmApiAccessToken](#New-DattoRmmApiAccessToken)
+ - [New-DattoRmmApiAccessToken](#New-DattoRmmApiAccessToken)
 
- ## [New-DattoRmmApiRequest](#New-DattoRmmApiRequest)
+ - [New-DattoRmmApiRequest](#New-DattoRmmApiRequest)
 
- ## [Set-DeviceUdf](#Set-DeviceUdf)
+ - [Set-DeviceUdf](#Set-DeviceUdf)
 
 
 

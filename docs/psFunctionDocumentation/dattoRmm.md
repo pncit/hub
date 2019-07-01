@@ -1,7 +1,7 @@
-Functions:
-##[Get-DeviceId](#Get-DeviceId)
+# Functions:
+## [Get-DeviceId](#Get-DeviceId)
 
- ##[Set-CustomUdf](#Set-CustomUdf)
+ ## [Set-CustomUdf](#Set-CustomUdf)
 
 
 

@@ -14,6 +14,7 @@ function Write-Documentation {
     #combine all function definitions into one file
     $tempFolder = "$env:temp\$module"
     $tempFile = "$tempFolder\$module.psm1"
+    $docFile = ".\docs\psFunctionDocumentation\$module.md"
     mkdir $tempFolder
     Get-ChildItem ".\psFunctions\$module" *ps1 -Recurse | Get-Content | Set-Content $tempFile -Force
     # import functions
@@ -22,7 +23,9 @@ function Write-Documentation {
     Remove-Item -Path $tempFile
     New-MarkdownHelp -Module $module -OutputFolder "$tempFolder" -Force -NoMetadata
     Remove-Module $module -ErrorAction SilentlyContinue
-    Get-ChildItem "$tempFolder" *-*md | Get-Content | Set-Content ".\docs\psFunctionDocumentation\$module.md" -Force
+    Get-ChildItem "$tempFolder" *-*md | Get-Content | Set-Content $docFile -Force
+    (Get-Content $docFile) -replace "^# ","`r`n&nbsp;`r`n&nbsp;`r`n&nbsp;`r`n# " | Set-Content $docFile
+
     Remove-Item -Path $tempFolder -Recurse -Force
 }
 

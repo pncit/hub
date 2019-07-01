@@ -1,36 +1,36 @@
 # PNC IT Hub System for Datto RMM
-This is PNC IT's effort to create a system of modularized code that can be used across a variety of components within the Datto RMM system. The hope is that this will allow Datto RMM users to use tested and sophisticated code without having to repeat code within components themselves. This speeds up component development, raises the bar for what can be reasonably be accomplished in a component, and opens the possibility for a variety of tight integrations with other systems.
+This is PNC IT's effort to create a system of modularized code that can be used across a variety of components within the Datto RMM system. The hope is that this will allow Datto RMM users to use tested and sophisticated code without having to repeat code within components themselves. This speeds up component development, raises the bar for what can be reasonably be accomplished in a component, and opens the possibility for a variety of tight integrations with any system with an API.
 ## Requirements
-This system assumes you are running **PowerShell 5.0**. We know for sure it will fail on versions prior to 3.0, and *no attempt is made for backward compatibility*. Keep your software updated.
-## System Overview
-The idea is limit code duplication and, as much as possible, allow components to inherit bug fixes and enhancements over time without modifying those components themselves. To this end, within Datto you need only attach one file and add one line of code to a component to give it access to all of the functions in the project. This means that with one line in your component, you have access to an unlimited number of functions that may perform complex operations and facilitate integrations with any system that has an API.
-We have abstracted as much as we can from that file so that system changes should almost never necessitate updating all of the components that are using it. 
-### The three files
-In a live environment, three files and one line of code enable you to include a limitless number of functions within your components - including bug fixes and enhancements. The three files are:
-#### hubFunctions.psm1
-This is a PowerShell module with all of the functions defined. It is compiled out of the functions in the folder (and subfolders under) `/functions`.
-#### hubFunctionsConfig.ps1
-This is a configuration file that defines a variety of PowerShell variables. It can include sensitive information, such as passwords, non-public webhooks, and API keys. For this reason, it is encrypted as `hubFunctionsConfig.ps1protected` (the code to encrypt and decrypt this file is included in this project and can be updated as cryptography technology changes).
-#### Get-HubFunctions.ps1
-This is the file you attach to your components. It contains the code necessary to download and import `hubFunctions.psm1` and download, decrypt, and include `hubFunctionsConfig.ps1.AES` so that by running it within your component you are, in one line, defining dozens of functions and making any number of configuration settings and constants available to you.
-### The line of code
-Once you have `hubFunctions.zip` (containing `hubFunctions.psm1` and `hubFunctionsConfig.ps1protected` in a publicly accessible place defined within `Get-HubFunctions.ps1`, attach `Get-HubFunctions.ps1` to your PowerShell Component and add this line to the beginning of the Component script:
+- Although most of the code is agnostic and can be run from any device running a Windows OS, we designed it explicitly to enhance Datto RMM environments.
+- This system assumes you are running **PowerShell 5.0**. We know for sure it will fail on versions prior to 3.0, and *no attempt is made for backward compatibility*. Keep your software updated.
+## What it is
+Currently the PNC IT Hub System provides functions that 
+- Create/Close tickets and add Time Entries in ConnectWise Manage 
+  - Also allows generic GET/POST/PATCH requests to the API
+- Get Device information/patch statuses and set UDFs via the Datto RMM API
+  - Also allows generic GET/POST/PATCH requests to the API
+- Send email messages via an Office365 Account
+- Sent Microsoft Teams messages
+See the [Functions Documentation](https://github.com/pncit/hub/tree/master/docs/psFunctionDocumentation) to see what functions have developed and can be used.
+## How it works
+This is an overview; detailed instructions for setup and implementation are avaialable [here](https://github.com/pncit/hub/blob/master/docs/installationInstructions.md). 
+The system essentially consists of 
+1. hubFunctions.zip`, a zip file with 
+    1. `hubFunctions.psm1`, a PowerShell Module
+    2. `hubFunctionsConfig.ps1protected`, an encrypted configuration file
+2. `Get-HubFunctions.ps1`, a PowerShell script that you attach to your Datto RMM Components
+3. A line of code in your Component:
 ```
 .\Get-HubFunctions.ps1
 ``` 
-### The library of code
-See the [Functions Documentation](https://github.com/pncit/hub/tree/master/docs/psFunctionDocumentation) to see what has been developed and can be used.
+that runs Get-HubFunctions.ps1, which downloads `hubFunctions.zip`, processes the contents, and makes all of the functions available to the Component
 ## Deployment
 See our [Installation Instructions](https://github.com/pncit/hub/blob/master/docs/installationInstructions.md)
-## Notes
-1. Two things are static (or at least cumbersome to change):
-   - The names and location of files that are served on a web server
-   - Anything done by or defined in Get-HubFunctions.ps1
-2. There are security concerns. `hubFunctionsConfig.ps1protected` is encrypted, but where do you store the key so that your component can use it? We have three solutions (detailed in [Installation Instructions](https://github.com/pncit/hub/blob/master/docs/installationInstructions.md)).
-3. The project is structured fairly simply at this point. There are three folders:
+## Repo Structure
+The project is structured fairly simply at this point. There are three folders:
    - **docs** This contains documentation on installation and the individual functions available
-   - **psFunctions** These are the functions that drive the components. They are divided into subfolders for better organization, and one functions is defined per file with the file name repeating the function name.
-   - **dattoRmm** These are the files and scripts that control deployment in Datto RMM.
+   - **psFunctions** These are the functions that drive the components. They are divided into subfolders for better organization, and one function is defined per file with the file name repeating the function name.
+   - **dattoRmm** These are the files and scripts that control deployment in Datto RMM. 
 ## Contributing
 We would love to get feedback and contributions. If you are interested in contributing, please contact [rgg](https://success.autotask.net/t5/user/viewprofilepage/user-id/35934)
 ## License

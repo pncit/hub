@@ -10,12 +10,12 @@ Currently the PNC IT Hub System provides functions that
 - Get Device information/patch statuses and set UDFs via the Datto RMM API
   - Also allows generic GET/POST/PATCH requests to the API
 - Send email messages via an Office365 Account
-- Sent Microsoft Teams messages
+- Send Microsoft Teams messages
 See the [Functions Documentation](https://github.com/pncit/hub/tree/master/docs/psFunctionDocumentation) to see what functions have developed and can be used.
 ## How it works
 This is an overview; detailed instructions for setup and implementation are avaialable [here](https://github.com/pncit/hub/blob/master/docs/installationInstructions.md). 
 The system essentially consists of 
-1. hubFunctions.zip`, a zip file with 
+1. `hubFunctions.zip`, a zip file with 
     1. `hubFunctions.psm1`, a PowerShell Module
     2. `hubFunctionsConfig.ps1protected`, an encrypted configuration file
 2. `Get-HubFunctions.ps1`, a PowerShell script that you attach to your Datto RMM Components

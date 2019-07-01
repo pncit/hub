@@ -1,7 +1,10 @@
 Functions:
 ##[New-CryptographyKey](#New-CryptographyKey)
+
  ##[Protect-File](#Protect-File)
+
  ##[Unprotect-File](#Unprotect-File)
+
 
 
 &nbsp;

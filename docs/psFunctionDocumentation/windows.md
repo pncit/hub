@@ -1,9 +1,14 @@
 Functions:
 ##[Get-PendingReboot](#Get-PendingReboot)
+
  ##[Test-ModuleDataSecurity](#Test-ModuleDataSecurity)
+
  ##[Test-RebootRequired](#Test-RebootRequired)
+
  ##[Test-RegistryKeyValueData](#Test-RegistryKeyValueData)
+
  ##[Write-Log](#Write-Log)
+
 
 
 &nbsp;

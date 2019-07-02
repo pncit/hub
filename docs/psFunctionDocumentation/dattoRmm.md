@@ -1,9 +1,64 @@
 # Functions:
-- [Get-DeviceId](#Get-DeviceId)
+- [Get-CustomUdf](#Get-CustomUdf)
+
+ - [Get-DeviceId](#Get-DeviceId)
 
  - [Set-CustomUdf](#Set-CustomUdf)
 
 
+
+&nbsp;
+&nbsp;
+&nbsp;
+# Get-CustomUdf
+
+## SYNOPSIS
+Gets a custom udf value for the current device
+
+## SYNTAX
+
+```
+Get-CustomUdf [-udf] <Int32> [<CommonParameters>]
+```
+
+## DESCRIPTION
+{{ Fill in the Description }}
+
+## EXAMPLES
+
+### EXAMPLE 1
+```
+$value = Get-CustomUdf 26
+```
+
+## PARAMETERS
+
+### -udf
+Custom udf to get value of (1-30)
+
+```yaml
+Type: Int32
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 1
+Default value: 0
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+## INPUTS
+
+## OUTPUTS
+
+### [String] udf value
+## NOTES
+
+## RELATED LINKS
 
 &nbsp;
 &nbsp;

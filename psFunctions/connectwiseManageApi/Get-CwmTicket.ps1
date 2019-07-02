@@ -28,15 +28,14 @@ function Get-CwmTicket {
         [validateNotNullOrEmpty()]
         [int]$ticketId,
 
-        [parameter(Mandatory=$true)]
+        [parameter(Mandatory=$false)]
         [validateNotNullOrEmpty()]
-        [string]$apiUrl,
+        [string]$apiUrl=$global:cwmApiUrl,
     
-        [parameter(Mandatory=$true)]
+        [parameter(Mandatory=$false)]
         [validateNotNullOrEmpty()]
-        [string]$authString
+        [string]$authString=$global:cwmApiAuthString
     
-
     )
 
     try {

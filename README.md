@@ -35,3 +35,4 @@ The project is structured fairly simply at this point. There are three folders:
 We would love to get feedback and contributions. If you are interested in contributing, please contact [rgg](https://success.autotask.net/t5/user/viewprofilepage/user-id/35934)
 ## License
 This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details
+Some code is from external sources. At this point all such code was distributed with the MIT License and license details have been added to the individual files in accordance with that license.

@@ -17,6 +17,8 @@
 
  - [New-CwmTicket](#New-CwmTicket)
 
+ - [New-CwmTicketNote](#New-CwmTicketNote)
+
  - [New-CwmTimeEntry](#New-CwmTimeEntry)
 
 
@@ -399,7 +401,7 @@ Gets data for a ConnectWise Manage Ticket
 ## SYNTAX
 
 ```
-Get-CwmTicket [-ticketId] <Int32> [-apiUrl] <String> [-authString] <String> [<CommonParameters>]
+Get-CwmTicket [-ticketId] <Int32> [[-apiUrl] <String>] [[-authString] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -437,9 +439,9 @@ Type: String
 Parameter Sets: (All)
 Aliases:
 
-Required: True
+Required: False
 Position: 2
-Default value: None
+Default value: $global:cwmApiUrl
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -452,9 +454,9 @@ Type: String
 Parameter Sets: (All)
 Aliases:
 
-Required: True
+Required: False
 Position: 3
-Default value: None
+Default value: $global:cwmApiAuthString
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -836,6 +838,151 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## OUTPUTS
 
 ### [int32] ticket id
+## NOTES
+
+## RELATED LINKS
+
+&nbsp;
+&nbsp;
+&nbsp;
+# New-CwmTicketNote
+
+## SYNOPSIS
+Creates a new ConnectWise Manage ticket note
+
+## SYNTAX
+
+```
+New-CwmTicketNote [-ticketId] <Int32> [-text] <String> [-detailDescription] [-internalAnalysis] [-resolution]
+ [[-apiUrl] <String>] [[-authString] <String>] [<CommonParameters>]
+```
+
+## DESCRIPTION
+Creates a new ConnectWise Manage ticket note for either a project or a service ticket
+
+## EXAMPLES
+
+### Example 1
+```powershell
+PS C:\> {{ Add example code here }}
+```
+
+{{ Add example description here }}
+
+## PARAMETERS
+
+### -ticketId
+Id for ticket to which to add a note.
+
+```yaml
+Type: Int32
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 1
+Default value: 0
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -text
+Note text
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 2
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -detailDescription
+Indicates that note should be flagged as "discussion"
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -internalAnalysis
+Indicates that note should be flagged as "internal"
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -resolution
+Indicates that note should be flagged as "resolution"
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -apiUrl
+The base ConnectWise Manage API URL
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 3
+Default value: $global:cwmApiUrl
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -authString
+Authorization string to access the ConnectWise Manage API
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 4
+Default value: $global:cwmApiAuthString
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+## INPUTS
+
+## OUTPUTS
+
 ## NOTES
 
 ## RELATED LINKS

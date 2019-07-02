@@ -11,6 +11,7 @@ Currently the PNC IT Hub System provides functions that
   - Also allows generic GET/POST/PATCH requests to the API
 - Send email messages via an Office365 Account
 - Send Microsoft Teams messages
+
 See the [Functions Documentation](https://github.com/pncit/hub/tree/master/docs/psFunctionDocumentation) to see what functions have developed and can be used.
 ## How it works
 This is an overview; detailed instructions for setup and implementation are avaialable [here](https://github.com/pncit/hub/blob/master/docs/installationInstructions.md). 
@@ -23,7 +24,7 @@ The system essentially consists of
 ```
 .\Get-HubFunctions.ps1
 ``` 
-that runs Get-HubFunctions.ps1, which downloads `hubFunctions.zip`, processes the contents, and makes all of the functions available to the Component
+that runs Get-HubFunctions.ps1, which downloads `hubFunctions.zip`, processes the contents, and makes all of the functions available to the Component.
 ## Deployment
 See our [Installation Instructions](https://github.com/pncit/hub/blob/master/docs/installationInstructions.md)
 ## Repo Structure
@@ -35,4 +36,5 @@ The project is structured fairly simply at this point. There are three folders:
 We would love to get feedback and contributions. If you are interested in contributing, please contact [rgg](https://success.autotask.net/t5/user/viewprofilepage/user-id/35934)
 ## License
 This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details
+
 Some code is from external sources. At this point all such code was distributed with the MIT License and license details have been added to the individual files in accordance with that license.

@@ -90,7 +90,7 @@ function New-CwmApiRequest {
     #make api request
     try { $response = ( Invoke-WebRequest @params -UseBasicParsing ) | Select-Object StatusCode,Content,Headers }
     catch {
-        if ( $ErrorAction.ToString().ToLower() -ne "silentycontinue") {
+        if ( $errorAction.ToString().ToLower() -ne "silentlycontinue") {
             Write-Log -message "API Request failed`n$PSItem" -entryType "Error"
         }
         throw

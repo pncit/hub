@@ -23,6 +23,9 @@ function New-CwmApiRequest {
     .PARAMETER authString
     Authorization string to access the ConnectWise Manage API
 
+    .PARAMETER apiClientId
+    Unique GUID or Globally Unique Identifier assigned to each ConnectWise integration
+
     .OUTPUTS
     [System.Object] custom object containing API response
 
@@ -54,7 +57,11 @@ function New-CwmApiRequest {
 
         [parameter(Mandatory=$false)]
         [validateNotNullorEmpty()]
-        [string]$authString=$global:cwmApiAuthString
+        [string]$authString=$global:cwmApiAuthString,
+
+        [parameter(Mandatory=$false)]
+        [validateNotNullorEmpty()]
+        [string]$apiClientId=$global:cwmApiClientId
     )
 
     $errorAction = $PSBoundParameters["ErrorAction"]
@@ -79,6 +86,7 @@ function New-CwmApiRequest {
         ContentType	= 	'application/json'
         Headers     =	@{
             'Authorization'	=	$authString
+            'clientId' = $apiClientId
         }
     }
 

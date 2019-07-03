@@ -24,6 +24,9 @@ function New-CwmTimeEntry {
     .PARAMETER authString
     Authorization string to access the ConnectWise Manage API
 
+    .PARAMETER apiClientId
+    Unique GUID or Globally Unique Identifier assigned to each ConnectWise integration
+
     .NOTES
     #>
     Param(
@@ -50,7 +53,11 @@ function New-CwmTimeEntry {
 
     [parameter(Mandatory=$false)]
     [validateNotNullOrEmpty()]
-    [string]$authString=$global:cwmApiAuthString
+    [string]$authString=$global:cwmApiAuthString,
+
+    [parameter(Mandatory=$false)]
+    [validateNotNullorEmpty()]
+    [string]$apiClientId=$global:cwmApiClientId
 
     )
 
@@ -60,7 +67,7 @@ function New-CwmTimeEntry {
         $timeEnd = $timeStart.AddMinutes(1)
     }
 
-    $ticket = Get-CwmTicket -ticketId $ticketId -apiUrl $apiUrl -authString $authString -ErrorAction SilentlyContinue
+    $ticket = Get-CwmTicket -ticketId $ticketId -apiUrl $apiUrl -authString $authString -apiClientId $apiClientId -ErrorAction SilentlyContinue
     if ( $ticket.board.id -eq $cwmProjectBoardId ) {
         $endpoint = "project/tickets/$ticketId"
         $chargeToType = "ProjectTicket"
@@ -80,7 +87,7 @@ function New-CwmTimeEntry {
             value = @{ id = $openStatus }
         } | ConvertTo-Json
         $body = "[$body]"
-        New-CwmApiRequest -endpoint $endpoint -apiRequestBody $body -apiMethod "patch" -apiUrl $apiUrl -authString $authString
+        New-CwmApiRequest -endpoint $endpoint -apiRequestBody $body -apiMethod "patch" -apiUrl $apiUrl -authString $authString -apiClientId $apiClientId
     }
 
     $body = @{
@@ -93,5 +100,5 @@ function New-CwmTimeEntry {
         notes = $notes
     } | ConvertTo-Json
 
-    New-CwmApiRequest -endpoint "time/entries" -apiRequestBody $body -apiMethod "post" -apiUrl $apiUrl -authString $authString
+    New-CwmApiRequest -endpoint "time/entries" -apiRequestBody $body -apiMethod "post" -apiUrl $apiUrl -authString $authString -apiClientId $apiClientId
 }

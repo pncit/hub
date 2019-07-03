@@ -14,6 +14,9 @@ function Close-CwmTicket {
 
     .PARAMETER authString
     ConnectWise Manage API authorization string
+    
+    .PARAMETER apiClientId
+    Unique GUID or Globally Unique Identifier assigned to each ConnectWise integration
 
     .EXAMPLE
     Close-CwmTicket -ticketId 12345678 -apiUrl "https://api-na.myconnectwise.net/v2019_4/apis/3.0/" -authString "Basic ZmRqa2VvaXdmaithZHNmYXNkZmFzZmRkZmZpOmZkaWVqZmlkamZpZGZkZmo="
@@ -39,11 +42,11 @@ function Close-CwmTicket {
 
     try {
         $endpoint = "service/tickets/$ticketId"
-        $ticket = New-CwmApiRequest -endpoint $endpoint -apiMethod "get" -apiUrl $cwmApiUrl -authString $cwmApiAuthString -ErrorAction silentlycontinue
+        $ticket = New-CwmApiRequest -endpoint $endpoint -apiMethod "get" -apiUrl $cwmApiUrl -authString $cwmApiAuthString -apiClientId $apiClientId -ErrorAction silentlycontinue
         $closedStatus = $global:cwmServiceTicketStatusClosed
     } catch {
         $endpoint = "project/tickets/$ticketId"
-        $ticket = New-CwmApiRequest -endpoint $endpoint -apiMethod "get" -apiUrl $cwmApiUrl -authString $cwmApiAuthString
+        $ticket = New-CwmApiRequest -endpoint $endpoint -apiMethod "get" -apiUrl $cwmApiUrl -authString $cwmApiAuthString -apiClientId $apiClientId
         $closedStatus = $global:cwmProjectTicketStatusClosed
     }
     
@@ -54,6 +57,6 @@ function Close-CwmTicket {
     } | ConvertTo-Json
     $body = "[$body]"
 
-    $ticket = New-CwmApiRequest -endpoint $endpoint -apiRequestBody $body -apiMethod "patch" -apiUrl $cwmApiUrl -authString $cwmApiAuthString
+    $ticket = New-CwmApiRequest -endpoint $endpoint -apiRequestBody $body -apiMethod "patch" -apiUrl $cwmApiUrl -authString $cwmApiAuthString -apiClientId $apiClientId
     return $ticket
 }

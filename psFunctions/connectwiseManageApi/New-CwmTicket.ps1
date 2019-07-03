@@ -27,6 +27,9 @@ function New-CwmTicket {
     .PARAMETER authString
     Authorization string to access the ConnectWise Manage API
 
+    .PARAMETER apiClientId
+    Unique GUID or Globally Unique Identifier assigned to each ConnectWise integration
+
     .OUTPUTS
     [int32] ticket id
 
@@ -71,18 +74,23 @@ function New-CwmTicket {
         [parameter(Mandatory=$false,ParameterSetName = "Create a service ticket")]
         [parameter(Mandatory=$false,ParameterSetName = "Create a project ticket")]
         [validateNotNullOrEmpty()]
-        [string]$authString=$global:cwmApiAuthString
+        [string]$authString=$global:cwmApiAuthString,
+
+        [parameter(Mandatory=$false,ParameterSetName = "Create a service ticket")]
+        [parameter(Mandatory=$false,ParameterSetName = "Create a project ticket")]
+        [validateNotNullorEmpty()]
+        [string]$apiClientId=$global:cwmApiClientId
     )
 
     if ( ( $PSBoundParameters.ContainsKey( 'projectId')  ) -eq $true ) {
         $endpoint = "project/projects/$projectId/phases?conditions=description=`"$phaseDescription`"&fields=id"
-        $phase = New-CwmApiRequest -endpoint $endpoint -apiMethod "get" -apiUrl $apiUrl -authString $authString
+        $phase = New-CwmApiRequest -endpoint $endpoint -apiMethod "get" -apiUrl $apiUrl -authString $authString -apiClientId $apiClientId
         $body = @{
             summary = $summary
             initialDescription = $initialDescription
             phase = @{ id = $phase.id }
         } | ConvertTo-Json
-        $ticket = New-CwmApiRequest -endpoint "project/tickets" -apiRequestBody $body -apiMethod "post" -apiUrl $apiUrl -authString $authString
+        $ticket = New-CwmApiRequest -endpoint "project/tickets" -apiRequestBody $body -apiMethod "post" -apiUrl $apiUrl -authString $authString -apiClientId $apiClientId
     } else {
         $body = @{
             summary = $summary
@@ -90,7 +98,7 @@ function New-CwmTicket {
             company = @{ id = Convert-CwmCompanyNameToId( $Env:CS_PROFILE_NAME ) }
             priority = @{ id = $priority }
         } | ConvertTo-Json
-        $ticket = New-CwmApiRequest -endpoint "service/tickets" -apiRequestBody $body -apiMethod "post" -apiUrl $apiUrl -authString $authString
+        $ticket = New-CwmApiRequest -endpoint "service/tickets" -apiRequestBody $body -apiMethod "post" -apiUrl $apiUrl -authString $authString -apiClientId $apiClientId
     }
 
     return $ticket.id

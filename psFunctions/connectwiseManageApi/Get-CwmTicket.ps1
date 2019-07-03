@@ -15,6 +15,9 @@ function Get-CwmTicket {
     .PARAMETER authString
     ConnectWise Manage API authorization string
 
+    .PARAMETER apiClientId
+    Unique GUID or Globally Unique Identifier assigned to each ConnectWise integration
+
     .OUTPUTS
     [System.Object] custom object containing ticket data
 
@@ -40,10 +43,10 @@ function Get-CwmTicket {
 
     try {
         $endpoint = "service/tickets/$ticketId"
-        $ticket = New-CwmApiRequest -endpoint $endpoint -apiMethod "get" -apiUrl $apiUrl -authString $authString -ErrorAction SilentlyContinue
+        $ticket = New-CwmApiRequest -endpoint $endpoint -apiMethod "get" -apiUrl $apiUrl -authString $authString -apiClientId $apiClientId -ErrorAction SilentlyContinue
     } catch {
         $endpoint = "project/tickets/$ticketId"
-        $ticket = New-CwmApiRequest -endpoint $endpoint -apiMethod "get" -apiUrl $apiUrl -authString $authString
+        $ticket = New-CwmApiRequest -endpoint $endpoint -apiMethod "get" -apiUrl $apiUrl -authString $authString -apiClientId $apiClientId
     }
     return $ticket
 }

@@ -574,7 +574,7 @@ Performs a query against the Connectwise Manage API
 
 ```
 New-CwmApiRequest [[-endpoint] <String>] [-apiMethod] <String> [[-apiRequestBody] <String>]
- [[-apiUrl] <String>] [[-authString] <String>] [<CommonParameters>]
+ [[-apiUrl] <String>] [[-authString] <String>] [[-apiClientId] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -674,6 +674,21 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -apiClientId
+Unique GUID or Globally Unique Identifier assigned to each ConnectWise integration
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 6
+Default value: $global:cwmApiClientId
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
@@ -699,13 +714,13 @@ Creates a new ConnectWise Manage ticket
 ### Create a project ticket
 ```
 New-CwmTicket -summary <String> -initialDescription <String> -projectId <Int32> -phaseDescription <String>
- [-apiUrl <String>] [-authString <String>] [<CommonParameters>]
+ [-apiUrl <String>] [-authString <String>] [-apiClientId <String>] [<CommonParameters>]
 ```
 
 ### Create a service ticket
 ```
 New-CwmTicket -summary <String> -initialDescription <String> [-priority <Int32>] [-apiUrl <String>]
- [-authString <String>] [<CommonParameters>]
+ [-authString <String>] [-apiClientId <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -830,6 +845,21 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -apiClientId
+Unique GUID or Globally Unique Identifier assigned to each ConnectWise integration
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: $global:cwmApiClientId
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
@@ -854,7 +884,7 @@ Creates a new ConnectWise Manage ticket note
 
 ```
 New-CwmTicketNote [-ticketId] <Int32> [-text] <String> [-detailDescription] [-internalAnalysis] [-resolution]
- [[-apiUrl] <String>] [[-authString] <String>] [<CommonParameters>]
+ [[-apiUrl] <String>] [[-authString] <String>] [[-apiClientId] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -976,6 +1006,21 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -apiClientId
+Unique GUID or Globally Unique Identifier assigned to each ConnectWise integration
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 5
+Default value: $global:cwmApiClientId
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
@@ -999,7 +1044,7 @@ Creates a new ConnectWise Manage time entry
 
 ```
 New-CwmTimeEntry [-ticketId] <Int32> [-timeStart] <DateTime> [-timeEnd] <DateTime> [-notes] <String>
- [[-apiUrl] <String>] [[-authString] <String>] [<CommonParameters>]
+ [[-apiUrl] <String>] [[-authString] <String>] [[-apiClientId] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -1103,6 +1148,21 @@ Aliases:
 Required: False
 Position: 6
 Default value: $global:cwmApiAuthString
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -apiClientId
+Unique GUID or Globally Unique Identifier assigned to each ConnectWise integration
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 7
+Default value: $global:cwmApiClientId
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

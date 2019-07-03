@@ -27,6 +27,9 @@ function New-CwmTicketNote {
     .PARAMETER authString
     Authorization string to access the ConnectWise Manage API
 
+    .PARAMETER apiClientId
+    Unique GUID or Globally Unique Identifier assigned to each ConnectWise integration
+    
     .NOTES
     #>
     Param(
@@ -54,7 +57,11 @@ function New-CwmTicketNote {
 
     [parameter(Mandatory=$false)]
     [validateNotNullOrEmpty()]
-    [string]$authString=$global:cwmApiAuthString
+    [string]$authString=$global:cwmApiAuthString,
+
+    [parameter(Mandatory=$false)]
+    [validateNotNullorEmpty()]
+    [string]$apiClientId=$global:cwmApiClientId
 
     )
 
@@ -62,7 +69,7 @@ function New-CwmTicketNote {
         Throw ("There was an attempt to create a ticket note without choosing a flag (discussion, internal, resolution). At least one must be selected.")
     }
 
-    $ticket = Get-CwmTicket -ticketId $ticketId -apiUrl $apiUrl -authString $authString -ErrorAction SilentlyContinue
+    $ticket = Get-CwmTicket -ticketId $ticketId -apiUrl $apiUrl -authString $authString -apiClientId $apiClientId -ErrorAction SilentlyContinue
     if ( $ticket.board.id -eq $cwmProjectBoardId ) {
         $endpoint = "project/tickets/$ticketId/notes"
     } else {
@@ -78,5 +85,5 @@ function New-CwmTicketNote {
         text = $text
     } | ConvertTo-Json
 
-    New-CwmApiRequest -endpoint $endpoint -apiRequestBody $body -apiMethod "post" -apiUrl $apiUrl -authString $authString
+    New-CwmApiRequest -endpoint $endpoint -apiRequestBody $body -apiMethod "post" -apiUrl $apiUrl -authString $authString -apiClientId $apiClientId
 }

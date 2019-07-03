@@ -4,15 +4,7 @@ This is PNC IT's effort to create a system of modularized code that can be used 
 - Although most of the code is agnostic and can be run from any device running a Windows OS, we designed it explicitly to enhance Datto RMM environments.
 - This system assumes you are running **PowerShell 5.0**. We know for sure it will fail on versions prior to 3.0, and *no attempt is made for backward compatibility*. Keep your software updated.
 ## What it is
-Currently the PNC IT Hub System provides functions that 
-- Create/Close tickets and add Time Entries in ConnectWise Manage 
-  - Also allows generic GET/POST/PATCH requests to the API
-- Get Device information/patch statuses and set UDFs via the Datto RMM API
-  - Also allows generic GET/POST/PATCH requests to the API
-- Send email messages via an Office365 Account
-- Send Microsoft Teams messages
-
-See the [Functions Documentation](https://github.com/pncit/hub/tree/master/docs/psFunctionDocumentation) to see what functions have developed and can be used.
+See the [Functions Documentation](https://github.com/pncit/hub/tree/master/docs/psFunctionDocumentation) to see what functions have been developed and can be used.
 ## How it works
 This is an overview; detailed instructions for setup and implementation are avaialable [here](https://github.com/pncit/hub/blob/master/docs/installationInstructions.md). 
 The system essentially consists of 

@@ -6,6 +6,7 @@ $dattoRmmSecretKey = "00000000000000000000000000000000"
 #cwm api settings
 $cwmCompany = "mycompany"
 $cwmApiRegion = "xx"
+$cwmApiClientId = "00000000-0000-0000-0000-000000000000"
 $cwmApiPublicKey = "0000000000000000"
 $cwmApiPrivateKey = "0000000000000000"
 $cwmServiceBoardId = 0
@@ -35,6 +36,7 @@ $global:dattoRmmApiUrl = $dattoRmmApiUrl
 
 $global:cwmApiUrl = Get-CwmApiUrl -apiRegion $cwmApiRegion -company $cwmCompany
 $global:cwmApiAuthString = New-CwmApiAuthString -company $cwmCompany -publicKey $cwmApiPublicKey -privateKey $cwmApiPrivateKey
+$global:cwmApiClientId = $cwmApiClientId
 $global:cwmServiceBoardId = $cwmServiceBoardId
 $global:cwmProjectBoardId = $cwmProjectBoardId
 $global:cwmServiceTicketStatusClosed = $cwmServiceTicketStatusClosed

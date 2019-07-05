@@ -1,5 +1,7 @@
 # Functions:
-- [Test-ModuleDataSecurity](#Test-ModuleDataSecurity)
+- [Get-InstalledSoftware](#Get-InstalledSoftware)
+
+ - [Test-ModuleDataSecurity](#Test-ModuleDataSecurity)
 
  - [Test-PendingReboot](#Test-PendingReboot)
 
@@ -7,6 +9,67 @@
 
  - [Write-Log](#Write-Log)
 
+
+
+&nbsp;
+&nbsp;
+&nbsp;
+# Get-InstalledSoftware
+
+## SYNOPSIS
+Returns a list of installed software without using wmi32
+
+## SYNTAX
+
+```
+Get-InstalledSoftware [[-filterName] <String>] [<CommonParameters>]
+```
+
+## DESCRIPTION
+get-wmiobject win32_product is the natural way to get installed programs, but it has potentially disasterous side effects.
+When executed,
+it performs a consistency check on all software and may "reconfigure" products.
+This script gets a list of installed software without any
+negative/unintended side effects.
+
+## EXAMPLES
+
+### EXAMPLE 1
+```
+$installedSoftware - Get-InstalledSoftware
+```
+
+## PARAMETERS
+
+### -filterName
+Optional filter to apply to returned list
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+## INPUTS
+
+## OUTPUTS
+
+### [PSCustomObject] array
+## NOTES
+This function was adapted a script originally authored by Boe Prox and modified by Michael McCool and sourced from https://mcpmag.com/articles/2017/07/27/gathering-installed-software-using-powershell.aspx.
+
+## RELATED LINKS
+
+[https://gregramsey.net/2012/02/20/win32_product-is-evil/](https://gregramsey.net/2012/02/20/win32_product-is-evil/)
 
 
 &nbsp;

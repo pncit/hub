@@ -19,7 +19,7 @@ function Get-InstalledSoftware {
     $installedSoftware - Get-InstalledSoftware
 
     .NOTES
-    This function was adapted fro a script originally authored by Boe Prox and modified by Michael McCool and sourced from https://mcpmag.com/articles/2017/07/27/gathering-installed-software-using-powershell.aspx.
+    This function was adapted from a script originally authored by Boe Prox and modified by Michael McCool and sourced from https://mcpmag.com/articles/2017/07/27/gathering-installed-software-using-powershell.aspx.
     
     .LINK
     https://gregramsey.net/2012/02/20/win32_product-is-evil/
@@ -43,7 +43,7 @@ function Get-InstalledSoftware {
         try {
             $reg = [microsoft.win32.registrykey]::OpenRemoteBaseKey( 'LocalMachine',$env:COMPUTERNAME,'Registry64' )
         } catch {
-            Write-Error $_ 
+            Write-Log -message "$_" -entryType warning 
             Continue   
         }
         
@@ -71,6 +71,7 @@ function Get-InstalledSoftware {
                             } 
                             catch{
                                 Write-Warning "$( $Computer ): $_ <$( $date )>"
+                                Write-Log -message "$_ <$( $date )>" -entryType warning 
                                 $date = $Null
                             }
                         } 

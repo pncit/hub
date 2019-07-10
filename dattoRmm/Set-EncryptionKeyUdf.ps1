@@ -9,4 +9,4 @@ Update-HubFunctions
 $encryptionKey = Get-Content '.\dattoRmm\protected\encryptionKey.AES'
 
 # record the encryption key in udf_30
-Set-DeviceUdf -dattoRmmApiAccessParams $dattoRmmApiAccessParams -udf 30 -value $encryptionKey
+Set-DeviceUdf -udf 30 -value $encryptionKey

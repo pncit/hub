@@ -34,7 +34,8 @@ Closes a ConnectWise Manage ticket
 ## SYNTAX
 
 ```
-Close-CwmTicket [-ticketId] <Int32> [[-apiUrl] <String>] [[-authString] <String>] [<CommonParameters>]
+Close-CwmTicket [-ticketId] <Int32> [[-apiUrl] <String>] [[-authString] <String>] [[-apiClientId] <String>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -91,6 +92,21 @@ Aliases:
 Required: False
 Position: 3
 Default value: $global:cwmApiAuthString
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -apiClientId
+Unique GUID or Globally Unique Identifier assigned to each ConnectWise integration
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 4
+Default value: $global:cwmApiClientId
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -401,7 +417,8 @@ Gets data for a ConnectWise Manage Ticket
 ## SYNTAX
 
 ```
-Get-CwmTicket [-ticketId] <Int32> [[-apiUrl] <String>] [[-authString] <String>] [<CommonParameters>]
+Get-CwmTicket [-ticketId] <Int32> [[-apiUrl] <String>] [[-authString] <String>] [[-apiClientId] <String>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -457,6 +474,21 @@ Aliases:
 Required: False
 Position: 3
 Default value: $global:cwmApiAuthString
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -apiClientId
+Unique GUID or Globally Unique Identifier assigned to each ConnectWise integration
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 4
+Default value: $global:cwmApiClientId
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

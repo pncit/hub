@@ -1,6 +1,8 @@
 # Functions:
 - [Get-InstalledSoftware](#Get-InstalledSoftware)
 
+ - [Set-RegistryKeyValue](#Set-RegistryKeyValue)
+
  - [Test-ModuleDataSecurity](#Test-ModuleDataSecurity)
 
  - [Test-PendingReboot](#Test-PendingReboot)
@@ -65,12 +67,110 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### [PSCustomObject] array
 ## NOTES
-This function was adapted a script originally authored by Boe Prox and modified by Michael McCool and sourced from https://mcpmag.com/articles/2017/07/27/gathering-installed-software-using-powershell.aspx.
+This function was adapted from a script originally authored by Boe Prox and modified by Michael McCool and sourced from https://mcpmag.com/articles/2017/07/27/gathering-installed-software-using-powershell.aspx.
 
 ## RELATED LINKS
 
 [https://gregramsey.net/2012/02/20/win32_product-is-evil/](https://gregramsey.net/2012/02/20/win32_product-is-evil/)
 
+
+&nbsp;
+&nbsp;
+&nbsp;
+# Set-RegistryKeyValue
+
+## SYNOPSIS
+Sets the value of a registry key
+
+## SYNTAX
+
+```
+Set-RegistryKeyValue [-path] <String> [-key] <String> [-value] <String> [[-valueType] <String>]
+ [<CommonParameters>]
+```
+
+## DESCRIPTION
+Finds a given registry key (creating one if necessary) and sets it to a given value
+
+## EXAMPLES
+
+### EXAMPLE 1
+```
+Set-RegistryKeyValue -path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\PowerShell\ModuleLogging\' -key 'EnableModuleLogging' -value '0'
+```
+
+## PARAMETERS
+
+### -path
+{{ Fill path Description }}
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -key
+Registry path to set
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 2
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -value
+Value to set the registry key value to
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 3
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -valueType
+Value type (currently only DWORD is supported)
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 4
+Default value: DWORD
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+## INPUTS
+
+## OUTPUTS
+
+## NOTES
+
+## RELATED LINKS
 
 &nbsp;
 &nbsp;

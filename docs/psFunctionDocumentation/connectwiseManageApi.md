@@ -11,6 +11,8 @@
 
  - [Get-CwmTicket](#Get-CwmTicket)
 
+ - [Get-CwmTicketBySummary](#Get-CwmTicketBySummary)
+
  - [New-CwmApiAuthString](#New-CwmApiAuthString)
 
  - [New-CwmApiRequest](#New-CwmApiRequest)
@@ -501,6 +503,105 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## OUTPUTS
 
 ### [System.Object] custom object containing ticket data
+## NOTES
+
+## RELATED LINKS
+
+&nbsp;
+&nbsp;
+&nbsp;
+# Get-CwmTicketBySummary
+
+## SYNOPSIS
+Gets data for a ConnectWise Manage Ticket with a specific summary
+
+## SYNTAX
+
+```
+Get-CwmTicketBySummary [-summary] <String> [[-apiUrl] <String>] [[-authString] <String>]
+ [[-apiClientId] <String>] [<CommonParameters>]
+```
+
+## DESCRIPTION
+Queries the ConnectWise Manage API for a ticket with a specified summary and returns the id for that ticket.
+
+## EXAMPLES
+
+### EXAMPLE 1
+```
+Get-CwmTicketBySummary -summary "Install patch 12345678 on LAB-004"
+```
+
+## PARAMETERS
+
+### -summary
+The summary of the ticket to get data for
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -apiUrl
+ConnectWise Manage API URL
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 2
+Default value: $global:cwmApiUrl
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -authString
+ConnectWise Manage API authorization string
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 3
+Default value: $global:cwmApiAuthString
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -apiClientId
+Unique GUID or Globally Unique Identifier assigned to each ConnectWise integration
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 4
+Default value: $global:cwmApiClientId
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+## INPUTS
+
+## OUTPUTS
+
+### Ticket id (as defined in CWM). ** if more than one ticket is returned, all ids are returned in an array **
 ## NOTES
 
 ## RELATED LINKS

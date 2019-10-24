@@ -25,9 +25,6 @@ function Set-DeviceOpenAlertToResolved {
     .PARAMETER alertUid
     Datto-defined alert uid. 
 
-    .OUTPUTS
-    [System.Object] custom object containing device data
-
     .EXAMPLE
     $deviceData = Set-DeviceOpenAlertToResolved -alertUid $alertUid
     #>

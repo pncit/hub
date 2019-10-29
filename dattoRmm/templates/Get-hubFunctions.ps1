@@ -9,7 +9,7 @@ To use this within a Datto RMM component
 
 #user-defined paramaters
 $hubFunctionsSource = "https://example.com/hubFunctions.zip"
-$hubFunctionsConfigSourceKey = $env:udf_30
+$hubFunctionsConfigSourceKey = $env:hubFunctionsConfigSourceKey
 
 #default parameters
 $tempDir = $env:temp

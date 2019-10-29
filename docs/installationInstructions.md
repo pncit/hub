@@ -23,7 +23,7 @@ You need to establish a few fixed facts about your live environment. These setti
 $hubFunctionsSource = "https://example.com/hubFunctions.zip"
 ```
 This is the web location of `hubFunctions.zip` (will be created later)
-#### Encryption key value (3 options)
+#### Encryption key value (4 options)
 The configuration file (`.\dattoRmm\protected\hubFunctionsConfig.ps1`, which will be set up later) is expected to contain API keys, passwords, and any manner of private data. It needs to be publicly available so that Datto RMM components can download it, but it needs to be protected via encryption. The question then is where/how to store the encryption key.
 ##### Option 1
 ```
@@ -44,6 +44,12 @@ If using this mehod, you can update all udfs at any time (whether they are onlin
 ```
 .\dattoRmm\Set-EncryptionKeyUdf.ps1
 ```
+*However*, any time you add a machine, you need to update the udf for that machine.
+##### Option 4
+```
+$hubFunctionsConfigSourceKey = $env:hubFunctionsConfigSourceKey
+```
+With this method, you define an account variable (Setup>Account Settings, scroll to the 'Variables' section) with name 'hubFunctionsConfigSourceKey' and value 'JRLC07qB2x4M7xuU9vog4xcxsj2Ffia/zM2K17/u3N4=' with the 'Mask my inputs' option checked. This is the recommended method because it is easy to update and provides a level from privacy from anyone who attains account access.
 ### Setting up the config file
 `.\dattoRmm\protected\hubFunctionsConfig.ps1` needs to be updated to match your tools and environment. Sample values are included. If you do not use a particular integration, you do not need to define those variables.
 ### Building your deployment

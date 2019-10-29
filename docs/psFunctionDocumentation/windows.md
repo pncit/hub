@@ -3,6 +3,8 @@
 
  - [Set-RegistryKeyValue](#Set-RegistryKeyValue)
 
+ - [Test-Credentials](#Test-Credentials)
+
  - [Test-ModuleDataSecurity](#Test-ModuleDataSecurity)
 
  - [Test-PendingReboot](#Test-PendingReboot)
@@ -157,6 +159,74 @@ Aliases:
 Required: False
 Position: 4
 Default value: DWORD
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+## INPUTS
+
+## OUTPUTS
+
+## NOTES
+
+## RELATED LINKS
+
+&nbsp;
+&nbsp;
+&nbsp;
+# Test-Credentials
+
+## SYNOPSIS
+Tests a given username and password
+
+## SYNTAX
+
+```
+Test-Credentials [-un] <String> [-pw] <String> [<CommonParameters>]
+```
+
+## DESCRIPTION
+Tests a given username and password to see if they are valid on the current machine.
+Returns a boolean with the result
+
+## EXAMPLES
+
+### EXAMPLE 1
+```
+Test-Credentials -username 'someuser' -password 'somepassword'
+```
+
+## PARAMETERS
+
+### -un
+Username to test
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -pw
+Password to test
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 2
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

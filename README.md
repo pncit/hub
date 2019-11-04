@@ -8,11 +8,10 @@ See the [Functions Documentation](https://github.com/pncit/hub/tree/master/docs/
 ## How it works
 This is an overview; detailed instructions for setup and implementation are avaialable [here](https://github.com/pncit/hub/blob/master/docs/installationInstructions.md). 
 The system essentially consists of 
-1. `hubFunctions.zip`, a zip file with 
-    1. `hubFunctions.psm1`, a PowerShell Module
-    2. `hubFunctionsConfig.ps1protected`, an encrypted configuration file
+1. `hubFunctions.zip`, a zip file with `hubFunctions.psm1`, a PowerShell Module containing definitions for all of the functions in this project
 2. `Get-HubFunctions.ps1`, a PowerShell script that you attach to your Datto RMM Components
-3. A line of code in your Component:
+3. A set of site-level variables defined in your Datto RMM interface
+4. A line of code in your Component:
 ```
 .\Get-HubFunctions.ps1
 ``` 

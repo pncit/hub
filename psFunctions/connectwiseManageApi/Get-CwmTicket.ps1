@@ -45,6 +45,9 @@ function Get-CwmTicket {
     
     )
 
+    if ( $global:cwmApiConfigured -eq $false ) {
+        return $null
+    }
     try {
         $endpoint = "service/tickets/$ticketId"
         $ticket = New-CwmApiRequest -endpoint $endpoint -apiMethod "get" -apiUrl $apiUrl -authString $authString -apiClientId $apiClientId -ErrorAction SilentlyContinue

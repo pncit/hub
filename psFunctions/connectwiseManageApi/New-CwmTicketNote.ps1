@@ -65,6 +65,9 @@ function New-CwmTicketNote {
 
     )
 
+    if ( $global:cwmApiConfigured -eq $false ) {
+        return $null
+    }
     if ( -not ( $detailDescription.IsPresent -or $internalAnalysis.IsPresent -or $resolution.IsPresent ) ) {
         Throw ("There was an attempt to create a ticket note without choosing a flag (discussion, internal, resolution). At least one must be selected.")
     }

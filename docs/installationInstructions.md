@@ -7,7 +7,7 @@ In order to use these functions, you must define a set of variables in your Datt
 
 1. Navigate to Setup>Account Settings in the Datto RMM dashboard
 2. Scroll down to Variables
-3. Create and define the configuration variables listed below (mask where you feel it is appropriate, and if something is irrelevant to you, e.g. CW Manage settings, simply do not define it).
+3. Create and define the configuration variables listed below (mask where you feel it is appropriate). If you do not use ConnectWise Manage or Office 365, or do not want to leverage those integrations, you can not define the variables without negative impact.
 
 ### Configuration Variables
 ####Datto RMM API

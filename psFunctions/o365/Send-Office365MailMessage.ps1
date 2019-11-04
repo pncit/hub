@@ -44,6 +44,9 @@ function Send-Office365MailMessage {
         [string]$BodyAsHtml
     )
 
+    if ( $global:o365Configured -eq $false ) {
+        return $null
+    }
     $o365SmtpServer = "smtp.office365.com"
     $o365SmtpPort = "587"
 

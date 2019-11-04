@@ -45,6 +45,9 @@ function Send-MsTeamsMessage {
         [string]$text
     )
 
+    if ( $global:o365Configured -eq $false ) {
+        return $null
+    }
     $body = ConvertTo-JSON @{
         summary = $summary
         text = $text

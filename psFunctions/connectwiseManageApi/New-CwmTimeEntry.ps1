@@ -61,6 +61,9 @@ function New-CwmTimeEntry {
 
     )
 
+    if ( $global:cwmApiConfigured -eq $false ) {
+        return $null
+    }
     $minutes = $timeEnd.Subtract($timeStart).Minutes
 
     if ( $minutes -lt 1 ) {

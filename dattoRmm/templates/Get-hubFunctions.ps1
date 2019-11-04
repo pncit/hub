@@ -4,19 +4,16 @@
 To use this within a Datto RMM component 
 1. Add this script to the component as a file
 2. Add the following line to the component script:
-    . Get-HubFunctions.ps1
+    . .\Get-HubFunctions.ps1
 #>
 
 #user-defined paramaters
-$hubFunctionsSource = "https://example.com/hubFunctions.zip"
-$hubFunctionsConfigSourceKey = $env:hubFunctionsConfigSourceKey
-
+$hubFunctionsSource = "https://github.com/pncit/hub/hubFunctions.zip"
+    
 #default parameters
 $tempDir = $env:temp
 $hubFunctions = $tempDir + "\hubFunctions.zip"
 $hubFunctionsExpanded = $tempDir + "\hubFunctions.psm1"
-$hubFunctionsConfig = $tempDir + "\hubFunctionsConfig.ps1protected"
-$hubFunctionsConfigDecrypted = $tempDir + "\hubFunctionsConfig.ps1"
 
 #download hubFunctions
 Start-BitsTransfer -Source $hubFunctionsSource -Destination $hubFunctions
@@ -40,16 +37,9 @@ if ( ( Test-ModuleDataSecurity ) -eq $false ) {
     exit 1
 }
 
-#decrypt, import, and remove the pncit functions
-$global:hubFunctionsConfigImported = $false
-try {
-    Unprotect-File $hubFunctionsConfig -KeyAsPlainText $hubFunctionsConfigSourceKey -Suffix "protected" -ErrorAction SilentlyContinue | Out-Null
-} catch {
-    Write-Error "Could not decrypt Hub Functions config"
-    exit 1
-}
-. $hubFunctionsConfigDecrypted
-Remove-Item -LiteralPath $hubFunctionsConfigDecrypted
+#get settings from environment variables
+$global:hubFunctionsConfigImported = $true
+Set-HubConfiguration
 if ( $hubFunctionsConfigImported -eq $false ) {
     Write-Error "Could not read Hub Functions config"
     exit 1

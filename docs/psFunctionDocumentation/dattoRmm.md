@@ -5,6 +5,8 @@
 
  - [Set-CustomUdf](#Set-CustomUdf)
 
+ - [Set-HubConfiguration](#Set-HubConfiguration)
+
 
 
 &nbsp;
@@ -155,6 +157,40 @@ Accept wildcard characters: False
 
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+## INPUTS
+
+## OUTPUTS
+
+## NOTES
+
+## RELATED LINKS
+
+&nbsp;
+&nbsp;
+&nbsp;
+# Set-HubConfiguration
+
+## SYNOPSIS
+Creates global variables for use in hub derived from environment variables defined in DattoRMM
+
+## SYNTAX
+
+```
+Set-HubConfiguration
+```
+
+## DESCRIPTION
+Creates global variables for use in hub derived from environment variables defined in DattoRMM
+
+## EXAMPLES
+
+### EXAMPLE 1
+```
+Set-HubConfiguration
+```
+
+## PARAMETERS
 
 ## INPUTS
 

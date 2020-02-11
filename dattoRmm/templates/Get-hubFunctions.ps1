@@ -42,6 +42,7 @@ $global:hubFunctionsConfigImported = $true
 Set-HubConfiguration
 if ( $hubFunctionsConfigImported -eq $false ) {
     Write-Error "Could not read Hub Functions config"
+    Write-Log -Message "Could not read Hub Functions config" -entryType "Error"
     exit 1
 }
 Write-Log -Message "Hub Functions Config Successfully Imported" -EntryType "Information"

@@ -1,5 +1,7 @@
 # Functions:
-- [Get-CustomUdf](#Get-CustomUdf)
+- [Confirm-HubConfiguration](#Confirm-HubConfiguration)
+
+ - [Get-CustomUdf](#Get-CustomUdf)
 
  - [Get-DeviceId](#Get-DeviceId)
 
@@ -8,6 +10,41 @@
  - [Set-HubConfiguration](#Set-HubConfiguration)
 
 
+
+&nbsp;
+&nbsp;
+&nbsp;
+# Confirm-HubConfiguration
+
+## SYNOPSIS
+Checks whether the needed variables have been defined in the Datto settings screen
+
+## SYNTAX
+
+```
+Confirm-HubConfiguration
+```
+
+## DESCRIPTION
+Checks whether the needed variables have been defined in the Datto settings screen
+
+## EXAMPLES
+
+### EXAMPLE 1
+```
+Confirm-HubConfiguration
+```
+
+## PARAMETERS
+
+## INPUTS
+
+## OUTPUTS
+
+### [Boolean]
+## NOTES
+
+## RELATED LINKS
 
 &nbsp;
 &nbsp;

@@ -18,6 +18,9 @@ function New-CwmTimeEntry {
     .PARAMETER notes
     Notes to include in time entry.
 
+    .PARAMETER workRoleId
+    Work role id to apply
+
     .PARAMETER apiUrl
     The base ConnectWise Manage API URL
 
@@ -46,6 +49,10 @@ function New-CwmTimeEntry {
     [parameter(Mandatory=$true)]
     [validateNotNullOrEmpty()]
     [string]$notes,
+
+    [parameter(Mandatory=$false)]
+    [validateNotNullOrEmpty()]
+    [string]$workRoleId=$global:cwmWorkRoleId,
 
     [parameter(Mandatory=$false)]
     [validateNotNullOrEmpty()]
@@ -97,11 +104,11 @@ function New-CwmTimeEntry {
         chargeToId = $ticketId
         chargeToType = $chargeToType
         member = @{ id = $cwmMemberId }
-        workRole = @{ id = $cwmWorkRoleId }
+        workRole = @{ id = $workRoleId }
         timeStart = Convert-LocalTimeToCwmUtc -localDateTime $timeStart
         timeEnd = Convert-LocalTimeToCwmUtc -localDateTime  $timeEnd
         notes = $notes
     } | ConvertTo-Json
-
+ 
     New-CwmApiRequest -endpoint "time/entries" -apiRequestBody $body -apiMethod "post" -apiUrl $apiUrl -authString $authString -apiClientId $apiClientId
 }

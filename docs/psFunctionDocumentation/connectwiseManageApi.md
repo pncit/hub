@@ -5,6 +5,8 @@
 
  - [Convert-CwmUtcToLocalTime](#Convert-CwmUtcToLocalTime)
 
+ - [Convert-DattoSiteToCwmSite](#Convert-DattoSiteToCwmSite)
+
  - [Convert-LocalTimeToCwmUtc](#Convert-LocalTimeToCwmUtc)
 
  - [Get-CwmApiUrl](#Get-CwmApiUrl)
@@ -231,6 +233,61 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## OUTPUTS
 
 ### DateTime object in local time
+## NOTES
+
+## RELATED LINKS
+
+&nbsp;
+&nbsp;
+&nbsp;
+# Convert-DattoSiteToCwmSite
+
+## SYNOPSIS
+Returns the ConnectWise Manage company and site id for a given Datto RMM site
+
+## SYNTAX
+
+```
+Convert-DattoSiteToCwmSite [-siteName] <String> [<CommonParameters>]
+```
+
+## DESCRIPTION
+If provided with a valid Datto RMM site name, this function will return the corresponding ConnectWise Manage company id and site id.
+
+## EXAMPLES
+
+### EXAMPLE 1
+```
+$companyId = Convert-CwmCompanyNameToId -name "TCX - Test Company"
+```
+
+$companyId = Convert-CwmCompanyNameToId -name "TCX - Test Company - Clinic"
+
+## PARAMETERS
+
+### -siteName
+The name of the company as defined in Datto RMM.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+## INPUTS
+
+## OUTPUTS
+
+### [psObject] ConnectWise Manage company id and site id
 ## NOTES
 
 ## RELATED LINKS
@@ -1177,7 +1234,8 @@ Creates a new ConnectWise Manage time entry
 
 ```
 New-CwmTimeEntry [-ticketId] <Int32> [-timeStart] <DateTime> [-timeEnd] <DateTime> [-notes] <String>
- [[-apiUrl] <String>] [[-authString] <String>] [[-apiClientId] <String>] [<CommonParameters>]
+ [[-workRoleId] <String>] [[-apiUrl] <String>] [[-authString] <String>] [[-apiClientId] <String>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -1255,6 +1313,21 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -workRoleId
+Work role id to apply
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 5
+Default value: $global:cwmWorkRoleId
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -apiUrl
 The base ConnectWise Manage API URL
 
@@ -1264,7 +1337,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 5
+Position: 6
 Default value: $global:cwmApiUrl
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -1279,7 +1352,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 6
+Position: 7
 Default value: $global:cwmApiAuthString
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -1294,7 +1367,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 7
+Position: 8
 Default value: $global:cwmApiClientId
 Accept pipeline input: False
 Accept wildcard characters: False

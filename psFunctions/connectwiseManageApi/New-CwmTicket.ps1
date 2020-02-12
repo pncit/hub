@@ -92,10 +92,12 @@ function New-CwmTicket {
         } | ConvertTo-Json
         $ticket = New-CwmApiRequest -endpoint "project/tickets" -apiRequestBody $body -apiMethod "post" -apiUrl $apiUrl -authString $authString -apiClientId $apiClientId
     } else {
+        $cwmSiteInfo = Convert-DattoSiteToCwmSite( $Env:CS_PROFILE_NAME )
         $body = @{
             summary = $summary
             initialDescription = $initialDescription
-            company = @{ id = Convert-CwmCompanyNameToId( $Env:CS_PROFILE_NAME ) }
+            company = @{ id = $cwmSiteInfo.companyId }
+            site = @{ id = $cwmSiteInfo.siteId }
             priority = @{ id = $priority }
         } | ConvertTo-Json
         $ticket = New-CwmApiRequest -endpoint "service/tickets" -apiRequestBody $body -apiMethod "post" -apiUrl $apiUrl -authString $authString -apiClientId $apiClientId

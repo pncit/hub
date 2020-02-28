@@ -258,10 +258,10 @@ If provided with a valid Datto RMM site name, this function will return the corr
 
 ### EXAMPLE 1
 ```
-$companyId = Convert-CwmCompanyNameToId -name "TCX - Test Company"
+$companyId = Convert-DattoSiteToCwmSite -name "TCX - Test Company"
 ```
 
-$companyId = Convert-CwmCompanyNameToId -name "TCX - Test Company - Clinic"
+$companyId = Convert-DattoSiteToCwmSite -name "TCX - Test Company - Clinic"
 
 ## PARAMETERS
 

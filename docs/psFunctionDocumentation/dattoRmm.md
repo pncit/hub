@@ -5,6 +5,8 @@
 
  - [Get-DeviceId](#Get-DeviceId)
 
+ - [Get-DomainCredential](#Get-DomainCredential)
+
  - [Set-CustomUdf](#Set-CustomUdf)
 
  - [Set-HubConfiguration](#Set-HubConfiguration)
@@ -132,6 +134,40 @@ $deviceId = Get-DeviceId
 ## OUTPUTS
 
 ### [String] device id
+## NOTES
+
+## RELATED LINKS
+
+&nbsp;
+&nbsp;
+&nbsp;
+# Get-DomainCredential
+
+## SYNOPSIS
+Gets domain credentials
+
+## SYNTAX
+
+```
+Get-DomainCredential
+```
+
+## DESCRIPTION
+Gets domain credentials stored in Datto RMM site UDFs
+
+## EXAMPLES
+
+### EXAMPLE 1
+```
+Get-DomainCredentials
+```
+
+## PARAMETERS
+
+## INPUTS
+
+## OUTPUTS
+
 ## NOTES
 
 ## RELATED LINKS

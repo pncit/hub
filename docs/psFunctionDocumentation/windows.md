@@ -11,6 +11,8 @@
 
  - [Test-RegistryKeyValueData](#Test-RegistryKeyValueData)
 
+ - [Test-VpnConnection](#Test-VpnConnection)
+
  - [Write-Log](#Write-Log)
 
 
@@ -593,6 +595,41 @@ Accept wildcard characters: False
 
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+## INPUTS
+
+## OUTPUTS
+
+### [Boolean]
+## NOTES
+
+## RELATED LINKS
+
+&nbsp;
+&nbsp;
+&nbsp;
+# Test-VpnConnection
+
+## SYNOPSIS
+Checks whether a VPN is currently active
+
+## SYNTAX
+
+```
+Test-VpnConnection
+```
+
+## DESCRIPTION
+Returns true if device is connected to VPN, false otherwise
+
+## EXAMPLES
+
+### EXAMPLE 1
+```
+Test-VpnConnection
+```
+
+## PARAMETERS
 
 ## INPUTS
 

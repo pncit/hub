@@ -33,13 +33,30 @@ function Update-HubFunctions {
     }
 
     if ( $prod -eq $true ) {
-        $env:udf_30 = Get-Content -Path ".\dattoRmm\protected\encryptionKey.AES"
-        . .\dattoRmm\protected\Get-HubFunctions.ps1
-        Remove-Item Env:\udf_30
+        $hubFunctionsSource = "https://secure.pncit.com/wp-content/uploads/datto/hubFunctions.zip"
+        $tempDir = $env:temp
+        $hubFunctions = $tempDir + "\hubFunctions.zip"
+        $hubFunctionsExpanded = $tempDir + "\hubFunctions.psm1"
+        #download hubFunctions
+        Start-BitsTransfer -Source $hubFunctionsSource -Destination $hubFunctions
+
+        #expand, import, and remove hubFunctions
+        Expand-Archive -LiteralPath $hubFunctions -DestinationPath $tempDir -Force
+        Remove-Item -LiteralPath $hubFunctions
+        Remove-Module -Name hubFunctions -ErrorAction SilentlyContinue
+        Import-Module $hubFunctionsExpanded -Global
+        Remove-Item -LiteralPath $hubFunctionsExpanded
     } else {
         . "./dattoRmm/Build-HubFunctions.ps1"
-        Import-Module ".\dattoRmm\protected\hubFunctions.psm1" -Global
-        . .\dattoRmm\protected\hubFunctionsConfig.ps1
+        $tempDir = $env:temp
+        $hubFunctions = ".\hubFunctions.zip"
+        $hubFunctionsExpanded = $tempDir + "\hubFunctions.psm1"
+
+        #expand, import, and remove hubFunctions
+        Expand-Archive -LiteralPath $hubFunctions -DestinationPath $tempDir -Force
+        Remove-Module -Name hubFunctions -ErrorAction SilentlyContinue
+        Import-Module $hubFunctionsExpanded -Global
+        Remove-Item -LiteralPath $hubFunctionsExpanded
     }
 
     $module = Get-Module | Where-Object { $_.name -eq "hubFunctions" }

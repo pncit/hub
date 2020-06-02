@@ -123,13 +123,13 @@ function Confirm-HubConfiguration {
        -and $null -ne $env:msTeamsWebhook1 `
        -and $null -ne $env:msTeamsWebhook2 `
     ) {
-        $global:office365Configured = $true
+        $global:o365Configured = $true
     } else {
         Write-Host "Not all Office 365 variables were defined. Deactivating Office 365 integration."
-        $global:office365Configured = $false
+        $global:o365Configured = $false
     }
  
-    if ( $global:office365Configured ) {
+    if ( $global:o365Configured ) {
         if ( $env:msTeamsWebhook1 -inotmatch "^[0-9A-Z]{8}-[0-9A-Z]{4}-[0-9A-Z]{4}-[0-9A-Z]{4}-[0-9A-Z]{12}@[0-9A-Z]{8}-[0-9A-Z]{4}-[0-9A-Z]{4}-[0-9A-Z]{4}-[0-9A-Z]{12}$" ) {
             Write-Error "value for msTeamsWebhook1 is invalid"
             $confirmed = $false

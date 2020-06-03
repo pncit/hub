@@ -48,8 +48,7 @@ if ( Confirm-HubConfiguration ) {
     }
 
     if ( $global:dellWarrantyApiConfigured ) {
-        $global:dellWarrantyApiClientId = $env:dellWarrantyApiClientId
-        $global:dellWarrantyApiClientSecret = $env:dellWarrantyApiClientSecret
+        $global:dellWarrantyApiToken = Get-DellWarrantyApiToken -clientId $env:dellWarrantyApiClientId -clientSecret $env:dellWarrantyApiClientSecret
         Write-Log -Message "Dell Warranty API integration configured" -EntryType "Information"
     }
 }

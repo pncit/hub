@@ -20,7 +20,7 @@ function Get-DellWarrantyInfo {
     param(
         [parameter(Mandatory=$false)]
         [validateNotNullOrEmpty()]
-        [string]$token = $dellWarrantyApiToken,
+        [string]$token = $global:dellWarrantyApiToken,
         
         [parameter(Mandatory=$true)]
         [validateNotNullOrEmpty()]

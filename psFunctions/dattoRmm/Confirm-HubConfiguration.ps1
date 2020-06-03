@@ -140,6 +140,16 @@ function Confirm-HubConfiguration {
         } 
     }
 
+
+    #dell api settings
+    if (    $null -ne $env:dellWarrantyApiClientId `
+       -and $null -ne $env:dellWarrantyApiClientSecret `
+    ) {
+        $global:dellWarrantyApiConfigured = $true
+    } else {
+        $global:dellWarrantyApiConfigured = $false
+    }
+
     return $confirmed
 
 }

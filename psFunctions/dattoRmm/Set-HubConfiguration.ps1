@@ -46,6 +46,12 @@ if ( Confirm-HubConfiguration ) {
         $global:msTeamsWebhook = "https://outlook.office.com/webhook/$env:msTeamsWebhook1/IncomingWebhook/$env:msTeamsWebhook2"
         Write-Log -Message "Office365 integration configured" -EntryType "Information"
     }
+
+    if ( $global:dellWarrantyApiConfigured ) {
+        $global:dellWarrantyApiClientId = $env:dellWarrantyApiClientId
+        $global:dellWarrantyApiClientSecret = $env:dellWarrantyApiClientSecret
+        Write-Log -Message "Dell Warranty API integration configured" -EntryType "Information"
+    }
 }
 
 }

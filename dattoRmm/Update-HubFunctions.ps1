@@ -33,7 +33,8 @@ function Update-HubFunctions {
     }
 
     if ( $prod -eq $true ) {
-        $hubFunctionsSource = "https://secure.pncit.com/wp-content/uploads/datto/hubFunctions.zip"
+        Write-Host "Importing Hub Functions published to Github"
+        $hubFunctionsSource = "https://github.com/pncit/hub/raw/master/hubFunctions.zip"
         $tempDir = $env:temp
         $hubFunctions = $tempDir + "\hubFunctions.zip"
         $hubFunctionsExpanded = $tempDir + "\hubFunctions.psm1"
@@ -47,6 +48,7 @@ function Update-HubFunctions {
         Import-Module $hubFunctionsExpanded -Global
         Remove-Item -LiteralPath $hubFunctionsExpanded
     } else {
+        Write-Host "Importing Hub Functions locally"
         . "./dattoRmm/Build-HubFunctions.ps1"
         $tempDir = $env:temp
         $hubFunctions = ".\hubFunctions.zip"

@@ -21,7 +21,11 @@ function Get-DellServiceTag {
             Write-Log -Message "Unable to find service tag" -EntryType "Error"
             return $null
         }
-        return $serviceTag
+        if ( ( $serviceTag.GetType() ).Name -eq "Object[]" ) {
+            return $serviceTag[0]
+        } else {
+            return $serviceTag
+        }
     } else {
         Write-Log -Message "This is not a Dell device" -EntryType "Warning"
         return $null

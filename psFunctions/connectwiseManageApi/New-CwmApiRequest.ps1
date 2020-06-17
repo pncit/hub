@@ -70,7 +70,11 @@ function New-CwmApiRequest {
     }
 
     #pull maximum records allowable unless endpoint argument already specifies a count
-    $uri = $apiUrl + [uri]::EscapeUriString($endpoint )
+    $escapedEndpoint = [uri]::EscapeUriString( $endpoint )
+    #where a client name has & (e.g. RHW - River Health & Wellness) we need need to replace the & with %26 in order to use CW API, 
+    #   but cannot replace all & with %26 because & has a function in REST API calls
+    $escapedEndpoint -replace '%20&%20', '%20%26%20'
+    $uri = $apiUrl + [uri]::EscapeUriString( $escapedEndpoint )
     if ( $uri.ToLower().IndexOf( "pagesize" ) -eq -1 ) {
         if ( $uri.IndexOf( "?" ) -eq -1 ) {
             $uri += "?pageSize=1000"

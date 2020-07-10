@@ -17,6 +17,22 @@ $hubFunctionsExpanded = $tempDir + "\hubFunctions.psm1"
 
 #download hubFunctions
 Start-BitsTransfer -Source $hubFunctionsSource -Destination $hubFunctions
+if ( ( Test-Path -Path $hubFunctions ) -eq $false ) {
+    Write-Host "BITS failed. Attempting WebClient download method."
+    $wc = New-Object System.Net.WebClient
+    $wc.DownloadFile( $hubFunctionsSource , $hubFunctions )
+}
+if ( ( Test-Path -Path $hubFunctions ) -eq $false ) {
+    Write-Host "WebClient download method failed. Attempting to set security protocol to TLS 1.2"
+    [System.Net.ServicePointManager]::SecurityProtocol = 'Tls12'
+    $wc = New-Object System.Net.WebClient
+    $wc.DownloadFile( $hubFunctionsSource , $hubFunctions )
+}
+if ( ( Test-Path -Path $hubFunctions ) -eq $false ) {
+    Write-Host "Download failed all attempts. Aborting."
+    exit 1
+}
+Write-Host "Hub Functions Successfully Downloaded"
 
 #expand, import, and remove hubFunctions
 Expand-Archive -LiteralPath $hubFunctions -DestinationPath $tempDir -Force

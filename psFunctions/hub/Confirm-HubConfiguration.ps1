@@ -1,10 +1,10 @@
 function Confirm-HubConfiguration {
     <#
     .SYNOPSIS 
-    Checks whether the needed variables have been defined in the Datto settings screen
+    Checks whether the needed variables have been defined as env variables
     
     .DESCRIPTION
-    Checks whether the needed variables have been defined in the Datto settings screen
+    Checks whether the needed variables have been defined as env variables. This is set up to be greedy - even if not all variables are set, so long as there are no configuration errors, it will configure what it can and continue.
 
     .EXAMPLE
     Confirm-HubConfiguration

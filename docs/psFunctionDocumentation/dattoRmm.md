@@ -1,7 +1,5 @@
 # Functions:
-- [Confirm-HubConfiguration](#Confirm-HubConfiguration)
-
- - [Get-CustomUdf](#Get-CustomUdf)
+- [Get-CustomUdf](#Get-CustomUdf)
 
  - [Get-DeviceId](#Get-DeviceId)
 
@@ -9,44 +7,7 @@
 
  - [Set-CustomUdf](#Set-CustomUdf)
 
- - [Set-HubConfiguration](#Set-HubConfiguration)
 
-
-
-&nbsp;
-&nbsp;
-&nbsp;
-# Confirm-HubConfiguration
-
-## SYNOPSIS
-Checks whether the needed variables have been defined in the Datto settings screen
-
-## SYNTAX
-
-```
-Confirm-HubConfiguration
-```
-
-## DESCRIPTION
-Checks whether the needed variables have been defined in the Datto settings screen
-
-## EXAMPLES
-
-### EXAMPLE 1
-```
-Confirm-HubConfiguration
-```
-
-## PARAMETERS
-
-## INPUTS
-
-## OUTPUTS
-
-### [Boolean]
-## NOTES
-
-## RELATED LINKS
 
 &nbsp;
 &nbsp;
@@ -230,40 +191,6 @@ Accept wildcard characters: False
 
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
-
-## INPUTS
-
-## OUTPUTS
-
-## NOTES
-
-## RELATED LINKS
-
-&nbsp;
-&nbsp;
-&nbsp;
-# Set-HubConfiguration
-
-## SYNOPSIS
-Creates global variables for use in hub derived from environment variables defined in DattoRMM
-
-## SYNTAX
-
-```
-Set-HubConfiguration
-```
-
-## DESCRIPTION
-Creates global variables for use in hub derived from environment variables defined in DattoRMM
-
-## EXAMPLES
-
-### EXAMPLE 1
-```
-Set-HubConfiguration
-```
-
-## PARAMETERS
 
 ## INPUTS
 

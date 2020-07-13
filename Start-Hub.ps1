@@ -1,3 +1,3 @@
-. .\dattoRmm\Update-HubFunctions.ps1
+. .\deploy\Update-HubFunctions.ps1
 Update-HubFunctions -prod
-.\dattoRmm\protected\Set-PncConfig.ps1
+.\deploy\protected\Set-PncConfig.ps1

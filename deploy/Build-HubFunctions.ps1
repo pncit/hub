@@ -11,8 +11,8 @@ Repair-File -file ".\psFunctions\cryptography\Unprotect-File.ps1"
 Repair-File -file ".\psFunctions\cryptography\New-CryptographyKey.ps1"
 
 #combine all function definitions into one file
-Get-ChildItem ".\psFunctions" *ps1 -Recurse | Get-Content | Set-Content ".\dattoRmm\hubFunctions.psm1" -Force
+Get-ChildItem ".\psFunctions" *ps1 -Recurse | Get-Content | Set-Content ".\deploy\hubFunctions.psm1" -Force
 
 #compress file and remove original
-Compress-Archive -Path ".\dattoRmm\hubFunctions.psm1" -CompressionLevel Optimal -DestinationPath ".\hubFunctions.zip" -Force
-Remove-Item -LiteralPath ".\dattoRmm\hubFunctions.psm1"
+Compress-Archive -Path ".\deploy\hubFunctions.psm1" -CompressionLevel Optimal -DestinationPath ".\hubFunctions.zip" -Force
+Remove-Item -LiteralPath ".\deploy\hubFunctions.psm1"

@@ -22,7 +22,7 @@ See our [Installation Instructions](https://github.com/pncit/hub/blob/master/doc
 The project is structured fairly simply at this point. There are three folders:
    - **docs** This contains documentation on installation and the individual functions available
    - **psFunctions** These are the functions that drive the components. They are divided into subfolders for better organization, and one function is defined per file with the file name repeating the function name.
-   - **dattoRmm** These are the files and scripts that control deployment in Datto RMM. 
+   - **deploy** These are the files and scripts that control deployment. 
 ## Contributing
 We would love to get feedback and contributions. If you are interested in contributing, please contact [rgg](https://success.autotask.net/t5/user/viewprofilepage/user-id/35934)
 ## License

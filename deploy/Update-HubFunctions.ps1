@@ -9,16 +9,16 @@ function Update-HubFunctions {
     rebuilds the code, and imports the refreshed module.
 
     .PARAMETER prod
-    If omitted, local files will be sourced. If true, function will pull from production server specified in /dattoRmm/protected/Get-HubFunctions.ps1
+    If omitted, local files will be sourced. If true, function will pull from production server specified in /deploy/protected/Get-HubFunctions.ps1
 
     .EXAMPLE
-    . .\dattoRmm\Update-Hubfunctions.ps1
+    . .\deploy\Update-Hubfunctions.ps1
     update-HubFunctions
 
     .EXAMPLE
     (from admin cmd)
     psexec -i -s powershell.exe
-    . .\dattoRmm\Update-Hubfunctions.ps1
+    . .\deploy\Update-Hubfunctions.ps1
     update-HubFunctions -prod
     #>
 
@@ -49,7 +49,7 @@ function Update-HubFunctions {
         Remove-Item -LiteralPath $hubFunctionsExpanded
     } else {
         Write-Host "Importing Hub Functions locally"
-        . "./dattoRmm/Build-HubFunctions.ps1"
+        . "./deploy/Build-HubFunctions.ps1"
         $tempDir = $env:temp
         $hubFunctions = ".\hubFunctions.zip"
         $hubFunctionsExpanded = $tempDir + "\hubFunctions.psm1"

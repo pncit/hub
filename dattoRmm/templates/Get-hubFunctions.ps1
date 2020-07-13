@@ -8,7 +8,7 @@ To use this within a Datto RMM component
 #>
 
 #user-defined paramaters
-$hubFunctionsSource = "https://github.com/pncit/hub/raw/master/hubFunctions.zip"
+$hubFunctionsSource = $env:hubFunctionsSource
     
 #default parameters
 $tempDir = $env:temp

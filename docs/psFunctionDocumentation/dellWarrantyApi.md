@@ -108,7 +108,7 @@ Aliases:
 
 Required: False
 Position: 1
-Default value: $dellWarrantyApiToken
+Default value: $global:dellWarrantyApiToken
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

@@ -10,6 +10,9 @@ In order to use these functions, you must define a set of variables in your Datt
 3. Create and define the configuration variables listed below (mask where you feel it is appropriate). If you do not use ConnectWise Manage or Office 365, or do not want to leverage those integrations, you can not define the variables without negative impact.
 
 ### Configuration Variables
+####Hub
+* `hubFunctionsSource = "https://github.com/pncit/hub/raw/master/hubFunctions.zip`
+
 ####Datto RMM API
 * `dattoRmmApiUrl = "https://myregion-api.centrastage.net"`
 * `dattoRmmAccessKey = "00000000000000000000000000000000"`
@@ -31,7 +34,6 @@ In order to use these functions, you must define a set of variables in your Datt
 * `cwmProjectTicketTimeAllowedStatus = { 0 , 1 , 2 }`
 * `cwmMemberId = 0`
 * `cwmWorkRoleId = 0`
-
 
 ####Office 365
 Note that the full msTeams webhook is too long to enter as a single variable in Datto, so we break it into two values. These are automatically combined to generate the full webhook as `https://outlook.office.com/webhook/$msTeamsWebhook1/IncomingWebhook/$msTeamsWebhook2`

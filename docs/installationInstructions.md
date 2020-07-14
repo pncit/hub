@@ -26,8 +26,8 @@ ConnectWise Manage API
 * `cwmApiPrivateKey = "0000000000000000"`
 * `cwmServiceBoardId = 0`
 * `cwmProjectBoardId = 0`
-* `cwmServiceTicketStatusClosed = 0```
-* `cwmServiceTicketStatusOpen = 0```
+* `cwmServiceTicketStatusClosed = 0`
+* `cwmServiceTicketStatusOpen = 0`
 * `cwmServiceTicketTimeAllowedStatus = { 0 , 1 , 2 }`
 * `cwmProjectTicketStatusClosed = 0`
 * `cwmProjectTicketStatusOpen = 0`

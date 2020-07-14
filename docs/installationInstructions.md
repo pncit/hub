@@ -43,6 +43,10 @@ Note that the full msTeams webhook is too long to enter as a single variable in 
 * `msTeamsWebhook1 = "00000000-0000-0000-0000-000000000000000000000-0000-0000-0000-000000000000`
 * `msTeamsWebhook2 = "00000000000000000000000000000000/00000000-0000-0000-0000-000000000000"`
 
+#####Dell Warranty API
+* `dellWarrantyApiClientId = "0000000000000000000000000000000000"
+* `dellWarrantyApiClientSecret = "00000000000000000000000000000000"
+
 ## Using the system within a component
 Using the system within a component is a two-step process. After this is done, all functions defined in /functions will be available for use, as will all variables defined in your config file:
 1. Attach `Get-HubFunctions.ps1` to your PowerShell component

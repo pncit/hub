@@ -10,15 +10,15 @@ In order to use these functions, you must define a set of variables in your Datt
 3. Create and define the configuration variables listed below (mask where you feel it is appropriate). If you do not use ConnectWise Manage or Office 365, or do not want to leverage those integrations, you can not define the variables without negative impact.
 
 ### Configuration Variables
-####Hub
+Hub
 * `hubFunctionsSource = "https://github.com/pncit/hub/raw/master/hubFunctions.zip`
 
-####Datto RMM API
+Datto RMM API
 * `dattoRmmApiUrl = "https://myregion-api.centrastage.net"`
 * `dattoRmmAccessKey = "00000000000000000000000000000000"`
 * `dattoRmmSecretKey = "00000000000000000000000000000000"`
 
-####ConnectWise Manage API
+ConnectWise Manage API
 * `cwmCompany = "mycompany"`
 * `cwmApiRegion = "xx"`
 * `cwmApiClientId = "00000000-0000-0000-0000-000000000000"`
@@ -35,7 +35,7 @@ In order to use these functions, you must define a set of variables in your Datt
 * `cwmMemberId = 0`
 * `cwmWorkRoleId = 0`
 
-####Office 365
+Office 365
 Note that the full msTeams webhook is too long to enter as a single variable in Datto, so we break it into two values. These are automatically combined to generate the full webhook as `https://outlook.office.com/webhook/$msTeamsWebhook1/IncomingWebhook/$msTeamsWebhook2`
 
 * `o365Account = "sender@conosto.com"`
@@ -43,9 +43,9 @@ Note that the full msTeams webhook is too long to enter as a single variable in 
 * `msTeamsWebhook1 = "00000000-0000-0000-0000-000000000000000000000-0000-0000-0000-000000000000`
 * `msTeamsWebhook2 = "00000000000000000000000000000000/00000000-0000-0000-0000-000000000000"`
 
-#####Dell Warranty API
-* `dellWarrantyApiClientId = "0000000000000000000000000000000000"
-* `dellWarrantyApiClientSecret = "00000000000000000000000000000000"
+Dell Warranty API
+* `dellWarrantyApiClientId = "0000000000000000000000000000000000"`
+* `dellWarrantyApiClientSecret = "00000000000000000000000000000000"`
 
 ## Using the system within a component
 Using the system within a component is a two-step process. After this is done, all functions defined in /functions will be available for use, as will all variables defined in your config file:

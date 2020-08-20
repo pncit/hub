@@ -1,6 +1,8 @@
 # Functions:
 - [Get-InstalledSoftware](#Get-InstalledSoftware)
 
+ - [Save-File](#Save-File)
+
  - [Set-RegistryKeyValue](#Set-RegistryKeyValue)
 
  - [Test-Credentials](#Test-Credentials)
@@ -77,6 +79,77 @@ This function was adapted from a script originally authored by Boe Prox and modi
 
 [https://gregramsey.net/2012/02/20/win32_product-is-evil/](https://gregramsey.net/2012/02/20/win32_product-is-evil/)
 
+
+&nbsp;
+&nbsp;
+&nbsp;
+# Save-File
+
+## SYNOPSIS
+Saves file to a pre-specified location
+
+## SYNTAX
+
+```
+Save-File [-file] <String> [[-subdir] <String>] [<CommonParameters>]
+```
+
+## DESCRIPTION
+This saves a given file to the directory specified by the $global:permDir variable.
+If the variable is not defined, an exception is thrown.
+A subdirectory path may be defined.
+
+## EXAMPLES
+
+### EXAMPLE 1
+```
+Save-File -file "$env:temp\permfile.txt"
+```
+
+Save-File -file "$env:temp\permfile.txt" -subdir "subfolder"
+
+## PARAMETERS
+
+### -file
+The file to save
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -subdir
+Subdirectory path under $global:permDir to save to
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 2
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+## INPUTS
+
+## OUTPUTS
+
+## NOTES
+
+## RELATED LINKS
 
 &nbsp;
 &nbsp;

@@ -42,6 +42,9 @@ Note that the full msTeams webhook is too long to enter as a single variable in 
 * `dellWarrantyApiClientId = "0000000000000000000000000000000000"`
 * `dellWarrantyApiClientSecret = "00000000000000000000000000000000"`
 
+### Windows
+This is permanent save folder for general use. It can be used for config files, logs and other things that should always be accessible but do not have another obvious home.
+* `permDir = "C:\PermanentSaveFolder`
 ## Using the PNC IT Hub System in your Datto RMM Environment
 
 ### Environment Configuration

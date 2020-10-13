@@ -33,11 +33,11 @@ function Get-CwmDocument {
 	(
         [parameter(Mandatory=$true)]
         [validateNotNullorEmpty()]
-        [string]$documentId=$null,
+        [string]$documentId,
 
         [parameter(Mandatory=$true)]
         [validateNotNullorEmpty()]
-        [string]$filePath=$null,
+        [string]$filePath,
 
         [parameter(Mandatory=$false)]
         [validateNotNullorEmpty()]

@@ -80,6 +80,7 @@ function Get-CwmDocument {
         throw
     }
 
+    Write-Host "Saving to $filePath"
     Set-Content -Path $filePath -Encoding Byte -Value $response.content
-    $filePath + ' created'
+    Write-Host "Saved to $filePath"
 }

@@ -39,7 +39,11 @@ function Send-Office365MailMessage {
         [validateNotNullOrEmpty()]
         [string]$Subject,
 
-        [parameter(Mandatory=$true)]
+        [parameter(Mandatory=$true, ParameterSetName="simpleBody")]
+        [validateNotNullOrEmpty()]
+        [string]$Body,
+
+        [parameter(Mandatory=$true, ParameterSetName="htmlBody")]
         [validateNotNullOrEmpty()]
         [string]$BodyAsHtml
     )
@@ -50,6 +54,9 @@ function Send-Office365MailMessage {
     $o365SmtpServer = "smtp.office365.com"
     $o365SmtpPort = "587"
 
-    Send-MailMessage -From $from -To $to -Subject $subject -bodyAsHtml $bodyAsHtml -SmtpServer $o365SmtpServer -Port $o365SmtpPort -UseSsl -Credential $credential
-
+    if ( "" -eq $Body ) {
+        Send-MailMessage -From $from -To $to -Subject $subject -bodyAsHtml $bodyAsHtml -SmtpServer $o365SmtpServer -Port $o365SmtpPort -UseSsl -Credential $credential
+    } elseif ( "" -eq $BodyAsHtml ) {
+        Send-MailMessage -From $from -To $to -Subject $subject -body $body -SmtpServer $o365SmtpServer -Port $o365SmtpPort -UseSsl -Credential $credential
+    }
 }

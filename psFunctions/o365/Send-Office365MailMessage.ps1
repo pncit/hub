@@ -33,7 +33,7 @@ function Send-Office365MailMessage {
         
         [parameter(Mandatory=$true)]
         [validateNotNullOrEmpty()]
-        [string]$To,
+        [string[]]$To,
 
         [parameter(Mandatory=$true)]
         [validateNotNullOrEmpty()]
